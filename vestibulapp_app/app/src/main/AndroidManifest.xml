@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.alexalves.vestibulapp">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".IndexActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Inscricao_InicioActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Inscricao_DadosPessoaisActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Inscricao_EnderecoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Inscricao_ContatoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Inscricao_CredencialActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Inscricao_AtendEspecializadoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Inscricao_TipoAtendEspecializadoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Inscricao_AtendEspecificoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Inscricao_ConfirmarDadoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Inscricao_TipoAtendEspecificoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Inscricao_EscolaridadeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Inscricao_LinguaActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Inscricao_CursosActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".OrientacaoActivity" />
+        <activity android:name=".Portal_LoginActivity" />
+        <activity
+            android:name=".Portal_AreaParticipanteActivity"
+            android:label="Área do Participante"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Portal_AcompanharInscricaoActivity" />
+        <activity android:name=".Portal_InformacaoPessoalActivity" />
+        <activity android:name=".Portal_AtendimentoActivity" />
+        <activity android:name=".Portal_SenhaActivity"></activity>
+    </application>
+
+</manifest>

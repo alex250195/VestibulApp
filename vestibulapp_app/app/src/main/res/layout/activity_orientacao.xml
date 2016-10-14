@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/background2"
+    tools:context="com.example.alexalves.vestibulapp.OrientacaoActivity">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#0065ca"
+        android:id="@+id/cabecalho"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Orientações"
+            android:id="@+id/textView1"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:textAlignment="center"
+            android:textColor="#FFF"
+            android:textStyle="bold"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_vertical"
+        android:background="#ffea00"
+        android:layout_height="wrap_content"
+        android:id="@+id/rodape">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Universidade de Itaúna"
+            android:textAlignment="center"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:id="@+id/txtFooter"
+            android:background="#ff6f00"/>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cabecalho"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="50dp"
+        android:id="@+id/scrollView5">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="- É imprescindível a prévia e atenta leitura do edital, que dispõe acerca de todas as regras do processo seletivo;"
+                android:textSize="16dp"
+                android:id="@+id/txt1"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="- O manual do candidato não esgota as regras e normas que regem o processo seletivo;"
+                android:textSize="16dp"
+                android:id="@+id/txt2"
+                android:layout_below="@id/txt1"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="- Só poderá concorrer às vagas definidas no edital o candidato que tiver concluído o Ensino Médio ou equivalente;"
+                android:textSize="16dp"
+                android:id="@+id/txt3"
+                android:layout_below="@id/txt2"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="- Aquele que não tiver concluído o Ensino Médio ou equivalente, mas desejar, mesmo assim, se  submeter  ao  Concurso,  poderá se  inscrever,  declarando,  no  ato  da  inscrição,  sua participação com o objetivo de treinamento (treineiro) sem concorrer, portanto, às vagas definidas no edital;"
+                android:textSize="16dp"
+                android:id="@+id/txt4"
+                android:layout_below="@id/txt3"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="- A indicação “treineiro” deverá ser feita no campo próprio da ficha de inscrição;"
+                android:textSize="16dp"
+                android:id="@+id/txt5"
+                android:layout_below="@id/txt4"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="- O candidato que se inscrever como “treineiro” não poderá, posteriormente, alterar essa condição, independentemente do motivo (erro no preenchimento do formulário etc.)."
+                android:textSize="16dp"
+                android:id="@+id/txt6"
+                android:layout_below="@id/txt5"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

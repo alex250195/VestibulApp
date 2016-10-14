@@ -1,0 +1,176 @@
+<resources>
+    <string name="app_name">VestibulApp</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_index">IndexActivity</string>
+
+    <string name="btnOrientacao">Orientações</string>
+    <string name="btnInscricao">Inscrição 2016</string>
+    <string name="btnAreaParticipante">Área do Participante</string>
+    <string name="btnUIT">Universidade de Itaúna</string>
+
+    <string name="title_activity_orientacao">OrientacaoActivity</string>
+    <string name="btnVoltar">Voltar</string>
+
+    <string name="title_activity_inscricao_primeira_etapa">InscricaoPrimeiraEtapaActivity</string>
+    <string name="title">Inscrição UIT 2016</string>
+    <string name="cpf">CPF</string>
+    <string name="nascimento">Data de Nascimento</string>
+    <string name="btnProsseguir">Prosseguir</string>
+
+    <string name="title_activity_inscricao_segunda_etapa">InscricaoSegundaEtapaActivity</string>
+    <string name="dados">Dados Pessoais</string>
+    <string name="nome">Nome</string>
+    <string name="mae">Nome da Mãe</string>
+    <string name="sexo">Sexo</string>
+    <string name="masc">Masculino</string>
+    <string name="fem">Feminino</string>
+    <string name="cor">Cor ou Raça</string>
+    <string name="identidade">N° da Identidade</string>
+    <string name="orgao">Orgão Expedidor</string>
+    <string name="ufIdentidade">UF da Identidade</string>
+    <string name="estadoCivil">Estado Civil</string>
+    <string name="nascionalidade">Nascionalidade</string>
+
+    <string name="title_activity_inscricao_segunda_etapa_endereco">InscricaoSegundaEtapaEnderecoActivity</string>
+    <string name="cep">CEP</string>
+    <string name="endereco">Endereço</string>
+    <string name="numero">Número</string>
+    <string name="complemento">Complemento</string>
+    <string name="bairro">Bairro</string>
+    <string name="municipio">Município</string>
+    <string name="uf">UF</string>
+
+    <string name="title_activity_inscricao_segunda_etapa_contato">InscricaoSegundaEtapaContatoActivity</string>
+    <string name="contato">Contato</string>
+    <string name="telFixo">Telefone Fixo</string>
+    <string name="celular">Celular</string>
+    <string name="confirmaCelular">Confirmar Celular</string>
+    <string name="email">E-mail</string>
+    <string name="confirmaEmail">Confirmar E-mail</string>
+    <string name="title_activity_inscricao_terceira_etapa">InscricaoTerceiraEtapaActivity</string>
+
+    <string name="senha">Senha</string>
+    <string name="confirmaSenha">Confirmar Senha</string>
+    <string name="perguntaSeguranca">Pergunta de Segurança</string>
+    <string name="respostaSecreta">Resposta Secreta</string>
+    <string name="descSenha">Atenção! Esta senha será utilizada para o acompanhamento da sua inscrição e obtenção de seus resultados.</string>
+    <string name="title_activity_inscricao_quarta_etapa_atendimento_especializado">InscricaoQuartaEtapaAtendimentoEspecializadoActivity</string>
+
+    <string name="especializado">Atendimento Especializado</string>
+    <string name="perguntaEspecializado">Possui deficiência ou condição especial?</string>
+
+    <string name="sim">Sim</string>
+    <string name="nao">Não</string>
+
+    <string name="especifico">Atendimento Específico</string>
+    <string name="perguntaEspecifico">Possui necessidade de atendimento específico?</string>
+    <string name="problemaEspecifico">Gestantes, Lactantes, Idosos, Classe hospitalar e Guardador de sábado por convicção religiosa.</string>
+
+    <string name="deficiencia">Indique a(s) deficiência(s) ou a(s) condição(ões) especial(is):</string>
+    <string name="surdocegueira">Surdocegueira</string>
+    <string name="auditiva">Deficiência Auditiva</string>
+    <string name="visao">Baixa Visão</string>
+    <string name="fisica">Deficiência Física</string>
+    <string name="autismo">Autismo</string>
+    <string name="discalculia">Discalculia</string>
+    <string name="outraDeficiencia">Outra deficiência ou condição especial</string>
+    <string name="cegueira">Cegueira</string>
+    <string name="surdez">Surdez</string>
+    <string name="monocular">Visão Monocular</string>
+    <string name="intelectual">Deficiência Intelectual (Mental)</string>
+    <string name="dislexia">Dislexia</string>
+    <string name="deficit">Déficit de Atenção</string>
+    <string name="declaraDeficiencia">Declaro que possuo a(s) deficiência(s) ou a condição(ões) especial(is) e faço jus ao tempo adicional de 60 minutos. Por ser verdade, confirmo que as informações prestadas são exatas e fidedignas, sob pena de responder por crime contra a fé pública, nos termos do Código Penal, e de ser eliminado de acordo com o Edital do Exame.</string>
+
+    <string name="atendimento">Indique o(s) motivo(s) para o antedimento específico:</string>
+    <string name="gestante">Gestante</string>
+    <string name="lactante">Lactante</string>
+    <string name="hospitalar">Estudante em situação de Classe Hospitalar</string>
+    <string name="sabado">Guardador de sábado por convicção religiosa</string>
+    <string name="atencaoAtendimento">Atenção: O participante deve dispor de documentos que comprovem a deficiência ou a condição especial que motiva a solicitação de atendimento específico ou especializado (conforme o caso) e estar ciente de que as informações prestadas devem ser exatas e fidedignas, sob pena de ser eliminado do Exame.</string>
+
+    <string name="title_activity_inscricao_quarta_etapa_atendimento_especifico">InscricaoQuartaEtapaAtendimentoEspecificoActivity</string>
+    <string name="title_activity_inscricao_quarta_etapa_especializado">InscricaoQuartaEtapaEspecializadoActivity</string>
+    <string name="title_activity_inscricao_quinta_etapa">InscricaoQuintaEtapaActivity</string>
+
+    <string name="confirmacao">Confirmação dos Dados</string>
+
+    <string-array name="raca">
+        <item>Branco</item>
+        <item>Negro</item>
+        <item>Indígena</item>
+        <item>Pardo</item>
+        <item>Mulato</item>
+        <item>Caboclo</item>
+        <item>Cafuzo</item>
+    </string-array>
+
+    <string-array name="uf">
+        <item>AC</item>
+        <item>AL</item>
+        <item>AP</item>
+        <item>AM</item>
+        <item>BA</item>
+        <item>CE</item>
+        <item>DF</item>
+        <item>ES</item>
+        <item>GO</item>
+        <item>MA</item>
+        <item>MT</item>
+        <item>MS</item>
+        <item>MG</item>
+        <item>PA</item>
+        <item>PB</item>
+        <item>PR</item>
+        <item>PE</item>
+        <item>PI</item>
+        <item>RJ</item>
+        <item>RN</item>
+        <item>RS</item>
+        <item>RO</item>
+        <item>RR</item>
+        <item>SC</item>
+        <item>SP</item>
+        <item>SE</item>
+        <item>TO</item>
+    </string-array>
+
+    <string-array name="estadoCivil">
+        <item>Solteiro(a)</item>
+        <item>Casado(a)</item>
+        <item>Viúvo(a)</item>
+        <item>Divorciado(a)</item>
+        <item>Separado(a)</item>
+        <item>Companheiro(a)</item>
+    </string-array>
+
+    <string-array name="escolaridade">
+        <item>Fundamental - Incompleto</item>
+        <item>Fundamental - Completo</item>
+        <item>Médio - Incompleto</item>
+        <item>Médio - Completo</item>
+        <item>Superior - Incompleto</item>
+        <item>Superior - Completo</item>
+        <item>Pós Graduação (Lato Senso) - Incompleto</item>
+        <item>Pós Graduação (Lato Senso) - Completo</item>
+        <item>Pós Graduação (Stricto sensu, nível Mestrado) - Incompleto</item>
+        <item>Pós Graduação (Stricto sensu, nível Mestrado) - Completo</item>
+        <item>Pós Graduação (Stricto sensu, nível Doutor) - Incompleto</item>
+        <item>Pós Graduação (Stricto sensu, nível Doutor) - Completo</item>
+    </string-array>
+    <string name="title_activity_inscricao_quarta_etapa_especifico">
+        InscricaoQuartaEtapaEspecificoActivity
+    </string>
+    <string name="title_activity_sexta_etapa">SextaEtapaActivity</string>
+    <string name="title_activity_inscricao_setima_etapa">InscricaoSetimaEtapaActivity</string>
+    <string name="title_activity_inscricao_oitava_etapa">InscricaoOitavaEtapaActivity</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_area_participante">AreaParticipanteActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="title_activity_acompanhar_inscricao">AcompanharInscricaoActivity</string>
+    <string name="title_activity_inscricao__endereco">Inscricao_EnderecoActivity</string>
+    <string name="title_activity_inscricao__contato">Inscricao_ContatoActivity</string>
+    <string name="title_activity_portal__area_participante">Portal_AreaParticipanteActivity</string>
+</resources>
