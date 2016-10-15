@@ -1,16 +1,16 @@
 <?php
     class Insert{
-		/*public function AtendimentoEspecial($descricao, $id_inscricao){
-			return "INSERT INTO Atendimento_Especial(descricao, id_inscricao)
+		public function AtendimentoEspecial($descricao, $id_inscricao){
+			return "INSERT INTO Atendimento_Especial(descricao, Inscricao_id_inscricao)
 					VALUES('".$descricao."',
 						   ".$id_inscricao.")";
 		}
 
 		public function AtendimentoEspecifico($descricao, $id_inscricao){
-			return "INSERT INTO Atendimento_Especifico(descricao, id_inscricao)
+			return "INSERT INTO Atendimento_Especifico(descricao, Inscricao_id_inscricao)
 					VALUES('".$descricao."',
 						   ".$id_inscricao.")";
-		}*/
+		}
 
 		public function Candidato($etnia, $estado_civil, $sexo, $cpf, $identidade, $orgao_expedidor, $uf_identidade, $nome, $nome_mae, $nascimento, $nascionalidade, $uf_nascimento, $municipio_nascimento, $escolaridade){
 			return "INSERT INTO Candidato(etnia, estado_civil, sexo, cpf, identidade, orgao_expedidor, uf_identidade, nome, nome_mae, nascimento, nascionalidade, uf_nascimento, municipio_nascimento, escolaridade)
@@ -60,13 +60,13 @@
 						   '".$estado."')";
 		}
 
-		/*public function Inscricao($id_curso, $id_vestibular, $id_candidato, $lingua){
+		public function Inscricao($id_curso, $id_vestibular, $id_candidato, $lingua){
 			return "INSERT INTO Inscricao(id_curso, id_vestibular, id_candidato, lingua)
 					VALUES(".$id_curso.",
 						   ".$id_vestibular.",
 						   ".$id_candidato.",
 						   '".$lingua."')";
-		}*/
+		}
 
 		public function Instituicao($cnpj, $razao_social, $nome_fantasia, $inscricao_municipal, $data_funcadao){
 			return "INSERT INTO Instituicao(cnpj, razao_social, nome_fantasia, data_fundacao, insc_municipal)

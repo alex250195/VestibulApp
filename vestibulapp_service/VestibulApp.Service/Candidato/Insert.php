@@ -22,7 +22,7 @@
 			  'ufNasicmento' => 'xsd:string',
 			  'municipioNascimento' => 'xsd:string',
 			  'escolaridade' => 'xsd:string',
-			  'senha' => 'xsd:string',),
+			  'senha' => 'xsd:string'),
 		array('return' => 'xsd:string'),
 		'urn:server.insertCandidato',
 		'urn:server.insertCandidato#insertCandidato',

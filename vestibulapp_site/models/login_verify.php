@@ -11,17 +11,20 @@
         $acesso->setSenha("admin");
 
         try{
-            $acesso->Insert();
-
-            if (!isset($_SESSION)) session_start();
-			$_SESSION['tipo_usuario']  = "Master";			
-			$_SESSION['cpf'] = "111.111.111-11";
-			$_SESSION['nome'] = "admin";
+            if($acesso->Insert()){
+                if (!isset($_SESSION)) session_start();
+                $_SESSION['tipo_usuario']  = "Master";			
+                $_SESSION['cpf'] = "111.111.111-11";
+                $_SESSION['nome'] = "admin";
+            }
+            else{
+                throw new Exception ("Acesso Negado!");
+            }
         }catch(Exception $e){
             echo "<script>alert ('" .$e->getMessage(). "');</script>";
             exit();
         }finally{
-            echo "<script>alert ('Acesso Realizado com Sucesso!'); window.location='../loader.php?status=2';</script>";
+            echo "<script>window.location='../loader.php?status=2';</script>";
         }
     }
     else{
@@ -33,7 +36,7 @@
         $acesso->setSenha($_GET['senha']);
 
         if($acesso->SelectBySpecification()){
-            echo "<script>alert ('Acesso Realizado com Sucesso!'); window.location='../loader.php?status=2';</script>";
+            echo "<script>window.location='../loader.php?status=2';</script>";
         }
         else{
             echo "<script>alert ('Acesso Negado!'); window.location='../loader.php?status=1';</script>";

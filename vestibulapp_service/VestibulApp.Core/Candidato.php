@@ -167,11 +167,45 @@
         }
 
         public function Update(){
-            
+            try{
+                $update = new Update();
+                $update = $update->Candidato($this->cpf, $this->senha);
+                
+                return mysqli_query($this->connection->getMySqli(), $update);
+            }catch(Exception $ex){
+                return $ex;
+            }
         }
 
-        public function SelectBySpecification(){
-            
+        public function SelectBySpecification($query){
+            try{
+                $selectBySpecification = new SelectBySpecification();
+                $selectBySpecification = $selectBySpecification->Candidato($query);
+
+                $resultado = mysqli_query($this->connection->getMySqli(), $selectBySpecification);
+
+                if(mysqli_num_rows($resultado) > 0){
+                    while($row =  mysqli_fetch_assoc($resultado)) {
+                        $select[] = $row['id_candidato'];
+                        $select[] = $row['nome'];
+                        $select[] = $row['cpf'];
+                        $select[] = $row['sexo'];
+                        $select[] = $row['identidade'];
+                        $select[] = $row['nascimento'];
+                        $select[] = $row['nascionalidade'];
+                        $select[] = $row['municipio_nascimento'];
+                        $select[] = $row['uf_nascimento'];
+                        $select[] = $row['escolaridade'];
+                        $select[] = $row['senha'];
+                    }
+                    return $select;
+                }
+                else{
+                    return false;
+                }
+            }catch(Exception $ex){
+                return $ex;
+            }
         }
     }
 ?>

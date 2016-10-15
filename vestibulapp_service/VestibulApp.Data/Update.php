@@ -12,26 +12,13 @@
 					SET descricao = '" .$descricao."',
 						id_inscricao = ".$id_inscricao." 
 					WHERE id = '".$id."'";
-		}
-
-		public function Candidato($id, $etnia, $estado_civil, $sexo, $cpf, $identidade, $orgao_expedidor, $uf_identidade, $nome, $nome_mae, $nascimento, $nascionalidade, $uf_nascimento, $municipio_nascimento, $escolaridade){
-			return "UPDATE Candidato 
-					SET etnia = '".$etnia."',
-						estado_civil = '".$estado_civil."',
-						sexo = '".$sexo."',
-						cpf = '".$cpf."',
-						identidade = '".$identidade."',
-						orgao_expedidor = '".$orgao_expedidor."',
-						uf_identidade = '".$uf_identidade."',
-						nome = '".$nome."',
-						nome_mae = '".$nome_mae."',
-						nascimento = '".$nascimento."',
-						nascionalidade = '".$nascionalidade."',
-						uf_nascimento = '".$uf_nascimento."',
-						municipio_nascimento = '".$municipio_nascimento."',
-						escolaridade = '".$escolaridade."'
-					WHERE id = '".$id."'";
 		}*/
+
+		public function Candidato($cpf, $senha){
+			return "UPDATE Candidato 
+					SET senha = '".$senha."'						
+					WHERE cpf = '".$cpf."'";
+		}
 
 		public function Contato($id_instituicao, $id_candidato, $telefone_fixo, $telefone_celular, $email){
 			if($id_instituicao != "null"){

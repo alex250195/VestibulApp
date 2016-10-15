@@ -3,8 +3,8 @@
 
 	$server = new soap_server;
 
-	$server->configureWSDL('server.selectBySpecificationAtendimentoEspecial', 'urn:server.selectBySpecificationAtendimentoEspecial');
-	$server->wsdl->schemaTargetNamespace = 'urn:server.selectBySpecificationAtendimentoEspecial';
+	$server->configureWSDL('server.selectBySpecificationAtendimentoEspecifico', 'urn:server.selectBySpecificationAtendimentoEspecifico');
+	$server->wsdl->schemaTargetNamespace = 'urn:server.selectBySpecificationAtendimentoEspecifico';
 
 	$server->wsdl->addComplexType(
 		'Array',          // Name
@@ -23,23 +23,23 @@
 	);
 
 	$server->register(
-		'selectBySpecificationAtendimentoEspecial',
+		'selectBySpecificationAtendimentoEspecifico',
 		array('inscricao' => 'xsd:string'),
 		array('return' => 'tns:Array'),
-		'urn:server.selectBySpecificationAtendimentoEspecial',
-		'urn:server.selectBySpecificationAtendimentoEspecial#selectBySpecificationAtendimentoEspecial',
+		'urn:server.selectBySpecificationAtendimentoEspecifico',
+		'urn:server.selectBySpecificationAtendimentoEspecifico#selectBySpecificationAtendimentoEspecifico',
 		'rpc',
 		'encoded',
 		'Exibe os dados do usuario.'
 	);
 
-	function selectBySpecificationAtendimentoEspecial($inscricao){
-		include_once '../../VestibulApp.Core/AtendimentoEspecial.php';
-        
-		$atendimento = new AtendimentoEspecial();
+	function selectBySpecificationAtendimentoEspecifico($inscricao){
+		include_once '../../VestibulApp.Core/AtendimentoEspecifico.php';
+
+		$atendimento = new AtendimentoEspecifico();
 
 		$atendimento->setInscricao($inscricao);
-
+        
 		$atendimento->openConnect();
 
 		return $atendimento->SelectBySpecification();

@@ -3,26 +3,26 @@
 
 	$server = new soap_server;
 
-	$server->configureWSDL('server.insertAtendimentoEspecial', 'urn:server.insertAtendimentoEspecial');
-	$server->wsdl->schemaTargetNamespace = 'urn:server.insertAtendimentoEspecial';
+	$server->configureWSDL('server.insertAtendimentoEspecifico', 'urn:server.insertAtendimentoEspecifico');
+	$server->wsdl->schemaTargetNamespace = 'urn:server.insertAtendimentoEspecifico';
 
 	$server->register(
-		'insertAtendimentoEspecial',
+		'insertAtendimentoEspecifico',
 		array('descricao' => 'xsd:string',
               'inscricao' => 'xsd:string'),
 		array('return' => 'xsd:string'),
-		'urn:server.insertAtendimentoEspecial',
-		'urn:server.insertAtendimentoEspecial#insertAtendimentoEspecial',
+		'urn:server.insertAtendimentoEspecifico',
+		'urn:server.insertAtendimentoEspecifico#insertAtendimentoEspecifico',
 		'rpc',
 		'encoded',
 		'Insere os dados do usuario.'
 	);
 
-	function insertAtendimentoEspecial($descricao, $inscricao){
-		include_once '../../VestibulApp.Core/AtendimentoEspecial.php';
+	function insertAtendimentoEspecifico($descricao, $inscricao){
+		include_once '../../VestibulApp.Core/AtendimentoEspecifico.php';
 
-		$atendimento = new AtendimentoEspecial();
-
+		$atendimento = new AtendimentoEspecifico();
+        
         $atendimento->setDescricao($descricao);
 		$atendimento->setInscricao($inscricao);
 

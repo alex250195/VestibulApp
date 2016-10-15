@@ -3,8 +3,8 @@
 
 	$server = new soap_server;
 
-	$server->configureWSDL('server.selectBySpecificationCandidato', 'urn:server.selectBySpecificationCandidato');
-	$server->wsdl->schemaTargetNamespace = 'urn:server.selectBySpecificationCandidato';
+	$server->configureWSDL('server.selectBySpecificationInscricao', 'urn:server.selectBySpecificationInscricao');
+	$server->wsdl->schemaTargetNamespace = 'urn:server.selectBySpecificationInscricao';
 
 	$server->wsdl->addComplexType(
 		'Array',          // Name
@@ -23,24 +23,26 @@
 	);
 
 	$server->register(
-		'selectBySpecificationCandidato',
-		array('cpf' => 'xsd:string'),
+		'selectBySpecificationInscricao',
+		array('vestibular' => 'xsd:string'),
 		array('return' => 'tns:Array'),
-		'urn:server.selectBySpecificationCandidato',
-		'urn:server.selectBySpecificationCandidato#selectBySpecificationCandidato',
+		'urn:server.selectBySpecificationInscricao',
+		'urn:server.selectBySpecificationInscricao#selectBySpecificationInscricao',
 		'rpc',
 		'encoded',
 		'Exibe os dados do usuario.'
 	);
 
-	function selectBySpecificationCandidato($query){
-		include_once '../../VestibulApp.Core/Candidato.php';
+	function selectBySpecificationInscricao($vestibular){
+		include_once '../../VestibulApp.Core/Inscricao.php';
 
-		$candidato = new Candidato();
-		
-		$candidato->openConnect();
+		$inscricao = new Inscricao();
 
-		return $candidato->SelectBySpecification($query);
+		$inscricao->setId_Vestibular($vestibular);
+
+		$inscricao->openConnect();
+
+		return $inscricao->SelectBySpecification();
 	}
 
 	$HTTP_RAW_POST_DATA = isset($HTTP_RAW_POST_DATA) ? $HTTP_RAW_POST_DATA : '';

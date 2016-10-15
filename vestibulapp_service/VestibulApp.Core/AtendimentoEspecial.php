@@ -11,6 +11,17 @@
         private $descricao;
         private $inscricao;
 
+        private $connection;
+
+        public function openConnect(){
+            $this->connection = new Connect();
+            $this->connection->connect();
+        }
+
+        public function disconnect(){
+            $this->connection->closeConnection();
+        }
+
         public function setDescricao($descricao){ 
             $this->descricao = $descricao; 
         }
@@ -19,7 +30,7 @@
             return $this->descricao; 
         }
 
-        public function setInscricao($tipo){ 
+        public function setInscricao($inscricao){ 
             $this->inscricao = $inscricao; 
         }
         
@@ -33,6 +44,29 @@
                 $insert = $insert->AtendimentoEspecial($this->descricao, $this->inscricao);
 
                 return mysqli_query($this->connection->getMySqli(), $insert);
+            }catch(Exception $ex){
+                return $ex;
+            }
+        }
+
+        public function SelectBySpecification(){
+            try{
+                $selectBySpecification = new SelectBySpecification();
+                $selectBySpecification = $selectBySpecification->AtendimentoEspecial(" AND Inscricao_id_inscricao = " .$this->inscricao);
+
+                $resultado = mysqli_query($this->connection->getMySqli(), $selectBySpecification);
+
+                if(mysqli_num_rows($resultado) > 0){
+                    while($row =  mysqli_fetch_assoc($resultado)) {
+                        $select[] = $row['id_especial'];
+                        $select[] = $row['descricao'];
+                        $select[] = $row['Inscricao_id_inscricao'];
+                        return $select;
+                    }
+                }
+                else{
+                    return false;
+                }
             }catch(Exception $ex){
                 return $ex;
             }

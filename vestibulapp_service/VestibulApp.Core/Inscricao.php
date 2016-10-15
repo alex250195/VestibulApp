@@ -13,6 +13,17 @@
         private $id_candidato;
         private $lingua; 
 
+        private $connection;
+
+        public function openConnect(){
+            $this->connection = new Connect();
+            $this->connection->connect();
+        }
+
+        public function disconnect(){
+            $this->connection->closeConnection();
+        }
+
        	public function getId_curso(){
             return $this->id_curso;
         }
@@ -46,27 +57,39 @@
         }
 
         public function Insert(){
-            parent::Insert();
+            try{               
+                $insert = new Insert();
+                $insert = $insert->Inscricao($this->id_curso, $this->id_vestibular, $this->id_candidato, $this->lingua);
+
+                return mysqli_query($this->connection->getMySqli(), $insert);
+            }catch(Exception $ex){
+                return $ex;
+            }
         } 
 
-        public function Delete(){
-            parent::Delete();
-        }
-
-        public function Update(){  
-            parent::Update();
-        }
-
-        public function SelectAll(){
-            parent::SelectAll();
-        }
-
-        public function SelectById(){
-            parent::SelectById();
-        }
-
         public function SelectBySpecification(){
-            parent::SelectBySpecification();
+            try{
+                $selectBySpecification = new SelectBySpecification();
+                $selectBySpecification = $selectBySpecification->Inscricao(" AND id_vestibular = " .$this->id_vestibular);
+
+                $resultado = mysqli_query($this->connection->getMySqli(), $selectBySpecification);
+
+                if(mysqli_num_rows($resultado) > 0){
+                    while($row =  mysqli_fetch_assoc($resultado)) {
+                        $select[] = $row['id_inscricao'];
+                        $select[] = $row['id_curso'];
+                        $select[] = $row['id_vestibular'];
+                        $select[] = $row['id_candidato'];
+                        $select[] = $row['lingua'];
+                        return $select;
+                    }
+                }
+                else{
+                    return false;
+                }
+            }catch(Exception $ex){
+                return $ex;
+            }
         }
     }
 ?>

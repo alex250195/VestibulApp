@@ -17,31 +17,31 @@
 		}
 
 		public function Curso(){
-            	return "SELECT * FROM curso";
+            	return "SELECT * FROM Curso";
 		}
 
 		public function Endereco(){
-            	return "SELECT * FROM endereco";
+            	return "SELECT * FROM Endereco";
 		}
 
 		public function Inscricao(){
-            	return "SELECT * FROM inscricao";
+            	return "SELECT * FROM Inscricao";
 		}
 
 		public function Instituicao(){
-            	return "SELECT * FROM instituicao";
+            	return "SELECT * FROM Instituicao";
 		}
 
 		public function Usuario(){
-			return "SELECT * FROM usuario";
+			return "SELECT * FROM Usuario";
 		}
 
         	public function Vestibular(){
-			return "SELECT * FROM vestibular";
+			return "SELECT * FROM Vestibular";
 		}
 
 		public function VestibularCurso(){
-			return "SELECT * FROM vestibular_has_curso";
+			return "SELECT * FROM Vestibular_has_curso";
 		}
 	}
 ?>

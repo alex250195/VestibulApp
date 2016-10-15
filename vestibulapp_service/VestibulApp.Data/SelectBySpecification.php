@@ -24,8 +24,8 @@
 			return "SELECT * FROM Endereco WHERE 1 = 1 " .$query;
 		}
 
-		public function Inscricao(){
-			
+		public function Inscricao($query){
+			return "SELECT * FROM Inscricao WHERE 1 = 1 " .$query;
 		}
 
 		public function Instituicao(){
@@ -50,7 +50,7 @@
 						   `Curso`.`nome`,
 						   `Curso`.`descricao`
 					FROM `VestibulApp`.`Vestibular_has_Curso`
-					INNER JOIN `vestibulapp`.`Curso` ON `Vestibular_has_Curso`.`id_curso` = `Curso`.`id_curso`
+					INNER JOIN `VestibulApp`.`Curso` ON `Vestibular_has_Curso`.`id_curso` = `Curso`.`id_curso`
 					WHERE 1 = 1" .$query;
 		}
     }
