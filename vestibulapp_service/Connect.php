@@ -3,7 +3,7 @@
         private $host = 'tcc.cfxuwdrgkqt2.us-west-2.rds.amazonaws.com';
 		private $port = 3307;
 		private $usuario = 'DBUserAlex';
-		private $senha = '25011995';
+		private $senha = 'Loucos129613';
 		private $banco = 'VestibulApp';
 		private $mySqli;
 
