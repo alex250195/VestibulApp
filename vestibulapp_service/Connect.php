@@ -1,10 +1,10 @@
 <?php
     class Connect{
-        private $host = 'tcc.cfxuwdrgkqt2.us-west-2.rds.amazonaws.com';
+        private $host = 'mysql.hostinger.com.br';
 		private $port = 3307;
-		private $usuario = 'DBUserAlex';
-		private $senha = 'Loucos129613';
-		private $banco = 'VestibulApp';
+		private $usuario = 'u153731406_vesti';
+		private $senha = 'vesti.0119';
+		private $banco = 'u153731406_vesti';
 		private $mySqli;
 
 		public function connect(){
