@@ -51,7 +51,6 @@ public class Inscricao_EnderecoActivity extends AppCompatActivity {
         proximo = (Button) findViewById(R.id.btnProsseguir);
 
         Formatacao(uf, cep);
-        Teste(cep, endereco, numero, complemento, bairro, municipio);
 
         final ArrayList<String> dados = new ArrayList<String>();
         dados.add(cep.getText().toString());
@@ -80,14 +79,6 @@ public class Inscricao_EnderecoActivity extends AppCompatActivity {
         this.candidato = (Candidato) intent.getSerializableExtra("candidato");
     }
 
-    public void Teste(EditText cep, EditText endereco, EditText numero, EditText complemento, EditText bairro, EditText municipio){
-        cep.setText("35.681-184");
-        endereco.setText("Rua Doutor Alcides Gonçalves");
-        numero.setText("1120");
-        complemento.setText("Casa");
-        bairro.setText("Santanense");
-        municipio.setText("Itaúna");
-    }
 
     public void Formatacao(Spinner uf, EditText cep){
         MaskEditTextChangedListener maskCEP = new MaskEditTextChangedListener("##.###-###", cep);

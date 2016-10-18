@@ -98,11 +98,11 @@ public class Inscricao_DadosPessoaisActivity extends AppCompatActivity {
     }
 
     public void Teste(EditText nome, EditText mae, EditText identidade, EditText orgaoUf, EditText nascionalidade){
-        nome.setText("Alex Alves Silva");
-        mae.setText("Maria de Lourdes Silva");
-        identidade.setText("19003456");
-        orgaoUf.setText("PC");
-        nascionalidade.setText("Brasileiro");
+        nome.setText("");
+        mae.setText("");
+        identidade.setText("");
+        orgaoUf.setText("");
+        nascionalidade.setText("");
     }
 
     public void Formatacao(Spinner raca, Spinner ufIdentidade, Spinner estadoCivil, EditText cpf, EditText nascimento){
@@ -148,6 +148,7 @@ public class Inscricao_DadosPessoaisActivity extends AppCompatActivity {
                 Intent endereco = new Intent(this, Inscricao_EnderecoActivity.class);
                 endereco.putExtra("candidato", this.candidato);
                 startActivity(endereco);
+
             }catch (Exception ex){
                 Toast.makeText(this,"Erro: " + ex.getMessage(), Toast.LENGTH_LONG).show();
             }

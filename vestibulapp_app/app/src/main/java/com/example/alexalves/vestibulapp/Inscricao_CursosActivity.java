@@ -61,6 +61,9 @@ public class Inscricao_CursosActivity extends AppCompatActivity {
     }
 
     public void Proximo(){
+
+        //aqui finaliza a inscriçao e envia os dados para o portal
+
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("VestibulApp");
         builder.setMessage("Inscrição efetuada com sucesso!");

@@ -38,8 +38,6 @@ public class Inscricao_EscolaridadeActivity extends AppCompatActivity {
 
         Formatacao();
 
-        Teste();
-
         final ArrayList<String> dados = new ArrayList<String>();
         dados.add(grau.getSelectedItem().toString());
         dados.add(instituicao.getText().toString());
@@ -62,9 +60,6 @@ public class Inscricao_EscolaridadeActivity extends AppCompatActivity {
         this.candidato = (Candidato) intent.getSerializableExtra("candidato");
     }
 
-    public void Teste(){
-        instituicao.setText("Colégio Sant'Ana");
-    }
 
     public void Formatacao(){
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.escolaridade, android.R.layout.simple_spinner_item);

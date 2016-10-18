@@ -39,8 +39,6 @@ public class Inscricao_CredencialActivity extends AppCompatActivity {
 
         proximo = (Button) findViewById(R.id.btnProsseguir);
 
-        Teste(senha, confirmaSenha, pergunta, resposta);
-
         final ArrayList<String> dados = new ArrayList<String>();
         dados.add(senha.getText().toString());
         dados.add(confirmaSenha.getText().toString());
@@ -58,13 +56,6 @@ public class Inscricao_CredencialActivity extends AppCompatActivity {
     @Override
     protected void onDestroy(){
         super.onDestroy();
-    }
-
-    public void Teste(EditText senha, EditText confirmaSenha, EditText perguta, EditText resposta){
-        senha.setText("123456");
-        confirmaSenha.setText("123456");
-        perguta.setText("Idade Namorada");
-        resposta.setText("20 anos");
     }
 
     public void RecuperarDados(){

@@ -44,7 +44,6 @@ public class Inscricao_ContatoActivity extends AppCompatActivity {
         btnProximo = (Button) findViewById(R.id.btnProsseguir);
 
         Formatacao(telefone, celular, confirmaCelular);
-        Teste(telefone, celular, confirmaCelular, email, confirmaEmail);
 
         final ArrayList<String> dados = new ArrayList<String>();
         dados.add(telefone.getText().toString());
@@ -64,14 +63,6 @@ public class Inscricao_ContatoActivity extends AppCompatActivity {
     @Override
     protected void onDestroy(){
         super.onDestroy();
-    }
-
-    public void Teste(EditText telefone, EditText celular, EditText confirmaCelular, EditText email, EditText confirmaEmail){
-        telefone.setText("(37)3243-1507");
-        celular.setText("(37)9-9820-0386");
-        confirmaCelular.setText("(37)9-9820-0386");
-        email.setText("alexalves2501@hotmail.com");
-        confirmaEmail.setText("alexalves2501@hotmail.com");
     }
 
     public void Formatacao(EditText telefone, EditText celular, EditText confirmaCelular){

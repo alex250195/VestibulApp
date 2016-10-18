@@ -59,8 +59,8 @@ public class Inscricao_InicioActivity extends AppCompatActivity {
     }
 
     public void Teste(EditText cpf, EditText nascimento){
-        cpf.setText("012.621.296-13");
-        nascimento.setText("25/01/1995");
+        cpf.setText("");
+        nascimento.setText("");
     }
 
     public void Formatacao(EditText cpf, EditText nascimento){
