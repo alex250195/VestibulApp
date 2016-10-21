@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.alexalves.vestibulapp.Entidades.Candidato;
-import com.example.alexalves.vestibulapp.threads.CursoThread;
+import com.example.alexalves.vestibulapp.threads.CursoSelectAllThread;
 
 public class IndexActivity extends AppCompatActivity {
     private Candidato candidato;
@@ -55,7 +55,7 @@ public class IndexActivity extends AppCompatActivity {
             }
         });
 
-        new CursoThread(this).execute();
+        new CursoSelectAllThread(this).execute();
     }
 
     @Override

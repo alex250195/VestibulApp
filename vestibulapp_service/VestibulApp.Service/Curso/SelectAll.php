@@ -23,12 +23,12 @@
 	);
 
 	$server->register(
-		'selectAllCurso',
-		array(),
-		array('return' => 'tns:UserArray'),
-		'urn:server.selectAllCurso',
-		'urn:server.selectAllCurso#selectAllCurso',
-		'rpc',
+		'selectAllCurso', 							//methodname
+		array(),									//parametros de entrada
+		array('return' => 'tns:UserArray'),			//parametros de saida = array
+		'urn:server.selectAllCurso',				//namespace
+		'urn:server.selectAllCurso#selectAllCurso',	//soapaction
+		'rpc',										//stylo
 		'encoded',
 		'Exibindo os dados do usuario.'
 	);
@@ -38,9 +38,9 @@
 
 		$curso = new Curso();
 		
-		$curso->openConnect();
+		//$curso->openConnect();
 		
-		return $curso->SelectAll();
+		return $curso->getStaticCurso();
 	}
 
 	$HTTP_RAW_POST_DATA = isset($HTTP_RAW_POST_DATA) ? $HTTP_RAW_POST_DATA : '';

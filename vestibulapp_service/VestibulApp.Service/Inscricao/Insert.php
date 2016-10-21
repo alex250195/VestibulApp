@@ -7,14 +7,14 @@
 	$server->wsdl->schemaTargetNamespace = 'urn:server.insertInscricao';
 
 	$server->register(
-		'insertInscricao',
-		array('curso' => 'xsd:string',
+		'insertInscricao',						//methodname
+		array('curso' => 'xsd:string',			//parametros de entrada
               'vestibular' => 'xsd:string',
 			  'candidato' => 'xsd:string',
 			  'lingua' => 'xsd:string'),
-		array('return' => 'xsd:string'),
-		'urn:server.insertInscricao',
-		'urn:server.insertInscricao#insertInscricao',
+		array('return' => 'xsd:string'),		//parametros de saida = array
+		'urn:server.insertInscricao',			//namespace
+		'urn:server.insertInscricao#insertInscricao',	//soapaction
 		'rpc',
 		'encoded',
 		'Insere os dados do usuario.'

@@ -54,6 +54,17 @@
             $this->descricao = $descricao;
         }
 
+        public function getStaticCurso(){
+
+            $staticCurso = new Curso();
+            $staticCurso->setId(1);
+            $staticCurso->setDescricao("NomeDescricao");
+            $staticCurso->setNome("nome");
+            $staticCurso->setId_instituicao(3);
+
+            return $staticCurso;
+        }
+
         public function Insert(){
             try{                
                 $insert = new Insert();
