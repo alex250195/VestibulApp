@@ -21,7 +21,7 @@
                 throw new Exception ("Acesso Negado!");
             }
         }catch(Exception $e){
-            echo "<script>alert ('" .$e->getMessage(). "');</script>";
+            echo "<script>alert ('" .$e->getMessage(). "');window.location='../loader.php?status=1';</script>";
             exit();
         }finally{
             echo "<script>window.location='../loader.php?status=2';</script>";

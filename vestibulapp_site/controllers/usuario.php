@@ -163,11 +163,13 @@
 
 			$result = $client->call('selectBySpecificationUsuario', array(''.$this->cpf.'', ''.$this->senha.''));
 
-			if (!isset($_SESSION)) session_start();
-			$_SESSION['id_usuario'] = $result[1];
-			$_SESSION['tipo_usuario']  = $result[2];			
-			$_SESSION['cpf'] = $result[3];
-			$_SESSION['nome'] = $result[4];
+			if($result != FALSE){
+				if (!isset($_SESSION)) session_start();
+				$_SESSION['id_usuario'] = $result[1];
+				$_SESSION['tipo_usuario']  = $result[2];			
+				$_SESSION['cpf'] = $result[3];
+				$_SESSION['nome'] = $result[4];
+			}
 
 			return $result;
 		}
