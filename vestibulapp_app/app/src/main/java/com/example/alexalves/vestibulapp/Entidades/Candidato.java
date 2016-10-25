@@ -1,5 +1,8 @@
 package com.example.alexalves.vestibulapp.Entidades;
 
+import org.ksoap2.serialization.PropertyInfo;
+import org.ksoap2.serialization.SoapObject;
+
 import java.io.Serializable;
 
 /**
@@ -184,5 +187,72 @@ public class Candidato implements Serializable {
 
     public void setEscolaridade(Escolaridade _value){
         this.escolaridade = _value;
+    }
+
+    public void getParametros(SoapObject _soap){
+
+        PropertyInfo parametros = new PropertyInfo();
+
+        parametros.setName("cpf");
+        parametros.setValue(cpf);
+        parametros.setType(String.class);
+        _soap.addProperty(parametros);
+
+        parametros.setName("nascimento");
+        parametros.setValue(nascimento);
+        parametros.setType(String.class);
+        _soap.addProperty(parametros);
+
+        parametros.setName("nome");
+        parametros.setValue(nome);
+        parametros.setType(String.class);
+        _soap.addProperty(parametros);
+
+        parametros.setName("mae");
+        parametros.setValue(mae);
+        parametros.setType(String.class);
+        _soap.addProperty(parametros);
+
+        parametros.setName("raca");
+        parametros.setValue(raca);
+        parametros.setType(String.class);
+        _soap.addProperty(parametros);
+
+        parametros.setName("identidade");
+        parametros.setValue(identidade);
+        parametros.setType(String.class);
+        _soap.addProperty(parametros);
+
+        parametros.setName("nascimento");
+        parametros.setValue(nascimento);
+        parametros.setType(String.class);
+        _soap.addProperty(parametros);
+
+        parametros.setName("orgaoExpedidor");
+        parametros.setValue(orgaoExpedidor);
+        parametros.setType(String.class);
+        _soap.addProperty(parametros);
+
+        parametros.setName("ufIdentidade");
+        parametros.setValue(ufIdentidade);
+        parametros.setType(String.class);
+        _soap.addProperty(parametros);
+
+        parametros.setName("estadoCivil");
+        parametros.setValue(estadoCivil);
+        parametros.setType(String.class);
+        _soap.addProperty(parametros);
+
+        parametros.setName("nascionalidade");
+        parametros.setValue(nascionalidade);
+        parametros.setType(String.class);
+        _soap.addProperty(parametros);
+
+        parametros.setName("sexo");
+        parametros.setValue(sexo);
+        parametros.setType(String.class);
+        _soap.addProperty(parametros);
+
+
     }
 }
