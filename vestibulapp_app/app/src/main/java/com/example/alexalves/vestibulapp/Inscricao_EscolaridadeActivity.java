@@ -16,7 +16,7 @@ import com.example.alexalves.vestibulapp.Entidades.Candidato;
 import java.util.ArrayList;
 
 public class Inscricao_EscolaridadeActivity extends AppCompatActivity {
-    private Candidato candidato;
+
     private Validacao validacao = new Validacao();
 
     private Spinner grau;
@@ -38,13 +38,16 @@ public class Inscricao_EscolaridadeActivity extends AppCompatActivity {
 
         Formatacao();
 
-        final ArrayList<String> dados = new ArrayList<String>();
-        dados.add(grau.getSelectedItem().toString());
-        dados.add(instituicao.getText().toString());
+
 
         proximo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                final ArrayList<String> dados = new ArrayList<String>();
+                dados.add(grau.getSelectedItem().toString());
+                dados.add(instituicao.getText().toString());
+
                 Proximo(dados);
             }
         });
@@ -56,8 +59,13 @@ public class Inscricao_EscolaridadeActivity extends AppCompatActivity {
     }
 
     public void RecuperarDados(){
-        Intent intent = getIntent();
-        this.candidato = (Candidato) intent.getSerializableExtra("candidato");
+
+        if(Candidato.getCandidato() != null  && Candidato.getCandidato().getEscolaridade() != null){
+
+            //grau.setSelection(Candidato.getCandidato().getEscolaridade());
+            instituicao.setText(Candidato.getCandidato().getEscolaridade().getInstituicao());
+
+        }
     }
 
 
@@ -70,12 +78,12 @@ public class Inscricao_EscolaridadeActivity extends AppCompatActivity {
     public void Proximo(ArrayList<String> dados){
         if(VerificarCampos(dados)) {
             try{
-                this.candidato.getEscolaridade().setGrau(dados.get(0));
-                this.candidato.getEscolaridade().setInstituicao(dados.get(1));
+                Candidato.getCandidato().getEscolaridade().setGrau(dados.get(0));
+                Candidato.getCandidato().getEscolaridade().setInstituicao(dados.get(1));
 
                 Intent proximo = new Intent(this, Inscricao_LinguaActivity.class);
-                proximo.putExtra("candidato", this.candidato);
                 startActivity(proximo);
+
             }catch (Exception ex){
                 Toast.makeText(this, "Erro: " + ex.getMessage(), Toast.LENGTH_LONG).show();
             }

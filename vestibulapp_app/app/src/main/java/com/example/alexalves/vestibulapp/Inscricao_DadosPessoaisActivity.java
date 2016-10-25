@@ -20,7 +20,7 @@ import com.example.alexalves.vestibulapp.Entidades.Candidato;
 import java.util.ArrayList;
 
 public class Inscricao_DadosPessoaisActivity extends AppCompatActivity {
-    private Candidato candidato;
+
     private Validacao validacao = new Validacao();
 
     private Spinner raca;
@@ -62,31 +62,33 @@ public class Inscricao_DadosPessoaisActivity extends AppCompatActivity {
         masculino = (RadioButton) findViewById(R.id.rbMasc);
         feminino = (RadioButton) findViewById(R.id.rbFem);
 
-        if(masculino.isChecked()) sexo = "Masculino";
+        if(masculino.isChecked())
+            sexo = "Masculino";
         else sexo = "Feminino";
 
         Formatacao(raca, ufIdentidade, estadoCivil, cpf, nascimento);
 
-        Teste(nome, mae, identidade, orgaoUf, nascionalidade);
 
-        final ArrayList<String> dadosPessoais = new ArrayList<String>();
-        dadosPessoais.add(cpf.getText().toString());
-        dadosPessoais.add(nome.getText().toString());
-        dadosPessoais.add(nascimento.getText().toString());
-        dadosPessoais.add(mae.getText().toString());
-        dadosPessoais.add(raca.getSelectedItem().toString());
-        dadosPessoais.add(identidade.getText().toString());
-        dadosPessoais.add(orgaoUf.getText().toString());
-        dadosPessoais.add(ufIdentidade.getSelectedItem().toString());
-        dadosPessoais.add(estadoCivil.getSelectedItem().toString());
-        dadosPessoais.add(nascionalidade.getText().toString());
-        dadosPessoais.add(sexo);
 
         Button btnProximo = (Button) findViewById(R.id.btnProsseguir);
 
         btnProximo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                final ArrayList<String> dadosPessoais = new ArrayList<String>();
+                dadosPessoais.add(cpf.getText().toString());
+                dadosPessoais.add(nome.getText().toString());
+                dadosPessoais.add(nascimento.getText().toString());
+                dadosPessoais.add(mae.getText().toString());
+                dadosPessoais.add(raca.getSelectedItem().toString());
+                dadosPessoais.add(identidade.getText().toString());
+                dadosPessoais.add(orgaoUf.getText().toString());
+                dadosPessoais.add(ufIdentidade.getSelectedItem().toString());
+                dadosPessoais.add(estadoCivil.getSelectedItem().toString());
+                dadosPessoais.add(nascionalidade.getText().toString());
+                dadosPessoais.add(sexo);
+
                 Proximo(dadosPessoais);
             }
         });
@@ -95,14 +97,6 @@ public class Inscricao_DadosPessoaisActivity extends AppCompatActivity {
     @Override
     protected void onDestroy(){
         super.onDestroy();
-    }
-
-    public void Teste(EditText nome, EditText mae, EditText identidade, EditText orgaoUf, EditText nascionalidade){
-        nome.setText("");
-        mae.setText("");
-        identidade.setText("");
-        orgaoUf.setText("");
-        nascionalidade.setText("");
     }
 
     public void Formatacao(Spinner raca, Spinner ufIdentidade, Spinner estadoCivil, EditText cpf, EditText nascimento){
@@ -126,27 +120,44 @@ public class Inscricao_DadosPessoaisActivity extends AppCompatActivity {
     }
 
     public void RecuperarDados(){
-        Intent intent = getIntent();
-        this.candidato = (Candidato) intent.getSerializableExtra("candidato");
+
+        if(Candidato.getCandidato() != null){
+
+            cpf.setText(Candidato.getCandidato().getCpf());
+            nome.setText(Candidato.getCandidato().getNome());
+            nascimento.setText(Candidato.getCandidato().getNascimento());
+            mae.setText(Candidato.getCandidato().getMae());
+            //raca.getSelectedItem().toString().);
+            identidade.setText(Candidato.getCandidato().getIdentidade());
+            orgaoUf.setText(Candidato.getCandidato().getOrgaoExpedidor());
+            //ufIdentidade.getSelectedItem().toString());
+            //estadoCivil.getSelectedItem().toString());
+            nascionalidade.setText(Candidato.getCandidato().getNascionalidade());
+            if(sexo.equals("masculino")){
+                masculino.setSelected(true);
+            }else{
+                feminino.setSelected(true);
+            }
+        }
     }
 
     public void Proximo(ArrayList<String> dadosPessoais){
         if(VerificarCampos(dadosPessoais)){
             try {
-                this.candidato.setCpf(dadosPessoais.get(0));
-                this.candidato.setNome(dadosPessoais.get(1));
-                this.candidato.setNascimento(dadosPessoais.get(2));
-                this.candidato.setMae(dadosPessoais.get(3));
-                this.candidato.setRaca(dadosPessoais.get(4));
-                this.candidato.setIdentidade(dadosPessoais.get(5));
-                this.candidato.setOrgaoExpedidor(dadosPessoais.get(6));
-                this.candidato.setUfIdentidade(dadosPessoais.get(7));
-                this.candidato.setEstadoCivil(dadosPessoais.get(8));
-                this.candidato.setNascionalidade(dadosPessoais.get(9));
-                this.candidato.setSexo(dadosPessoais.get(10));
+
+                Candidato.getCandidato().setCpf(dadosPessoais.get(0));
+                Candidato.getCandidato().setNome(dadosPessoais.get(1));
+                Candidato.getCandidato().setNascimento(dadosPessoais.get(2));
+                Candidato.getCandidato().setMae(dadosPessoais.get(3));
+                Candidato.getCandidato().setRaca(dadosPessoais.get(4));
+                Candidato.getCandidato().setIdentidade(dadosPessoais.get(5));
+                Candidato.getCandidato().setOrgaoExpedidor(dadosPessoais.get(6));
+                Candidato.getCandidato().setUfIdentidade(dadosPessoais.get(7));
+                Candidato.getCandidato().setEstadoCivil(dadosPessoais.get(8));
+                Candidato.getCandidato().setNascionalidade(dadosPessoais.get(9));
+                Candidato.getCandidato().setSexo(dadosPessoais.get(10));
 
                 Intent endereco = new Intent(this, Inscricao_EnderecoActivity.class);
-                endereco.putExtra("candidato", this.candidato);
                 startActivity(endereco);
 
             }catch (Exception ex){

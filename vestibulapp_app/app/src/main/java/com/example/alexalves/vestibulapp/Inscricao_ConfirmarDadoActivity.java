@@ -10,12 +10,15 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.alexalves.vestibulapp.Controles.Validacao;
+import com.example.alexalves.vestibulapp.Entidades.AtendimentoEspecializado;
 import com.example.alexalves.vestibulapp.Entidades.Candidato;
+import com.example.alexalves.vestibulapp.Entidades.Contato;
+import com.example.alexalves.vestibulapp.Entidades.Endereco;
 
 import java.util.ArrayList;
 
 public class Inscricao_ConfirmarDadoActivity extends AppCompatActivity {
-    private Candidato candidato;
+
     private Validacao validacao = new Validacao();
 
     private Button proximo;
@@ -64,8 +67,6 @@ public class Inscricao_ConfirmarDadoActivity extends AppCompatActivity {
         ArrayList<String> ltEspecifico = new ArrayList<String>();
         String temp1 = "", temp2 = "";
 
-        RecuperarDados();
-
         cpf = (TextView) findViewById(R.id.textView4);
         nome = (TextView) findViewById(R.id.textView6);
         nascimento = (TextView) findViewById(R.id.textView8);
@@ -100,8 +101,8 @@ public class Inscricao_ConfirmarDadoActivity extends AppCompatActivity {
 
         ExibeDados();
 
-        if(candidato.getAtendimentoEspecializado().getOpcao().contains("Sim")){
-            for(String var : candidato.getAtendimentoEspecializado().getDeficiencia()){
+        if(Candidato.getCandidato().getAtendimentoEspecializado().getOpcao().contains("Sim")){
+            for(String var : Candidato.getCandidato().getAtendimentoEspecializado().getDeficiencia()){
                 temp1 += var + "\n";
             }
             ltEspecializado.add(temp1);
@@ -109,8 +110,8 @@ public class Inscricao_ConfirmarDadoActivity extends AppCompatActivity {
             listaEspecializado.setAdapter(adapter1);
         }
 
-        if(candidato.getAtendimentoEspecifico().getOpcao().contains("Sim")){
-            for(String var : candidato.getAtendimentoEspecifico().getAtendimento()){
+        if(Candidato.getCandidato().getAtendimentoEspecifico().getOpcao().contains("Sim")){
+            for(String var : Candidato.getCandidato().getAtendimentoEspecifico().getAtendimento()){
                 temp2 += var + "\n";
             }
             ltEspecifico.add(temp2);
@@ -123,6 +124,37 @@ public class Inscricao_ConfirmarDadoActivity extends AppCompatActivity {
         proximo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Candidato.getCandidato().setCpf(cpf.getText().toString());
+                Candidato.getCandidato().setNome(nome.getText().toString());
+                Candidato.getCandidato().setNascimento(nascimento.getText().toString());
+                Candidato.getCandidato().setMae(mae.getText().toString());
+                Candidato.getCandidato().setSexo(sexo.getText().toString());
+                Candidato.getCandidato().setRaca(raca.getText().toString());
+                Candidato.getCandidato().setIdentidade(identidade.getText().toString());
+                Candidato.getCandidato().setOrgaoExpedidor(orgaoExpedidor.getText().toString());
+                Candidato.getCandidato().setUfIdentidade(ufIdentidade.getText().toString());
+                Candidato.getCandidato().setEstadoCivil(estadoCivil.getText().toString());
+                Candidato.getCandidato().setNascionalidade(nascionalidade.getText().toString());
+
+                Candidato.getCandidato().setEndereco(new Endereco());
+                Candidato.getCandidato().getEndereco().setUf(uf.getText().toString());
+                Candidato.getCandidato().getEndereco().setMunicipio(municipio.getText().toString());
+                Candidato.getCandidato().getEndereco().setCep(cepEndereco.getText().toString());
+                Candidato.getCandidato().getEndereco().setEndereco(enderecoEndereco.getText().toString());
+                Candidato.getCandidato().getEndereco().setNumero(numeroEndereco.getText().toString());
+                Candidato.getCandidato().getEndereco().setComplemento(complementoEndereco.getText().toString());
+                Candidato.getCandidato().getEndereco().setBairro(bairroEndereco.getText().toString());
+
+                Candidato.getCandidato().setContato(new Contato());
+                Candidato.getCandidato().getContato().setTelefone(telefoneContato.getText().toString());
+                Candidato.getCandidato().getContato().setCelular(celularContato.getText().toString());
+                Candidato.getCandidato().getContato().setEmail(emailContato.getText().toString());
+
+                Candidato.getCandidato().setAtendimentoEspecializado(new AtendimentoEspecializado());
+                Candidato.getCandidato().getAtendimentoEspecializado().setOpcao(especializado.getText().toString());
+                Candidato.getCandidato().getAtendimentoEspecializado().setOpcao(especifico.getText().toString());
+
                 Proximo();
             }
         });
@@ -133,45 +165,40 @@ public class Inscricao_ConfirmarDadoActivity extends AppCompatActivity {
         super.onDestroy();
     }
 
-    public void RecuperarDados(){
-        Intent intent = getIntent();
-        this.candidato = (Candidato) intent.getSerializableExtra("candidato");
-    }
-
     public void ExibeDados(){
-        cpf.setText(candidato.getCpf());
-        nome.setText(candidato.getNome());
-        nascimento.setText(candidato.getNascimento());
-        mae.setText(candidato.getMae());
-        sexo.setText(candidato.getSexo());
-        raca.setText(candidato.getRaca());
-        identidade.setText(candidato.getIdentidade());
-        orgaoExpedidor.setText(candidato.getOrgaoExpedidor());
-        ufIdentidade.setText(candidato.getUfIdentidade());
-        estadoCivil.setText(candidato.getEstadoCivil());
-        nascionalidade.setText(candidato.getNascionalidade());
-        uf.setText(candidato.getEndereco().getUf());
-        municipio.setText(candidato.getEndereco().getMunicipio());
 
-        cepEndereco.setText(candidato.getEndereco().getCep());
-        enderecoEndereco.setText(candidato.getEndereco().getEndereco());
-        numeroEndereco.setText(candidato.getEndereco().getNumero());
-        complementoEndereco.setText(candidato.getEndereco().getComplemento());
-        bairroEndereco.setText(candidato.getEndereco().getBairro());
-        ufEndereco.setText(candidato.getEndereco().getUf());
-        municipioEndereco.setText(candidato.getEndereco().getMunicipio());
+        cpf.setText(Candidato.getCandidato().getCpf());
+        nome.setText(Candidato.getCandidato().getNome());
+        nascimento.setText(Candidato.getCandidato().getNascimento());
+        mae.setText(Candidato.getCandidato().getMae());
+        sexo.setText(Candidato.getCandidato().getSexo());
+        raca.setText(Candidato.getCandidato().getRaca());
+        identidade.setText(Candidato.getCandidato().getIdentidade());
+        orgaoExpedidor.setText(Candidato.getCandidato().getOrgaoExpedidor());
+        ufIdentidade.setText(Candidato.getCandidato().getUfIdentidade());
+        estadoCivil.setText(Candidato.getCandidato().getEstadoCivil());
+        nascionalidade.setText(Candidato.getCandidato().getNascionalidade());
+        uf.setText(Candidato.getCandidato().getEndereco().getUf());
+        municipio.setText(Candidato.getCandidato().getEndereco().getMunicipio());
 
-        telefoneContato.setText(candidato.getContato().getTelefone());
-        celularContato.setText(candidato.getContato().getCelular());
-        emailContato.setText(candidato.getContato().getEmail());
+        cepEndereco.setText(Candidato.getCandidato().getEndereco().getCep());
+        enderecoEndereco.setText(Candidato.getCandidato().getEndereco().getEndereco());
+        numeroEndereco.setText(Candidato.getCandidato().getEndereco().getNumero());
+        complementoEndereco.setText(Candidato.getCandidato().getEndereco().getComplemento());
+        bairroEndereco.setText(Candidato.getCandidato().getEndereco().getBairro());
+        ufEndereco.setText(Candidato.getCandidato().getEndereco().getUf());
+        municipioEndereco.setText(Candidato.getCandidato().getEndereco().getMunicipio());
 
-        especifico.setText(candidato.getAtendimentoEspecializado().getOpcao());
-        especializado.setText(candidato.getAtendimentoEspecifico().getOpcao());
+        telefoneContato.setText(Candidato.getCandidato().getContato().getTelefone());
+        celularContato.setText(Candidato.getCandidato().getContato().getCelular());
+        emailContato.setText(Candidato.getCandidato().getContato().getEmail());
+
+        especifico.setText(Candidato.getCandidato().getAtendimentoEspecializado().getOpcao());
+        especializado.setText(Candidato.getCandidato().getAtendimentoEspecifico().getOpcao());
     }
 
     public void Proximo(){
         Intent proximo = new Intent(this, Inscricao_EscolaridadeActivity.class);
-        proximo.putExtra("candidato", this.candidato);
         startActivity(proximo);
     }
 }

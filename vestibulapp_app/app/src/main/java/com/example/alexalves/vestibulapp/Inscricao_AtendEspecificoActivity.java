@@ -12,7 +12,6 @@ import android.widget.Toast;
 import com.example.alexalves.vestibulapp.Entidades.Candidato;
 
 public class Inscricao_AtendEspecificoActivity extends AppCompatActivity {
-    private Candidato candidato;
 
     private RadioButton sim;
     private RadioButton nao;
@@ -63,8 +62,11 @@ public class Inscricao_AtendEspecificoActivity extends AppCompatActivity {
     }
 
     public void RecuperarDados(){
-        Intent intent = getIntent();
-        this.candidato = (Candidato) intent.getSerializableExtra("candidato");
+
+        if(Candidato.getCandidato() != null){
+
+
+        }
     }
 
     public void CheckNao(){
@@ -78,11 +80,12 @@ public class Inscricao_AtendEspecificoActivity extends AppCompatActivity {
     public void Proximo(){
         if(this.flag == 0){
             try{
-                this.candidato.getAtendimentoEspecifico().setOpcao("Sim");
+
+                Candidato.getCandidato().getAtendimentoEspecifico().setOpcao("Sim");
 
                 Intent especifico = new Intent(this, Inscricao_TipoAtendEspecificoActivity.class);
-                especifico.putExtra("candidato", this.candidato);
                 startActivity(especifico);
+
             } catch (Exception ex){
                 Toast.makeText(this, "Erro: " + ex.getMessage(), Toast.LENGTH_LONG).show();
                 Log.e("Erro", ex.getMessage());
@@ -90,11 +93,12 @@ public class Inscricao_AtendEspecificoActivity extends AppCompatActivity {
         }
         else{
             try{
-                this.candidato.getAtendimentoEspecifico().setOpcao("Não");
+
+                Candidato.getCandidato().getAtendimentoEspecifico().setOpcao("Não");
 
                 Intent proximo = new Intent(this, Inscricao_ConfirmarDadoActivity.class);
-                proximo.putExtra("candidato", this.candidato);
                 startActivity(proximo);
+
             } catch (Exception ex){
                 Toast.makeText(this, "Erro: " + ex.getMessage(), Toast.LENGTH_LONG).show();
                 Log.e("Erro", ex.getMessage());

@@ -6,7 +6,8 @@ package com.example.alexalves.vestibulapp.Util;
 
 public class Constants {
 
-    public static String HOST = "http://www.araujosistemas.com.br/vestibulapp_service/VestibulApp.Service/";
+    public static String HOST = "http://vestibulapp.esy.es/vestibulapp_service/VestibulApp.Service/";
+
     public static int TimeOut = 30000;
 
     public static String AtendimentoEspecial = "/AtendimentoEspecial";

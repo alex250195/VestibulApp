@@ -18,6 +18,7 @@ public class InscricaoInsertThread extends AsyncTask<Object, Object, String> {
     private String URL = Constants.HOST + "Inscricao/Insert.php";
 
     private Inscricao_CursosActivity context;
+    private Boolean resultado = false;
 
     public InscricaoInsertThread(Inscricao_CursosActivity _context){
 
@@ -41,6 +42,7 @@ public class InscricaoInsertThread extends AsyncTask<Object, Object, String> {
 
         if(context != null){
 
+            context.Resultado(resultado);
 
         }
 

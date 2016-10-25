@@ -11,7 +11,6 @@ import android.widget.Toast;
 import com.example.alexalves.vestibulapp.Entidades.Candidato;
 
 public class Inscricao_LinguaActivity extends AppCompatActivity {
-    private Candidato candidato;
 
     private RadioButton ingles;
     private RadioButton espanhol;
@@ -44,21 +43,24 @@ public class Inscricao_LinguaActivity extends AppCompatActivity {
     }
 
     public void RecuperarDados(){
-        Intent intent = getIntent();
-        this.candidato = (Candidato) intent.getSerializableExtra("candidato");
+
+        if(Candidato.getCandidato() != null){
+
+
+        }
     }
 
     public void Proximo(){
         if (VerificarCampos()){
             try {
                 if(ingles.isChecked())
-                    this.candidato.getProva().setLinguaEstrangeira("Inglês");
+                    Candidato.getCandidato().getProva().setLinguaEstrangeira("Inglês");
                 else
-                    this.candidato.getProva().setLinguaEstrangeira("Espanhol");
+                    Candidato.getCandidato().getProva().setLinguaEstrangeira("Espanhol");
 
                 Intent proximo = new Intent(this, Inscricao_CursosActivity.class);
-                proximo.putExtra("candidato", this.candidato);
                 startActivity(proximo);
+
             }catch (Exception ex){
                 Toast.makeText(this, "Erro: " + ex.getMessage(), Toast.LENGTH_LONG).show();
             }

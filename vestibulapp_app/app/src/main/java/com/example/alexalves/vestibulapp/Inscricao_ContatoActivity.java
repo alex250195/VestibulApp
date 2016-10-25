@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import br.com.jansenfelipe.androidmask.MaskEditTextChangedListener;
 
 public class Inscricao_ContatoActivity extends AppCompatActivity {
-    private Candidato candidato;
+
     private Validacao validacao = new Validacao();
 
     private EditText telefone;
@@ -45,16 +45,17 @@ public class Inscricao_ContatoActivity extends AppCompatActivity {
 
         Formatacao(telefone, celular, confirmaCelular);
 
-        final ArrayList<String> dados = new ArrayList<String>();
-        dados.add(telefone.getText().toString());
-        dados.add(celular.getText().toString());
-        dados.add(confirmaCelular.getText().toString());
-        dados.add(email.getText().toString());
-        dados.add(confirmaEmail.getText().toString());
-
         btnProximo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                final ArrayList<String> dados = new ArrayList<String>();
+                dados.add(telefone.getText().toString());
+                dados.add(celular.getText().toString());
+                dados.add(confirmaCelular.getText().toString());
+                dados.add(email.getText().toString());
+                dados.add(confirmaEmail.getText().toString());
+
                 Proximo(dados);
             }
         });
@@ -77,20 +78,29 @@ public class Inscricao_ContatoActivity extends AppCompatActivity {
     }
 
     public void RecuperarDados(){
-        Intent intent = getIntent();
-        this.candidato = (Candidato) intent.getSerializableExtra("candidato");
+        if(Candidato.getCandidato() != null){
+
+           telefone.setText(Candidato.getCandidato().getContato().getTelefone());
+           celular.setText(Candidato.getCandidato().getContato().getCelular());
+           confirmaCelular.setText(Candidato.getCandidato().getContato().getCelular());
+           email.setText(Candidato.getCandidato().getContato().getEmail());
+           confirmaEmail.setText(Candidato.getCandidato().getContato().getEmail());
+
+        }
     }
 
     public void Proximo(ArrayList<String> dados){
+
         if(VerificarCampos(dados)){
             try{
-                this.candidato.getContato().setTelefone(dados.get(0));
-                this.candidato.getContato().setCelular(dados.get(1));
-                this.candidato.getContato().setEmail(dados.get(3));
+
+                Candidato.getCandidato().getContato().setTelefone(dados.get(0));
+                Candidato.getCandidato().getContato().setCelular(dados.get(1));
+                Candidato.getCandidato().getContato().setEmail(dados.get(3));
 
                 Intent contato = new Intent(this, Inscricao_CredencialActivity.class);
-                contato.putExtra("candidato", this.candidato);
                 startActivity(contato);
+
             }catch (Exception ex){
                 Toast.makeText(this, "Erro: " + ex.getMessage(), Toast.LENGTH_LONG).show();
                 Log.e("Erro", ex.getMessage());

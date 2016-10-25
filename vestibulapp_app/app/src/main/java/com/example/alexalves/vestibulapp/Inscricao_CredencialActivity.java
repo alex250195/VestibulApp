@@ -15,7 +15,7 @@ import com.example.alexalves.vestibulapp.Entidades.Candidato;
 import java.util.ArrayList;
 
 public class Inscricao_CredencialActivity extends AppCompatActivity {
-    private Candidato candidato;
+
     private Validacao validacao = new Validacao();
 
     private Button proximo;
@@ -39,15 +39,17 @@ public class Inscricao_CredencialActivity extends AppCompatActivity {
 
         proximo = (Button) findViewById(R.id.btnProsseguir);
 
-        final ArrayList<String> dados = new ArrayList<String>();
-        dados.add(senha.getText().toString());
-        dados.add(confirmaSenha.getText().toString());
-        dados.add(pergunta.getText().toString());
-        dados.add(resposta.getText().toString());
 
         proximo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                final ArrayList<String> dados = new ArrayList<String>();
+                dados.add(senha.getText().toString());
+                dados.add(confirmaSenha.getText().toString());
+                dados.add(pergunta.getText().toString());
+                dados.add(resposta.getText().toString());
+
                 Proximo(dados);
             }
         });
@@ -59,20 +61,25 @@ public class Inscricao_CredencialActivity extends AppCompatActivity {
     }
 
     public void RecuperarDados(){
-        Intent intent = getIntent();
-        this.candidato = (Candidato) intent.getSerializableExtra("candidato");
+       if(Candidato.getCandidato() != null){
+           senha.setText(Candidato.getCandidato().getSeguranca().getSenha());
+           confirmaSenha.setText(Candidato.getCandidato().getSeguranca().getSenha());
+           pergunta.setText(Candidato.getCandidato().getSeguranca().getPergunta());
+           resposta.setText(Candidato.getCandidato().getSeguranca().getResposta());
+       }
     }
 
     public void Proximo(ArrayList<String> dados){
         if(VerificarCampos(dados)){
             try {
-                this.candidato.getSeguranca().setSenha(dados.get(0));
-                this.candidato.getSeguranca().setPergunta(dados.get(2));
-                this.candidato.getSeguranca().setResposta(dados.get(3));
+
+                Candidato.getCandidato().getSeguranca().setSenha(dados.get(0));
+                Candidato.getCandidato().getSeguranca().setPergunta(dados.get(2));
+                Candidato.getCandidato().getSeguranca().setResposta(dados.get(3));
 
                 Intent quartaEtapa = new Intent(this, Inscricao_AtendEspecializadoActivity.class);
-                quartaEtapa.putExtra("candidato", this.candidato);
                 startActivity(quartaEtapa);
+
             } catch (Exception ex) {
                 Toast.makeText(this, "Erro: " + ex.getMessage(), Toast.LENGTH_LONG).show();
                 Log.e("Erro", ex.getMessage());

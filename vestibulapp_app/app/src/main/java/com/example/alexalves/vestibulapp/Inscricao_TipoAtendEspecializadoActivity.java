@@ -14,7 +14,6 @@ import com.example.alexalves.vestibulapp.Entidades.Candidato;
 import java.util.ArrayList;
 
 public class Inscricao_TipoAtendEspecializadoActivity extends AppCompatActivity {
-    private Candidato candidato;
 
     private Button proximo;
 
@@ -58,19 +57,22 @@ public class Inscricao_TipoAtendEspecializadoActivity extends AppCompatActivity 
     }
 
     public void RecuperarDados(){
-        Intent intent = getIntent();
-        this.candidato = (Candidato) intent.getSerializableExtra("candidato");
+
+        if(Candidato.getCandidato() != null){
+
+        }
+
     }
 
     public void Proximo(){
         if(VerificaCampos()){
             try {
-                this.candidato.getAtendimentoEspecializado().setAcordo("Aceito");
-                this.candidato.getAtendimentoEspecializado().setDeficiencia(dados);
+                Candidato.getCandidato().getAtendimentoEspecializado().setAcordo("Aceito");
+                Candidato.getCandidato().getAtendimentoEspecializado().setDeficiencia(dados);
 
                 Intent proximo = new Intent(this, Inscricao_AtendEspecificoActivity.class);
-                proximo.putExtra("candidato", this.candidato);
                 startActivity(proximo);
+
             } catch (Exception ex) {
                 Toast.makeText(this, "Erro: " + ex.getMessage(), Toast.LENGTH_LONG).show();
                 Log.e("Erro", ex.getMessage());

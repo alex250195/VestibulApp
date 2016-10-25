@@ -14,7 +14,6 @@ import com.example.alexalves.vestibulapp.Entidades.Candidato;
 import java.util.ArrayList;
 
 public class Inscricao_TipoAtendEspecificoActivity extends AppCompatActivity {
-    private Candidato candidato;
 
     private Button btnProximo;
 
@@ -48,19 +47,23 @@ public class Inscricao_TipoAtendEspecificoActivity extends AppCompatActivity {
     }
 
     public void RecuperarDados(){
-        Intent intent = getIntent();
-        this.candidato = (Candidato) intent.getSerializableExtra("candidato");
+
+        if(Candidato.getCandidato() != null){
+
+
+        }
     }
 
     public void Proximo(){
         if(VerificaCampos()){
             try {
-                this.candidato.getAtendimentoEspecifico().setAcordo("Aceito");
-                this.candidato.getAtendimentoEspecifico().setAtendimento(dados);
+
+                Candidato.getCandidato().getAtendimentoEspecifico().setAcordo("Aceito");
+                Candidato.getCandidato().getAtendimentoEspecifico().setAtendimento(dados);
 
                 Intent proximo = new Intent(this, Inscricao_ConfirmarDadoActivity.class);
-                proximo.putExtra("candidato", this.candidato);
                 startActivity(proximo);
+
             } catch (Exception ex) {
                 Toast.makeText(this, "Erro: " + ex.getMessage(), Toast.LENGTH_LONG).show();
                 Log.e("Erro", ex.getMessage());
@@ -69,6 +72,7 @@ public class Inscricao_TipoAtendEspecificoActivity extends AppCompatActivity {
     }
 
     public boolean VerificaCampos(){
+
         gestante = (CheckBox) findViewById(R.id.checkBox);
         lactante = (CheckBox) findViewById(R.id.checkBox1);
         hospitalar = (CheckBox) findViewById(R.id.checkBox2);

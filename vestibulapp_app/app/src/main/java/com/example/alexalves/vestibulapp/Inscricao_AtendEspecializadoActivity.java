@@ -12,7 +12,6 @@ import android.widget.Toast;
 import com.example.alexalves.vestibulapp.Entidades.Candidato;
 
 public class Inscricao_AtendEspecializadoActivity extends AppCompatActivity {
-    private Candidato candidato;
 
     private RadioButton sim;
     private RadioButton nao;
@@ -63,8 +62,16 @@ public class Inscricao_AtendEspecializadoActivity extends AppCompatActivity {
     }
 
     public void RecuperarDados(){
-        Intent intent = getIntent();
-        this.candidato = (Candidato) intent.getSerializableExtra("candidato");
+        if(Candidato.getCandidato() != null){
+
+            if(Candidato.getCandidato().getAtendimentoEspecializado() != null){
+                if(Candidato.getCandidato().getAtendimentoEspecializado().getOpcao().toLowerCase().equals("sim")){
+                    sim.setSelected(true);
+                }else{
+                    nao.setSelected(true);
+                }
+            }
+        }
     }
 
     public void CheckNao(){
@@ -78,11 +85,12 @@ public class Inscricao_AtendEspecializadoActivity extends AppCompatActivity {
     public void Proximo(){
         if(this.flag == 0){
             try{
-                this.candidato.getAtendimentoEspecializado().setOpcao("Sim");
+
+                Candidato.getCandidato().getAtendimentoEspecializado().setOpcao("Sim");
 
                 Intent especializado = new Intent(this, Inscricao_TipoAtendEspecializadoActivity.class);
-                especializado.putExtra("candidato", this.candidato);
                 startActivity(especializado);
+
             } catch (Exception ex){
                 Toast.makeText(this, "Erro: " + ex.getMessage(), Toast.LENGTH_LONG).show();
                 Log.e("Erro", ex.getMessage());
@@ -90,11 +98,12 @@ public class Inscricao_AtendEspecializadoActivity extends AppCompatActivity {
         }
         else{
             try{
-                this.candidato.getAtendimentoEspecializado().setOpcao("Não");
+
+                Candidato.getCandidato().getAtendimentoEspecializado().setOpcao("Não");
 
                 Intent proximo = new Intent(this, Inscricao_AtendEspecificoActivity.class);
-                proximo.putExtra("candidato", this.candidato);
                 startActivity(proximo);
+
             } catch (Exception ex){
                 Toast.makeText(this, "Erro: " + ex.getMessage(), Toast.LENGTH_LONG).show();
                 Log.e("Erro", ex.getMessage());

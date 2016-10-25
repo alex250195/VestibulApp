@@ -26,6 +26,8 @@ public class Candidato implements Serializable {
     private Escolaridade escolaridade;
     private Prova prova;
 
+    private static Candidato holder;
+
     public Candidato(){
         this.endereco = new Endereco();
         this.contato = new Contato();
@@ -34,6 +36,14 @@ public class Candidato implements Serializable {
         this.seguranca = new Seguranca();
         this.escolaridade = new Escolaridade();
         this.prova = new Prova();
+    }
+
+    public static void setCandidato(Candidato _value){
+        holder = _value;
+    }
+
+    public static Candidato getCandidato(){
+        return holder;
     }
 
     public String getCpf() {
@@ -147,4 +157,32 @@ public class Candidato implements Serializable {
     public Escolaridade getEscolaridade(){ return escolaridade; }
 
     public Prova getProva(){ return prova; }
+
+    public void setEndereco(Endereco _value){
+        this.endereco = _value;
+    }
+
+    public void setProva(Prova _value){
+        this.prova = _value;
+    }
+
+    public void setContato(Contato _value){
+        this.contato = _value;
+    }
+
+    public void setSeguranca(Seguranca _value){
+        this.seguranca = _value;
+    }
+
+    public void setAtendimentoEspecializado(AtendimentoEspecializado _value){
+        this.atendimentoEspecializado = _value;
+    }
+
+    public void setAtendimentoEspecifico(AtendimentoEspecifico _value){
+        this.atendimentoEspecifico = _value;
+    }
+
+    public void setEscolaridade(Escolaridade _value){
+        this.escolaridade = _value;
+    }
 }

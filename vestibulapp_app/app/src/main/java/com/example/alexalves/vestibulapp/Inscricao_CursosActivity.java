@@ -11,9 +11,9 @@ import android.widget.Button;
 import android.widget.RadioButton;
 
 import com.example.alexalves.vestibulapp.Entidades.Candidato;
+import com.example.alexalves.vestibulapp.threads.InscricaoInsertThread;
 
 public class Inscricao_CursosActivity extends AppCompatActivity {
-    private Candidato candidato;
 
     private AlertDialog alerta;
 
@@ -62,16 +62,16 @@ public class Inscricao_CursosActivity extends AppCompatActivity {
 
     public void Proximo(){
 
-        //aqui finaliza a inscriçao e envia os dados para o portal
+        new InscricaoInsertThread(this).execute();
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("VestibulApp");
-        builder.setMessage("Inscrição efetuada com sucesso!");
-        alerta = builder.create();
-        alerta.show();
+    }
 
-        //Intent finalizar = new Intent(this, IndexActivity.class);
-        //startActivity(finalizar);
-        //finish();
+    public void Resultado(Boolean _value){
+
+        if(_value){
+            com.example.alexalves.vestibulapp.Util.Dialog.Show(this, "Inscrição efetuada com sucesso!", "VestibulApp");
+        }else{
+            com.example.alexalves.vestibulapp.Util.Dialog.Show(this, "Não foi possível efetuar sua inscrição.", "VestibulApp");
+        }
     }
 }

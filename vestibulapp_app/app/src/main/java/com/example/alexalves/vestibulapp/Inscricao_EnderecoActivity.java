@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import br.com.jansenfelipe.androidmask.MaskEditTextChangedListener;
 
 public class Inscricao_EnderecoActivity extends AppCompatActivity {
-    private Candidato candidato;
+
     private Validacao validacao = new Validacao();
 
     private Spinner uf;
@@ -52,18 +52,19 @@ public class Inscricao_EnderecoActivity extends AppCompatActivity {
 
         Formatacao(uf, cep);
 
-        final ArrayList<String> dados = new ArrayList<String>();
-        dados.add(cep.getText().toString());
-        dados.add(endereco.getText().toString());
-        dados.add(complemento.getText().toString());
-        dados.add(numero.getText().toString());
-        dados.add(bairro.getText().toString());
-        dados.add(municipio.getText().toString());
-        dados.add(uf.getSelectedItem().toString());
-
         proximo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                final ArrayList<String> dados = new ArrayList<String>();
+                dados.add(cep.getText().toString());
+                dados.add(endereco.getText().toString());
+                dados.add(complemento.getText().toString());
+                dados.add(numero.getText().toString());
+                dados.add(bairro.getText().toString());
+                dados.add(municipio.getText().toString());
+                dados.add(uf.getSelectedItem().toString());
+
                 Proximo(dados);
             }
         });
@@ -75,8 +76,19 @@ public class Inscricao_EnderecoActivity extends AppCompatActivity {
     }
 
     public void RecuperarDados(){
-        Intent intent = getIntent();
-        this.candidato = (Candidato) intent.getSerializableExtra("candidato");
+
+        if(Candidato.getCandidato() != null){
+
+            //cep.setSelected(Candidato.getCandidato().getEndereco().getCep());
+            //endereco.setSelected(Candidato.getCandidato().getEndereco().getEndereco());
+            //complemento.setSelected(Candidato.getCandidato());
+            //numero.setSelected(Candidato.getCandidato());
+            //bairro.setSelected(Candidato.getCandidato());
+            //municipio.setSelected(Candidato.getCandidato());
+
+            //uf.getSelectedItem().toString());
+
+        }
     }
 
 
@@ -92,17 +104,18 @@ public class Inscricao_EnderecoActivity extends AppCompatActivity {
     public void Proximo(ArrayList<String> dados){
         if(VerificarCampos(dados)) {
             try {
-                this.candidato.getEndereco().setCep(dados.get(0));
-                this.candidato.getEndereco().setEndereco(dados.get(1));
-                this.candidato.getEndereco().setComplemento(dados.get(2));
-                this.candidato.getEndereco().setNumero(dados.get(3));
-                this.candidato.getEndereco().setBairro(dados.get(4));
-                this.candidato.getEndereco().setMunicipio(dados.get(5));
-                this.candidato.getEndereco().setUf(dados.get(6));
+
+                Candidato.getCandidato().getEndereco().setCep(dados.get(0));
+                Candidato.getCandidato().getEndereco().setEndereco(dados.get(1));
+                Candidato.getCandidato().getEndereco().setComplemento(dados.get(2));
+                Candidato.getCandidato().getEndereco().setNumero(dados.get(3));
+                Candidato.getCandidato().getEndereco().setBairro(dados.get(4));
+                Candidato.getCandidato().getEndereco().setMunicipio(dados.get(5));
+                Candidato.getCandidato().getEndereco().setUf(dados.get(6));
 
                 Intent endereco = new Intent(this, Inscricao_ContatoActivity.class);
-                endereco.putExtra("candidato", this.candidato);
                 startActivity(endereco);
+
             } catch (Exception ex) {
                 Toast.makeText(this, "Erro: " + ex.getMessage(), Toast.LENGTH_LONG).show();
             }

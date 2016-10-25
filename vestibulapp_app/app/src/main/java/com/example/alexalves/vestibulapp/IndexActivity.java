@@ -55,7 +55,6 @@ public class IndexActivity extends AppCompatActivity {
             }
         });
 
-        new CursoSelectAllThread(this).execute();
     }
 
     @Override

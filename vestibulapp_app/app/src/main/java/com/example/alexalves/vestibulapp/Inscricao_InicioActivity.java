@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import br.com.jansenfelipe.androidmask.MaskEditTextChangedListener;
 
 public class Inscricao_InicioActivity extends AppCompatActivity {
-    private Candidato candidato;
+
     private Validacao validacao = new Validacao();
 
     private EditText cpf;
@@ -38,16 +38,10 @@ public class Inscricao_InicioActivity extends AppCompatActivity {
 
         Formatacao(cpf, nascimento);
 
-        Teste(cpf, nascimento);
-
-        final ArrayList<String> dados = new ArrayList<String>();
-        dados.add(cpf.getText().toString());
-        dados.add(nascimento.getText().toString());
-
         proximo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Proximo(dados);
+                Proximo();
             }
         });
     }
@@ -58,11 +52,6 @@ public class Inscricao_InicioActivity extends AppCompatActivity {
         finish();
     }
 
-    public void Teste(EditText cpf, EditText nascimento){
-        cpf.setText("");
-        nascimento.setText("");
-    }
-
     public void Formatacao(EditText cpf, EditText nascimento){
         MaskEditTextChangedListener maskCPF = new MaskEditTextChangedListener("###.###.###-##", cpf);
         MaskEditTextChangedListener maskData = new MaskEditTextChangedListener("##/##/####", nascimento);
@@ -71,20 +60,33 @@ public class Inscricao_InicioActivity extends AppCompatActivity {
         nascimento.addTextChangedListener(maskData);
     }
 
-    public void RecuperarDados(){
-        Intent intent = getIntent();
-        this.candidato = (Candidato) intent.getSerializableExtra("candidato");
+    private void RecuperarDados(){
+
+        if(Candidato.getCandidato() != null){
+            cpf.setText(Candidato.getCandidato().getCpf());
+            nascimento.setText(Candidato.getCandidato().getNascimento());
+        }
     }
 
-    public void Proximo(ArrayList<String> dados){
+    public void Proximo(){
+
+        final ArrayList<String> dados = new ArrayList<String>();
+        dados.add(cpf.getText().toString());
+        dados.add(nascimento.getText().toString());
+
         if(validacao.ChecarCpf(dados.get(0)) && validacao.ChecarData(dados.get(1))) {
             try {
-                this.candidato.setCpf(dados.get(0));
-                this.candidato.setNascimento(dados.get(1));
+
+                if(Candidato.getCandidato() == null){
+                    Candidato.setCandidato(new Candidato());
+                }
+
+                Candidato.getCandidato().setCpf(dados.get(0));
+                Candidato.getCandidato().setNascimento(dados.get(1));
 
                 Intent segundaEtapa = new Intent(this, Inscricao_DadosPessoaisActivity.class);
-                segundaEtapa.putExtra("candidato", this.candidato);
                 startActivity(segundaEtapa);
+
             }catch (Exception ex){
                 Toast.makeText(this,"Erro: " + ex.getMessage(), Toast.LENGTH_LONG).show();
             }
