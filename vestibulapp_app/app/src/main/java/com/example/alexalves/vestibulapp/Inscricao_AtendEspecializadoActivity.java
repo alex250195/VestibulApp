@@ -25,7 +25,6 @@ public class Inscricao_AtendEspecializadoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inscricao__atend_especializado);
 
-        RecuperarDados();
 
         CheckNao();
 
@@ -54,6 +53,9 @@ public class Inscricao_AtendEspecializadoActivity extends AppCompatActivity {
                 Proximo();
             }
         });
+
+        RecuperarDados();
+
     }
 
     @Override
@@ -65,7 +67,7 @@ public class Inscricao_AtendEspecializadoActivity extends AppCompatActivity {
         if(Candidato.getCandidato() != null){
 
             if(Candidato.getCandidato().getAtendimentoEspecializado() != null){
-                if(Candidato.getCandidato().getAtendimentoEspecializado().getOpcao().toLowerCase().equals("sim")){
+                if(Candidato.getCandidato().getAtendimentoEspecializado().getOpcao() != null && Candidato.getCandidato().getAtendimentoEspecializado().getOpcao().toLowerCase().equals("sim")){
                     sim.setSelected(true);
                 }else{
                     nao.setSelected(true);

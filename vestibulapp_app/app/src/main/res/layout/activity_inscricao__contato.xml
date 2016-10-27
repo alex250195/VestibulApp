@@ -75,7 +75,8 @@
                 android:id="@+id/txtTelefone"
                 android:layout_below="@+id/textView14"
                 android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:layout_alignParentStart="true"
+                android:inputType="number" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -94,7 +95,8 @@
                 android:id="@+id/txtCelular"
                 android:layout_below="@+id/textView15"
                 android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:layout_alignParentStart="true"
+                android:inputType="number" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -113,7 +115,8 @@
                 android:id="@+id/txtConfirmaCelular"
                 android:layout_below="@+id/textView16"
                 android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:layout_alignParentStart="true"
+                android:inputType="number" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -132,7 +135,8 @@
                 android:id="@+id/txtEmail"
                 android:layout_below="@+id/textView17"
                 android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:layout_alignParentStart="true"
+                android:inputType="textEmailAddress" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -151,7 +155,8 @@
                 android:id="@+id/txtConfirmaEmail"
                 android:layout_below="@+id/textView18"
                 android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:layout_alignParentStart="true"
+                android:inputType="textEmailAddress" />
         </RelativeLayout>
     </ScrollView>
 

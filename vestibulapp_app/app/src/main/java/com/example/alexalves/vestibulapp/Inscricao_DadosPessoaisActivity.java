@@ -45,7 +45,6 @@ public class Inscricao_DadosPessoaisActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inscricao__dados_pessoais);
 
-        RecuperarDados();
 
         raca = (Spinner) findViewById(R.id.txtCor);
         ufIdentidade = (Spinner) findViewById(R.id.txtUfIdentidade);
@@ -67,8 +66,6 @@ public class Inscricao_DadosPessoaisActivity extends AppCompatActivity {
         else sexo = "Feminino";
 
         Formatacao(raca, ufIdentidade, estadoCivil, cpf, nascimento);
-
-
 
         Button btnProximo = (Button) findViewById(R.id.btnProsseguir);
 
@@ -92,6 +89,8 @@ public class Inscricao_DadosPessoaisActivity extends AppCompatActivity {
                 Proximo(dadosPessoais);
             }
         });
+
+        RecuperarDados();
     }
 
     @Override
@@ -100,8 +99,8 @@ public class Inscricao_DadosPessoaisActivity extends AppCompatActivity {
     }
 
     public void Formatacao(Spinner raca, Spinner ufIdentidade, Spinner estadoCivil, EditText cpf, EditText nascimento){
-        cpf.setText(String.valueOf(this.candidato.getCpf()));
-        nascimento.setText(String.valueOf(this.candidato.getNascimento()));
+        cpf.setText(String.valueOf(Candidato.getCandidato().getCpf()));
+        nascimento.setText(String.valueOf(Candidato.getCandidato().getNascimento()));
 
         cpf.setEnabled(false);
         nascimento.setEnabled(false);
@@ -123,16 +122,16 @@ public class Inscricao_DadosPessoaisActivity extends AppCompatActivity {
 
         if(Candidato.getCandidato() != null){
 
-            cpf.setText(Candidato.getCandidato().getCpf());
-            nome.setText(Candidato.getCandidato().getNome());
-            nascimento.setText(Candidato.getCandidato().getNascimento());
-            mae.setText(Candidato.getCandidato().getMae());
+            cpf.setText(Candidato.getCandidato().getCpf() != null ? Candidato.getCandidato().getCpf() : "");
+            nome.setText(Candidato.getCandidato().getNome() != null ? Candidato.getCandidato().getNome() : "");
+            nascimento.setText(Candidato.getCandidato().getNascimento() != null ? Candidato.getCandidato().getNascimento() : "");
+            mae.setText(Candidato.getCandidato().getMae() != null ? Candidato.getCandidato().getMae() : "");
             //raca.getSelectedItem().toString().);
-            identidade.setText(Candidato.getCandidato().getIdentidade());
-            orgaoUf.setText(Candidato.getCandidato().getOrgaoExpedidor());
+            identidade.setText(Candidato.getCandidato().getIdentidade() != null ? Candidato.getCandidato().getIdentidade() : "");
+            orgaoUf.setText(Candidato.getCandidato().getOrgaoExpedidor() != null ? Candidato.getCandidato().getOrgaoExpedidor() : "");
             //ufIdentidade.getSelectedItem().toString());
             //estadoCivil.getSelectedItem().toString());
-            nascionalidade.setText(Candidato.getCandidato().getNascionalidade());
+            nascionalidade.setText(Candidato.getCandidato().getNascionalidade() != null ? Candidato.getCandidato().getNascionalidade() : "");
             if(sexo.equals("masculino")){
                 masculino.setSelected(true);
             }else{

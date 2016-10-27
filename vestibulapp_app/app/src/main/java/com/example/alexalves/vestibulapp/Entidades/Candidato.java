@@ -198,41 +198,49 @@ public class Candidato implements Serializable {
         parametros.setType(String.class);
         _soap.addProperty(parametros);
 
+        parametros = new PropertyInfo();
         parametros.setName("nascimento");
         parametros.setValue(nascimento);
         parametros.setType(String.class);
         _soap.addProperty(parametros);
 
+        parametros = new PropertyInfo();
         parametros.setName("nome");
         parametros.setValue(nome);
         parametros.setType(String.class);
         _soap.addProperty(parametros);
 
+        parametros = new PropertyInfo();
         parametros.setName("mae");
         parametros.setValue(mae);
         parametros.setType(String.class);
         _soap.addProperty(parametros);
 
+        parametros = new PropertyInfo();
         parametros.setName("raca");
         parametros.setValue(raca);
         parametros.setType(String.class);
         _soap.addProperty(parametros);
 
+        parametros = new PropertyInfo();
         parametros.setName("identidade");
         parametros.setValue(identidade);
         parametros.setType(String.class);
         _soap.addProperty(parametros);
 
+        parametros = new PropertyInfo();
         parametros.setName("nascimento");
         parametros.setValue(nascimento);
         parametros.setType(String.class);
         _soap.addProperty(parametros);
 
+        parametros = new PropertyInfo();
         parametros.setName("orgaoExpedidor");
         parametros.setValue(orgaoExpedidor);
         parametros.setType(String.class);
         _soap.addProperty(parametros);
 
+        parametros = new PropertyInfo();
         parametros.setName("ufIdentidade");
         parametros.setValue(ufIdentidade);
         parametros.setType(String.class);
@@ -248,6 +256,7 @@ public class Candidato implements Serializable {
         parametros.setType(String.class);
         _soap.addProperty(parametros);
 
+        parametros = new PropertyInfo();
         parametros.setName("sexo");
         parametros.setValue(sexo);
         parametros.setType(String.class);

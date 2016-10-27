@@ -92,7 +92,7 @@
             android:value="@integer/google_play_services_version" />
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="" /> //precisa gerar um codigo valido
+            android:value="AIzaSyC83QTQv-Mu76v2jXooUj0I0EsQ6DNStN8" /> //precisa gerar um codigo valido
 
     </application>
 

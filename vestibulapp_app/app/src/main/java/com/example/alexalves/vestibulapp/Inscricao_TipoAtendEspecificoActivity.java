@@ -29,8 +29,6 @@ public class Inscricao_TipoAtendEspecificoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inscricao__tipo_atend_especifico);
 
-        RecuperarDados();
-
         btnProximo = (Button) findViewById(R.id.btnProsseguir);
 
         btnProximo.setOnClickListener(new View.OnClickListener() {
@@ -39,6 +37,8 @@ public class Inscricao_TipoAtendEspecificoActivity extends AppCompatActivity {
                 Proximo();
             }
         });
+
+        RecuperarDados();
     }
 
     @Override

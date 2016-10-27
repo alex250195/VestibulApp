@@ -25,8 +25,6 @@ public class Inscricao_AtendEspecificoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inscricao__atend_especifico);
 
-        RecuperarDados();
-
         CheckNao();
 
         sim = (RadioButton) findViewById(R.id.rbSim);
@@ -54,6 +52,9 @@ public class Inscricao_AtendEspecificoActivity extends AppCompatActivity {
                 Proximo();
             }
         });
+
+        RecuperarDados();
+
     }
 
     @Override

@@ -30,7 +30,6 @@ public class Inscricao_CredencialActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inscricao__credencial);
 
-        RecuperarDados();
 
         senha = (EditText) findViewById(R.id.txtSenha);
         confirmaSenha = (EditText) findViewById(R.id.txtConfirmaSenha);
@@ -53,6 +52,9 @@ public class Inscricao_CredencialActivity extends AppCompatActivity {
                 Proximo(dados);
             }
         });
+
+        RecuperarDados();
+
     }
 
     @Override

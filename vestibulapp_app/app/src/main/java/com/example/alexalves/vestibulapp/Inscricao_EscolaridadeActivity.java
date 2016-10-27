@@ -29,7 +29,6 @@ public class Inscricao_EscolaridadeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inscricao__escolaridade);
 
-        RecuperarDados();
 
         grau = (Spinner) findViewById(R.id.txtGrau);
         instituicao = (EditText) findViewById(R.id.txtInstituicaoEnsino);
@@ -51,6 +50,8 @@ public class Inscricao_EscolaridadeActivity extends AppCompatActivity {
                 Proximo(dados);
             }
         });
+
+        RecuperarDados();
     }
 
     @Override

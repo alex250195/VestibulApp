@@ -33,7 +33,6 @@ public class Inscricao_ContatoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inscricao__contato);
 
-        RecuperarDados();
 
         telefone = (EditText) findViewById(R.id.txtTelefone);
         celular = (EditText) findViewById(R.id.txtCelular);
@@ -59,6 +58,9 @@ public class Inscricao_ContatoActivity extends AppCompatActivity {
                 Proximo(dados);
             }
         });
+
+        RecuperarDados();
+
     }
 
     @Override
@@ -78,13 +80,14 @@ public class Inscricao_ContatoActivity extends AppCompatActivity {
     }
 
     public void RecuperarDados(){
+
         if(Candidato.getCandidato() != null){
 
-           telefone.setText(Candidato.getCandidato().getContato().getTelefone());
-           celular.setText(Candidato.getCandidato().getContato().getCelular());
-           confirmaCelular.setText(Candidato.getCandidato().getContato().getCelular());
-           email.setText(Candidato.getCandidato().getContato().getEmail());
-           confirmaEmail.setText(Candidato.getCandidato().getContato().getEmail());
+           telefone.setText(Candidato.getCandidato().getContato().getTelefone() != null ? Candidato.getCandidato().getContato().getTelefone() : "");
+           celular.setText(Candidato.getCandidato().getContato().getCelular() != null ? Candidato.getCandidato().getContato().getCelular() : "");
+           confirmaCelular.setText(Candidato.getCandidato().getContato().getCelular() != null ? Candidato.getCandidato().getContato().getCelular() : "");
+           email.setText(Candidato.getCandidato().getContato().getEmail() != null ? Candidato.getCandidato().getContato().getEmail() : "");
+           confirmaEmail.setText(Candidato.getCandidato().getContato().getEmail() != null ? Candidato.getCandidato().getContato().getEmail() : "");
 
         }
     }

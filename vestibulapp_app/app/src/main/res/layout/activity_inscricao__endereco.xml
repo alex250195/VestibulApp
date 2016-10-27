@@ -75,8 +75,8 @@
                 android:layout_below="@+id/textView5"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:inputType="textPersonName"
-                android:singleLine="false" />
+                android:singleLine="false"
+                android:inputType="number" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -116,7 +116,7 @@
                 android:layout_below="@+id/textView8"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:inputType="textPersonName"/>
+                android:inputType="number"/>
 
             <TextView
                 android:layout_width="wrap_content"

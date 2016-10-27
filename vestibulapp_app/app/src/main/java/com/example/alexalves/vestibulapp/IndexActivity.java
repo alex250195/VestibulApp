@@ -81,6 +81,7 @@ public class IndexActivity extends AppCompatActivity {
     }
 
     public void UIT(){
-
+        Intent mapa = new Intent(this, Mapa_Activity.class);
+        startActivity(mapa);
     }
 }
