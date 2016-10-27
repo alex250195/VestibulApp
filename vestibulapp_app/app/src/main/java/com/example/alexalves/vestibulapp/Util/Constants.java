@@ -1,5 +1,7 @@
 package com.example.alexalves.vestibulapp.Util;
 
+import com.google.android.gms.maps.model.LatLng;
+
 /**
  * Created by Desenvolvedor on 18/10/2016.
  */
@@ -9,6 +11,10 @@ public class Constants {
     public static String HOST = "http://vestibulapp.esy.es/vestibulapp_service/VestibulApp.Service/";
 
     public static int TimeOut = 30000;
+
+    public static LatLng getPosicaoUniversidade(){
+        return new LatLng(-20.055901, -44.571345);
+    }
 
     public static String AtendimentoEspecial = "/AtendimentoEspecial";
     public static String AtendimentoEspecifico = "/AtendimentoEspecifico";

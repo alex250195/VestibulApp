@@ -32,6 +32,13 @@
     <string name="estadoCivil">Estado Civil</string>
     <string name="nascionalidade">Nascionalidade</string>
 
+    <string name="btnTipoCaminhoPe">Caminhando</string>
+    <string name="btnTipoCaminhoCarro">Dirigindo</string>
+    <string name="tipoCaminho">Como você quer chegar?</string>
+    <string name="gpsDesabilitado">O Gps está desativado.</string>
+    <string name="btnHabilitarGPS">Ativar</string>
+    <string name="cancel">Cancelar</string>
+
     <string name="title_activity_inscricao_segunda_etapa_endereco">InscricaoSegundaEtapaEnderecoActivity</string>
     <string name="cep">CEP</string>
     <string name="endereco">Endereço</string>
@@ -49,6 +56,7 @@
     <string name="email">E-mail</string>
     <string name="confirmaEmail">Confirmar E-mail</string>
     <string name="title_activity_inscricao_terceira_etapa">InscricaoTerceiraEtapaActivity</string>
+    <string name="internetConexao">Sem conexão com a internet.</string>
 
     <string name="senha">Senha</string>
     <string name="confirmaSenha">Confirmar Senha</string>

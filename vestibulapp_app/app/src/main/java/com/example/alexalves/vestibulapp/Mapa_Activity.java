@@ -7,12 +7,21 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.location.Location;
 import android.location.LocationListener;
+import android.os.AsyncTask;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
+import com.example.alexalves.vestibulapp.Util.Constants;
+import com.example.alexalves.vestibulapp.Util.DialogTipoCaminhoMapa;
+import com.example.alexalves.vestibulapp.Util.Gps;
+import com.example.alexalves.vestibulapp.Util.InfoWindowCustomAdapter;
+import com.example.alexalves.vestibulapp.Util.Service;
+import com.example.alexalves.vestibulapp.threads.RotasThread;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -37,7 +46,9 @@ public class Mapa_Activity extends AppCompatActivity implements LocationListener
     Marker markerUniversidade;
     Polyline LinhaCaminho;
     ProgressDialog progressDialog;
-    LatLng posicaoUniversidade;
+    LatLng posicaoLatLng;
+
+    RotasThread threadRota;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,8 +58,6 @@ public class Mapa_Activity extends AppCompatActivity implements LocationListener
 
         //carrega o fragment do mapa
         mapaFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.MapaFragment);
-
-        posicaoUniversidade = new LatLng(-20.055901, -44.571345); //posicao geografica da universidade
 
         if (mapaFragment != null) {
 
@@ -74,6 +83,13 @@ public class Mapa_Activity extends AppCompatActivity implements LocationListener
 
     //region Mapa
 
+    public GoogleMap getMapa(){
+        return this.mapa;
+    }
+
+    public void setLinhaCaminho(Polyline polylines) {
+        this.LinhaCaminho = polylines;
+    }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -103,6 +119,67 @@ public class Mapa_Activity extends AppCompatActivity implements LocationListener
             if(progressDialog != null){
                 progressDialog.dismiss();
             }
+
+            mapa.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+                @Override
+                public void onMapClick(LatLng latLng) {
+
+                    markerUniversidade.hideInfoWindow();
+
+                }
+            });
+
+            mapa.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                @Override
+                public boolean onMarkerClick(Marker marker) {
+
+                    if (marker != null) {
+
+                            double corr =(double)190/Math.pow(2, 17);
+                            LatLng infoPosition = new LatLng(marker.getPosition().latitude + corr, marker.getPosition().longitude);
+
+                            if(infoPosition != null){
+                                mapa.animateCamera(CameraUpdateFactory.newLatLngZoom(infoPosition, (17)));
+                            }
+
+                            marker.showInfoWindow();
+
+
+
+                    }
+
+                    return true;
+                }
+            });
+
+            mapa.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+                @Override
+                public void onInfoWindowClick(Marker marker) {
+
+                    ClearPolyline(null);
+
+                    marker.hideInfoWindow();
+
+                    if (Service.isOnline(Mapa_Activity.this)) {
+
+                        //verifica se ja foi definido uma opçao padrao para o tipo de transporte
+
+                        markerUniversidade = marker;
+                        //chama a cx de dialogo para o usuario definir como ele vai chegar a igreja
+                        DialogTipoCaminhoMapa dialogOpcoes = new DialogTipoCaminhoMapa(Mapa_Activity.this, true);
+                        dialogOpcoes.show();
+
+
+
+                    } else {
+                        Toast.makeText(Mapa_Activity.this, getResources().getText(R.string.internetConexao), Toast.LENGTH_SHORT).show();
+                    }
+
+
+                }
+            });
+
+            mapa.setInfoWindowAdapter(new InfoWindowCustomAdapter(this.getLayoutInflater(), this));
         }
     }
 
@@ -158,10 +235,11 @@ public class Mapa_Activity extends AppCompatActivity implements LocationListener
                     Bitmap b = bitmapdraw.getBitmap();
                     Bitmap smallMarker = Bitmap.createScaledBitmap(b, 50, 50, false);
 
-                    options.position(posicaoUniversidade).title("Universidade de Itaúna").draggable(false);
+                    options.position(Constants.getPosicaoUniversidade()).title("Universidade de Itaúna").draggable(false);
                     //options.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_icone_igreja)); //esse codigo altera o icone do marcador
                     options.icon(BitmapDescriptorFactory.fromBitmap(smallMarker));
 
+                    mapa.addMarker(options);
 
                 }
 
@@ -170,7 +248,7 @@ public class Mapa_Activity extends AppCompatActivity implements LocationListener
             }
 
             //vai centralizar a igreja selecionada no mapa no inicio
-            CameraPosition cameraPosition = new CameraPosition.Builder().target(posicaoUniversidade).zoom(17).build();
+            CameraPosition cameraPosition = new CameraPosition.Builder().target(Constants.getPosicaoUniversidade()).zoom(17).build();
             CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(cameraPosition);
 
             mapa.animateCamera(cameraUpdate);
@@ -179,4 +257,39 @@ public class Mapa_Activity extends AppCompatActivity implements LocationListener
 
     }
 
+    public void ClearPolyline(View v){
+
+        if(LinhaCaminho != null){
+
+            LinhaCaminho.remove();
+            LinhaCaminho = null;
+        }
+
+    }
+
+    public void GetRota(LatLng _posicaoDestino, String _tipoCaminho){
+
+        if(threadRota == null || !threadRota.getStatus().equals(AsyncTask.Status.RUNNING)) {
+
+            if (_posicaoDestino == null && this.markerUniversidade != null) {
+                _posicaoDestino = this.markerUniversidade.getPosition();
+            }
+
+            //recupera a posicao atual do usuario
+            if (posicaoLatLng == null) {
+                Gps.GetMyLocalizacao(mapa, this);
+            }
+
+            if (posicaoLatLng != null) {
+
+                progressDialog = ProgressDialog.show(this, "Aguarde", "Carregando caminho...");
+                threadRota = new RotasThread(this, posicaoLatLng, _posicaoDestino, progressDialog, _tipoCaminho);
+                if (threadRota != null) {
+                    threadRota.execute();//
+                }
+
+            }
+        }
+
+    }
 }
