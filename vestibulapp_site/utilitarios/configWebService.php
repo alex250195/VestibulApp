@@ -7,7 +7,11 @@
 	// $service = 'vestibulapp_service/';
 	// $folder = 'VestibulApp.Service/';
 
-	$server = 'http://tccalex.azurewebsites.net/';
+	// $server = 'http://tccalex.azurewebsites.net/';
+	// $service = 'vestibulapp_service/';
+	// $folder = 'VestibulApp.Service/';
+
+	$server = 'http://vestibulapp.esy.es/';
 	$service = 'vestibulapp_service/';
 	$folder = 'VestibulApp.Service/';
 

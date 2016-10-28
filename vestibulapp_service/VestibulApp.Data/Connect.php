@@ -9,6 +9,7 @@
 
 		public function connect(){
 			$this->mySqli = new mysqli($this->host, $this->usuario, $this->senha, $this->banco, $this->port);
+			
 			if(mysqli_connect_errno()){
 				die ("<br>Não foi possivel conectar-se ao banco de dados: ".mysqli_connect_error());
 				exit();

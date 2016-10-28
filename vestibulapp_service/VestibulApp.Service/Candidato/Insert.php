@@ -22,7 +22,8 @@
 			  'ufNasicmento' => 'xsd:string',
 			  'municipioNascimento' => 'xsd:string',
 			  'escolaridade' => 'xsd:string',
-			  'senha' => 'xsd:string'),
+			  'senha' => 'xsd:string',
+			  'curso' => 'xsd:string',),
 		array('return' => 'xsd:string'),
 		'urn:server.insertCandidato',
 		'urn:server.insertCandidato#insertCandidato',
@@ -31,10 +32,24 @@
 		'Insere os dados do usuario.'
 	);
 
-	function insertCandidato($etnia, $estadoCivil, $sexo, $cpf, $identidade, $orgaoExpedidor, $ufIdentidade, $nome, $nomeMae, $nascimento, $nascionalidade, $ufNascimento, $municipioNascimento, $escolaridade, $senha){
+	function insertCandidato($etnia, $estadoCivil, $sexo, $cpf, $identidade, $orgaoExpedidor, $ufIdentidade, $nome, $nomeMae, $nascimento, $nascionalidade, $ufNascimento, $municipioNascimento, $escolaridade, $senha, $curso){
 		include_once '../../VestibulApp.Core/Candidato.php';
+		include_once '../../VestibulApp.Core/Contato.php';
+		include_once '../../VestibulApp.Core/Endereco.php';
+		include_once '../../VestibulApp.Core/AtendimentoEspecial.php';
+		include_once '../../VestibulApp.Core/AtendimentoEspecifico.php';
+		include_once '../../VestibulApp.Core/Inscricao.php';
+		include_once '../../VestibulApp.Core/Curso.php';
+		include_once '../../VestibulApp.Core/Vestibular.php';
 
 		$candidato = new Candidato();
+		$contato = new Contato();
+		$endereco = new Endereco();
+		$atendimentoEspecial = new AtendimentoEspecial();
+		$atendimentoEspecifico = new AtendimentoEspecifico();
+		$inscricao = new Inscricao();
+		$curso = new Curso();
+		$vestibular = new Vestibular();
 
         $candidato->setEtnia($etnia);
 		$candidato->setEstado_civil($estadoCivil);
@@ -53,8 +68,9 @@
         $candidato->setSenha($senha);
 
 		$candidato->openConnect();
-
-		return $candidato->Insert();
+		$candidato->Insert();
+		$idCandidato = $candidato->SelectBySpecification(" AND cpf =  " .$cpf)['id_candidato'];
+		$candidato->disconnect();
 	}
 
 	$HTTP_RAW_POST_DATA = isset($HTTP_RAW_POST_DATA) ? $HTTP_RAW_POST_DATA : '';
