@@ -78,7 +78,9 @@ public class Inscricao_EscolaridadeActivity extends AppCompatActivity {
 
     public void Proximo(ArrayList<String> dados){
         if(VerificarCampos(dados)) {
+
             try{
+
                 Candidato.getCandidato().getEscolaridade().setGrau(dados.get(0));
                 Candidato.getCandidato().getEscolaridade().setInstituicao(dados.get(1));
 

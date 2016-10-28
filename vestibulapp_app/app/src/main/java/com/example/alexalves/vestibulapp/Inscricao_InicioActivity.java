@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.example.alexalves.vestibulapp.Controles.Validacao;
 import com.example.alexalves.vestibulapp.Entidades.Candidato;
+import com.example.alexalves.vestibulapp.threads.CandidatoInsertThread;
 
 import java.util.ArrayList;
 
@@ -70,22 +71,19 @@ public class Inscricao_InicioActivity extends AppCompatActivity {
 
     public void Proximo(){
 
-        final ArrayList<String> dados = new ArrayList<String>();
-        dados.add(cpf.getText().toString());
-        dados.add(nascimento.getText().toString());
+        if(Candidato.getCandidato() == null){
+            Candidato.setCandidato(new Candidato());
+        }
 
-        if(validacao.ChecarCpf(dados.get(0)) && validacao.ChecarData(dados.get(1))) {
+        Candidato.getCandidato().setCpf(cpf.getText().toString());
+        Candidato.getCandidato().setNascimento(nascimento.getText().toString());
+
+        if(validacao.ChecarCpf(Candidato.getCandidato().getCpf()) && validacao.ChecarData(Candidato.getCandidato().getNascimento())) {
             try {
-
-                if(Candidato.getCandidato() == null){
-                    Candidato.setCandidato(new Candidato());
-                }
-
-                Candidato.getCandidato().setCpf(dados.get(0));
-                Candidato.getCandidato().setNascimento(dados.get(1));
 
                 Intent segundaEtapa = new Intent(this, Inscricao_DadosPessoaisActivity.class);
                 startActivity(segundaEtapa);
+
 
             }catch (Exception ex){
                 Toast.makeText(this,"Erro: " + ex.getMessage(), Toast.LENGTH_LONG).show();
@@ -94,5 +92,7 @@ public class Inscricao_InicioActivity extends AppCompatActivity {
         else{
             Toast.makeText(this,"Alguns campos não estão preenchidos ou são inválidos!", Toast.LENGTH_LONG).show();
         }
+
     }
+
 }

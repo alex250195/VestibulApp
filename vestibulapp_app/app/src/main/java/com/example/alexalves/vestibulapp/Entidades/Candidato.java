@@ -1,9 +1,12 @@
 package com.example.alexalves.vestibulapp.Entidades;
 
+import com.example.alexalves.vestibulapp.Util.DateCustom;
+
 import org.ksoap2.serialization.PropertyInfo;
 import org.ksoap2.serialization.SoapObject;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Created by Alex Alves on 14/09/2016.
@@ -20,6 +23,8 @@ public class Candidato implements Serializable {
     private String estadoCivil;
     private String nascionalidade;
     private String sexo;
+    private String senha;
+    private String curso;
 
     private Endereco endereco;
     private Contato contato;
@@ -137,6 +142,14 @@ public class Candidato implements Serializable {
         this.sexo = sexo;
     }
 
+    public String getSenha(){ return senha; }
+
+    public void setSenha(String _value){ this.senha = _value; }
+
+    public String getCurso(){ return  this.curso; }
+
+    public void setCurso(String _value){ this.curso= _value; }
+
     public Endereco getEndereco() {
         return endereco;
     }
@@ -213,7 +226,7 @@ public class Candidato implements Serializable {
 
         parametros = new PropertyInfo();
         parametros.setName("cpf");
-        parametros.setValue(cpf);
+        parametros.setValue(cpf.replace("-","").replace(".",""));
         parametros.setType(String.class);
         _soap.addProperty(parametros);
 
@@ -247,11 +260,17 @@ public class Candidato implements Serializable {
         parametros.setType(String.class);
         _soap.addProperty(parametros);
 
-        parametros = new PropertyInfo();
-        parametros.setName("nascimento");
-        parametros.setValue(nascimento);
-        parametros.setType(String.class);
-        _soap.addProperty(parametros);
+
+        //recupera a string de data
+        Date datacerta = DateCustom.ConvertDate(nascimento);
+        if(datacerta != null){
+
+            parametros = new PropertyInfo();
+            parametros.setName("nascimento");
+            parametros.setValue(DateCustom.ToString(datacerta, "yyyy-MM-dd")); //data e altera o formato para yyyy-mm-dd
+            parametros.setType(String.class);
+            _soap.addProperty(parametros);
+        }
 
         parametros = new PropertyInfo();
         parametros.setName("nascionalidade");
@@ -261,31 +280,31 @@ public class Candidato implements Serializable {
 
         parametros = new PropertyInfo();
         parametros.setName("ufNasicmento");
-        parametros.setValue("");
+        parametros.setValue(endereco.getUf());
         parametros.setType(String.class);
         _soap.addProperty(parametros);
 
         parametros = new PropertyInfo();
         parametros.setName("municipioNascimento");
-        parametros.setValue("");
+        parametros.setValue(endereco.getMunicipio());
         parametros.setType(String.class);
         _soap.addProperty(parametros);
 
         parametros = new PropertyInfo();
         parametros.setName("escolaridade");
-        parametros.setValue("");
+        parametros.setValue(escolaridade.getGrau());
         parametros.setType(String.class);
         _soap.addProperty(parametros);
 
         parametros = new PropertyInfo();
         parametros.setName("senha");
-        parametros.setValue("");
+        parametros.setValue(senha);
         parametros.setType(String.class);
         _soap.addProperty(parametros);
 
         parametros = new PropertyInfo();
         parametros.setName("curso");
-        parametros.setValue("");
+        parametros.setValue(curso);
         parametros.setType(String.class);
         _soap.addProperty(parametros);
 

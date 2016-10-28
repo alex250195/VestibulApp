@@ -1,5 +1,6 @@
 package com.example.alexalves.vestibulapp.threads;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -40,6 +41,7 @@ public class CandidatoInsertThread extends AsyncTask<Object, Object, String> {
 
     }
 
+
     @Override
     protected String doInBackground(Object... params) {
 
@@ -48,6 +50,8 @@ public class CandidatoInsertThread extends AsyncTask<Object, Object, String> {
             try{
 
                 soap = new SoapObject(NAMESPACE, METHOD_NAME);
+
+                //soap.addProperty("nome", "NomeTeste");
 
                 Candidato.getCandidato().getParametros(soap);
 

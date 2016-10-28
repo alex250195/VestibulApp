@@ -70,6 +70,8 @@
 		$candidato->openConnect();
 		$candidato->Insert();
 		$idCandidato = $candidato->SelectBySpecification(" AND cpf =  " .$cpf)['id_candidato'];
+
+
 		$candidato->disconnect();
 	}
 
