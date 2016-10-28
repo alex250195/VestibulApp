@@ -191,46 +191,35 @@ public class Candidato implements Serializable {
 
     public void getParametros(SoapObject _soap){
 
-        PropertyInfo parametros = new PropertyInfo();
+        PropertyInfo parametros;
 
+        parametros = new PropertyInfo();
+        parametros.setName("etnia");
+        parametros.setValue(raca);
+        parametros.setType(String.class);
+        _soap.addProperty(parametros);
+
+        parametros = new PropertyInfo();
+        parametros.setName("estadoCivil");
+        parametros.setValue(estadoCivil);
+        parametros.setType(String.class);
+        _soap.addProperty(parametros);
+
+        parametros = new PropertyInfo();
+        parametros.setName("sexo");
+        parametros.setValue(sexo);
+        parametros.setType(String.class);
+        _soap.addProperty(parametros);
+
+        parametros = new PropertyInfo();
         parametros.setName("cpf");
         parametros.setValue(cpf);
         parametros.setType(String.class);
         _soap.addProperty(parametros);
 
         parametros = new PropertyInfo();
-        parametros.setName("nascimento");
-        parametros.setValue(nascimento);
-        parametros.setType(String.class);
-        _soap.addProperty(parametros);
-
-        parametros = new PropertyInfo();
-        parametros.setName("nome");
-        parametros.setValue(nome);
-        parametros.setType(String.class);
-        _soap.addProperty(parametros);
-
-        parametros = new PropertyInfo();
-        parametros.setName("mae");
-        parametros.setValue(mae);
-        parametros.setType(String.class);
-        _soap.addProperty(parametros);
-
-        parametros = new PropertyInfo();
-        parametros.setName("raca");
-        parametros.setValue(raca);
-        parametros.setType(String.class);
-        _soap.addProperty(parametros);
-
-        parametros = new PropertyInfo();
         parametros.setName("identidade");
         parametros.setValue(identidade);
-        parametros.setType(String.class);
-        _soap.addProperty(parametros);
-
-        parametros = new PropertyInfo();
-        parametros.setName("nascimento");
-        parametros.setValue(nascimento);
         parametros.setType(String.class);
         _soap.addProperty(parametros);
 
@@ -246,22 +235,59 @@ public class Candidato implements Serializable {
         parametros.setType(String.class);
         _soap.addProperty(parametros);
 
-        parametros.setName("estadoCivil");
-        parametros.setValue(estadoCivil);
+        parametros = new PropertyInfo();
+        parametros.setName("nome");
+        parametros.setValue(nome);
         parametros.setType(String.class);
         _soap.addProperty(parametros);
 
+        parametros = new PropertyInfo();
+        parametros.setName("nomeMae");
+        parametros.setValue(mae);
+        parametros.setType(String.class);
+        _soap.addProperty(parametros);
+
+        parametros = new PropertyInfo();
+        parametros.setName("nascimento");
+        parametros.setValue(nascimento);
+        parametros.setType(String.class);
+        _soap.addProperty(parametros);
+
+        parametros = new PropertyInfo();
         parametros.setName("nascionalidade");
         parametros.setValue(nascionalidade);
         parametros.setType(String.class);
         _soap.addProperty(parametros);
 
         parametros = new PropertyInfo();
-        parametros.setName("sexo");
-        parametros.setValue(sexo);
+        parametros.setName("ufNasicmento");
+        parametros.setValue("");
         parametros.setType(String.class);
         _soap.addProperty(parametros);
 
+        parametros = new PropertyInfo();
+        parametros.setName("municipioNascimento");
+        parametros.setValue("");
+        parametros.setType(String.class);
+        _soap.addProperty(parametros);
+
+        parametros = new PropertyInfo();
+        parametros.setName("escolaridade");
+        parametros.setValue("");
+        parametros.setType(String.class);
+        _soap.addProperty(parametros);
+
+        parametros = new PropertyInfo();
+        parametros.setName("senha");
+        parametros.setValue("");
+        parametros.setType(String.class);
+        _soap.addProperty(parametros);
+
+        parametros = new PropertyInfo();
+        parametros.setName("curso");
+        parametros.setValue("");
+        parametros.setType(String.class);
+        _soap.addProperty(parametros);
 
     }
 }

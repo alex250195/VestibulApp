@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.RadioButton;
 
 import com.example.alexalves.vestibulapp.Entidades.Candidato;
+import com.example.alexalves.vestibulapp.threads.CandidatoInsertThread;
 import com.example.alexalves.vestibulapp.threads.InscricaoInsertThread;
 
 public class Inscricao_CursosActivity extends AppCompatActivity {
@@ -62,7 +63,7 @@ public class Inscricao_CursosActivity extends AppCompatActivity {
 
     public void Proximo(){
 
-        new InscricaoInsertThread(this).execute();
+        new CandidatoInsertThread(this).execute();
 
     }
 
