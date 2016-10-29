@@ -1,5 +1,6 @@
 package com.example.alexalves.vestibulapp.threads;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -25,7 +26,8 @@ public class InscricaoInsertThread extends AsyncTask<Object, Object, String> {
     private static final String NAMESPACE = "urn:server.insertInscricao";
     private String URL = Constants.HOST + "Inscricao/Insert.php";
 
-    private Inscricao_CursosActivity context;
+    private Inscricao_CursosActivity incricaoContext;
+    private Context context;
     private Boolean resultado = false;
 
     private SoapPrimitive resp;
@@ -35,6 +37,13 @@ public class InscricaoInsertThread extends AsyncTask<Object, Object, String> {
     private HttpTransportSE transportSE;
 
     public InscricaoInsertThread(Inscricao_CursosActivity _context){
+
+        incricaoContext = _context;
+        context = _context;
+
+    }
+
+    public InscricaoInsertThread(Context _context){
 
         context = _context;
 
@@ -89,9 +98,9 @@ public class InscricaoInsertThread extends AsyncTask<Object, Object, String> {
     @Override
     protected void onPostExecute (String result){
 
-        if(context != null){
+        if(incricaoContext != null){
 
-            context.Resultado(resultado);
+            incricaoContext.Resultado(resultado);
 
         }
 

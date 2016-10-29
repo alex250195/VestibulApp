@@ -73,6 +73,7 @@ public class Portal_LoginActivity extends AppCompatActivity {
     }
 
     public void Formatacao(EditText cpf){
+
         MaskEditTextChangedListener maskCPF = new MaskEditTextChangedListener("###.###.###-##", cpf);
 
         cpf.addTextChangedListener(maskCPF);

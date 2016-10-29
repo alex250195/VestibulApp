@@ -73,9 +73,19 @@
 
 
 		$candidato->disconnect();
+
+		//instantiate the response class
+	  	$response = new getDateResponse();
+
+	  //return the server date
+	  	$response->return = $idCandidato;
+
+	  	return $response;
 	}
 
 	$HTTP_RAW_POST_DATA = isset($HTTP_RAW_POST_DATA) ? $HTTP_RAW_POST_DATA : '';
 
 	$server->service($HTTP_RAW_POST_DATA);
+
+
 ?>

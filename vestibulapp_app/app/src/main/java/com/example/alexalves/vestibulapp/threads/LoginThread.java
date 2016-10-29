@@ -57,15 +57,14 @@ public class LoginThread extends AsyncTask<Object, Object, String> {
                 PropertyInfo parametros = new PropertyInfo();
 
                 parametros.setName("cpf");
-                parametros.setValue(cpf);
+                parametros.setValue(cpf.replace(".","").replace("-",""));
                 parametros.setType(String.class);
-
                 soap.addProperty(parametros);
 
+                parametros = new PropertyInfo();
                 parametros.setName("senha");
                 parametros.setValue(senha);
                 parametros.setType(String.class);
-
                 soap.addProperty(parametros);
                 //endregion
 

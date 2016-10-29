@@ -10,7 +10,10 @@ import android.widget.Toast;
 
 import com.example.alexalves.vestibulapp.Controles.Validacao;
 import com.example.alexalves.vestibulapp.Entidades.Candidato;
+import com.example.alexalves.vestibulapp.Entidades.Endereco;
+import com.example.alexalves.vestibulapp.Entidades.Escolaridade;
 import com.example.alexalves.vestibulapp.threads.CandidatoInsertThread;
+import com.example.alexalves.vestibulapp.threads.InscricaoInsertThread;
 
 import java.util.ArrayList;
 
@@ -30,7 +33,6 @@ public class Inscricao_InicioActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inscricao__inicio);
 
-        RecuperarDados();
 
         cpf = (EditText) findViewById(R.id.txtCpf);
         nascimento = (EditText) findViewById(R.id.txtNascimento);
@@ -39,6 +41,7 @@ public class Inscricao_InicioActivity extends AppCompatActivity {
 
         Formatacao(cpf, nascimento);
 
+        RecuperarDados();
         proximo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,6 +81,8 @@ public class Inscricao_InicioActivity extends AppCompatActivity {
         Candidato.getCandidato().setCpf(cpf.getText().toString());
         Candidato.getCandidato().setNascimento(nascimento.getText().toString());
 
+        teste();
+        /*
         if(validacao.ChecarCpf(Candidato.getCandidato().getCpf()) && validacao.ChecarData(Candidato.getCandidato().getNascimento())) {
             try {
 
@@ -92,7 +97,32 @@ public class Inscricao_InicioActivity extends AppCompatActivity {
         else{
             Toast.makeText(this,"Alguns campos não estão preenchidos ou são inválidos!", Toast.LENGTH_LONG).show();
         }
-
+*/
     }
 
+    private void teste(){
+
+        Candidato.getCandidato().setRaca("vvemelho");
+        Candidato.getCandidato().setNascionalidade("brasileira");
+        Candidato.getCandidato().setMae("Maria");
+        Candidato.getCandidato().setNome("Gt");
+        Candidato.getCandidato().setCurso("Engenharia");
+        Candidato.getCandidato().setSenha("12345");
+        Candidato.getCandidato().setEstadoCivil("Solteiro");
+        Candidato.getCandidato().setIdentidade("34343434343");
+        Candidato.getCandidato().setUfIdentidade("MG");
+        Candidato.getCandidato().setSexo("Masculino");
+        Candidato.getCandidato().setOrgaoExpedidor("ssp");
+        Candidato.getCandidato().setNascionalidade("Brasil");
+        Endereco end = new Endereco();
+        end.setUf("MG");
+        Escolaridade esc = new Escolaridade();
+        esc.setGrau("2 grau");
+
+        Candidato.getCandidato().setEndereco(end);
+        Candidato.getCandidato().setEscolaridade(esc);
+
+        new InscricaoInsertThread(this).execute();
+
+    }
 }
