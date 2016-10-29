@@ -6,6 +6,14 @@
 	$server->configureWSDL('server.selectBySpecificationAtendimentoEspecial', 'urn:server.selectBySpecificationAtendimentoEspecial');
 	$server->wsdl->schemaTargetNamespace = 'urn:server.selectBySpecificationAtendimentoEspecial';
 
+	$server->wsdl->addComplexType('atendimentoEspecialDateType','complexType','struct','all','',
+		array(
+			'id_especial' => array('name'=>'id_especial','type'=>'xsd:int'),
+			'descricao' => array('name'=>'descricao','type'=>'xsd:string'),
+			'Inscricao_id_inscricao' => array('name'=>'Inscricao_id_inscricao	','type'=>'xsd:string')
+		)
+	);
+
 	$server->wsdl->addComplexType(
 		'Array',          // Name
 		'complexType',    // Type Class
@@ -16,7 +24,7 @@
 		array(
 			array(
 				'ref' => 'SOAP-ENC:arrayType', 
-				'wsdl:arrayType' => 'tns:string[]'
+				'wsdl:arrayType' => 'tns:atendimentoEspecialDateType[]'
 			)
 		),
 		'xsd:string'

@@ -102,7 +102,59 @@
                 $resultado = mysqli_query($this->connection->getMySqli(), $selectAll);
 
                 if(mysqli_num_rows($resultado) > 0){
-                    while($row =  mysqli_fetch_assoc($resultado)) {                        
+
+                    $result = array();
+
+                    while($row =  mysqli_fetch_assoc($resultado)) {
+
+                        $booking = array(
+                            'id_instituicao' => $row['id_instituicao'],
+                            'cnpj' => $row['cnpj'],
+                            'razao_social' => $row['razao_social'],
+                            'nome_fantasia' => $row['nome_fantasia'],
+                            'data_fundacao' => $row['data_fundacao'],
+                            'insc_municipal' => $row['insc_municipal'],
+                            'id_endereco' => $row['id_endereco'],
+                            'cep' => $row['cep'],
+                            'logradouro' => $row['logradouro'],
+                            'endereco' => $row['endereco'],
+                            'numero' => $row['numero'],
+                            'complemento' => $row['complemento'],
+                            'bairro' => $row['bairro'],
+                            'municipio' => $row['municipio'],
+                            'uf' => $row['uf'],
+                            'id_contato' => $row['id_contato'],
+                            'telefone_celular' => $row['telefone_celular'],
+                            'telefone_fixo' => $row['telefone_fixo'],
+                            'email' => $row['email'],
+                        );
+
+                        $result[] = new soapval('curso', 'tns:cursoDateType', $booking);
+                    }
+
+                    return $result;
+
+                }
+                else if(!$resultado){
+                    return false;
+                }
+                else{
+                    return true;
+                }
+            }catch(Exception $ex){
+                return $ex;
+            }
+        }
+
+        public function SelectAll2(){
+            try{
+                $selectAll = new SelectBySpecification();
+                $selectAll = $selectAll->Instituicao();
+
+                $resultado = mysqli_query($this->connection->getMySqli(), $selectAll);
+
+                if(mysqli_num_rows($resultado) > 0){
+                    while($row =  mysqli_fetch_assoc($resultado)) {
                         $select[] = $row['id_instituicao'];
                         $select[] = $row['cnpj'];
                         $select[] = $row['razao_social'];

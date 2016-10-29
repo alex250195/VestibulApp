@@ -115,6 +115,43 @@
             }
         }
 
+        public function SelectAll2(){
+            try{
+                $selectAll = new SelectAll();
+                $selectAll = $selectAll->Curso();
+
+                $resultado = mysqli_query($this->connection->getMySqli(), $selectAll);
+
+                if(mysqli_num_rows($resultado) > 0){
+
+                    $result = array();
+
+                    while($row = mysqli_fetch_row($resultado))
+                    {// Loop throu each booking and Load into 'bookings' array
+                        $booking = array(
+                            'id' => $row[0],
+                            'idInstituicao' => $row[1],
+                            'nome' => $row[2],
+                            'descricao' => $row[3]
+                        );
+
+                        $result[] = new soapval('curso', 'tns:cursoDateType', $booking);
+                    }
+
+                    return $result;
+
+                }
+                else if(!$resultado){
+                    return false;
+                }
+                else{
+                    return true;
+                }
+            }catch(Exception $ex){
+                return $ex;
+            }
+        }
+
         public function SelectBySpecification(){
             try{
                 $selectBySpecification = new SelectBySpecification();

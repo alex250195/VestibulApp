@@ -6,6 +6,22 @@
 	$server->configureWSDL('server.selectBySpecificationCandidato', 'urn:server.selectBySpecificationCandidato');
 	$server->wsdl->schemaTargetNamespace = 'urn:server.selectBySpecificationCandidato';
 
+	$server->wsdl->addComplexType('candidatoDateType','complexType','struct','all','',
+		array(
+			'id_candidato' => array('name'=>'id_candidato','type'=>'xsd:int'),
+			'nome' => array('name'=>'nome','type'=>'xsd:string'),
+			'cpf' => array('name'=>'cpf','type'=>'xsd:string'),
+			'sexo' => array('name'=>'sexo','type'=>'xsd:string'),
+			'identidade' => array('name'=>'identidade','type'=>'xsd:string'),
+			'nascimento' => array('name'=>'nascimento','type'=>'xsd:string'),
+			'nascionalidade' => array('name'=>'nascionalidade','type'=>'xsd:string'),
+			'municipio_nascimento' => array('name'=>'municipio_nascimento','type'=>'xsd:string'),
+			'uf_nascimento' => array('name'=>'uf_nascimento','type'=>'xsd:string'),
+			'escolaridade' => array('name'=>'escolaridade','type'=>'xsd:string'),
+			'senha' => array('name'=>'senha','type'=>'xsd:string')
+		)
+	);
+
 	$server->wsdl->addComplexType(
 		'Array',          // Name
 		'complexType',    // Type Class
@@ -16,7 +32,7 @@
 		array(
 			array(
 				'ref' => 'SOAP-ENC:arrayType', 
-				'wsdl:arrayType' => 'tns:string[]'
+				'wsdl:arrayType' => 'tns:candidatoDateType[]'
 			)
 		),
 		'xsd:string'

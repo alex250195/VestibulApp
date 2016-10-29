@@ -49,7 +49,7 @@
             }
         }
 
-        public function SelectBySpecification(){
+        public function SelectBySpecification2(){
             try{
                 $selectBySpecification = new SelectBySpecification();
                 $selectBySpecification = $selectBySpecification->AtendimentoEspecifico(" AND Inscricao_id_inscricao = " .$this->inscricao);
@@ -66,6 +66,43 @@
                 }
                 else{
                     return false;
+                }
+            }catch(Exception $ex){
+                return $ex;
+            }
+        }
+
+        public function SelectBySpecification(){
+            try{
+
+                $selectBySpecification = new SelectBySpecification();
+                $selectBySpecification = $selectBySpecification->AtendimentoEspecifico(" AND Inscricao_id_inscricao = " .$this->inscricao);
+
+                $resultado = mysqli_query($this->connection->getMySqli(), $selectBySpecification);
+
+                if(mysqli_num_rows($resultado) > 0){
+
+                    $result = array();
+
+                    while($row = mysqli_fetch_row($resultado))
+                    {// Loop throu each booking and Load into 'bookings' array
+                        $linha = array(
+                            'id' => $row[0],
+                            'nome' => $row[1],
+                            'id_inscricao' => $row[2]
+                        );
+
+                        $result[] = new soapval('curso', 'tns:atendimentoEspecificoDateType', $linha);
+                    }
+
+                    return $result;
+
+                }
+                else if(!$resultado){
+                    return false;
+                }
+                else{
+                    return true;
                 }
             }catch(Exception $ex){
                 return $ex;

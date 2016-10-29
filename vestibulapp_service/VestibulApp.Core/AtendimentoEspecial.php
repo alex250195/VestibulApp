@@ -57,6 +57,39 @@
                 $resultado = mysqli_query($this->connection->getMySqli(), $selectBySpecification);
 
                 if(mysqli_num_rows($resultado) > 0){
+
+                    $result = array();
+
+                    while($row = mysqli_fetch_row($resultado))
+                    {// Loop throu each booking and Load into 'bookings' array
+                        $linha = array(
+                            'id_especial' => $row[0],
+                            'descricao' => $row[1],
+                            'Inscricao_id_inscricao' => $row[2]
+                        );
+
+                        $result[] = new soapval('curso', 'tns:atendimentoEspecificoDateType', $linha);
+                    }
+
+                    return $result;
+
+                }
+                else{
+                    return false;
+                }
+            }catch(Exception $ex){
+                return $ex;
+            }
+        }
+
+        public function SelectBySpecification2(){
+            try{
+                $selectBySpecification = new SelectBySpecification();
+                $selectBySpecification = $selectBySpecification->AtendimentoEspecial(" AND Inscricao_id_inscricao = " .$this->inscricao);
+
+                $resultado = mysqli_query($this->connection->getMySqli(), $selectBySpecification);
+
+                if(mysqli_num_rows($resultado) > 0){
                     while($row =  mysqli_fetch_assoc($resultado)) {
                         $select[] = $row['id_especial'];
                         $select[] = $row['descricao'];

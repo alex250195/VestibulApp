@@ -177,7 +177,7 @@
             }
         }
 
-        public function SelectBySpecification($query){
+        public function SelectBySpecification2($query){
             try{
                 $selectBySpecification = new SelectBySpecification();
                 $selectBySpecification = $selectBySpecification->Candidato($query);
@@ -199,6 +199,46 @@
                         $select[] = $row['senha'];
                     }
                     return $select;
+                }
+                else{
+                    return false;
+                }
+            }catch(Exception $ex){
+                return $ex;
+            }
+        }
+
+        public function SelectBySpecification($query){
+            try{
+                $selectBySpecification = new SelectBySpecification();
+                $selectBySpecification = $selectBySpecification->Candidato($query);
+
+                $resultado = mysqli_query($this->connection->getMySqli(), $selectBySpecification);
+
+                if(mysqli_num_rows($resultado) > 0){
+
+                    $result = array();
+
+                    while($row =  mysqli_fetch_assoc($resultado)) {
+
+                        $booking = array(
+                            'id_candidato' => $row['id_candidato'],
+                            'nome' => $row['nome'],
+                            'cpf' => $row['cpf'],
+                            'sexo' => $row['sexo'],
+                            'identidade' => $row['identidade'],
+                            'nascimento' => $row['nascimento'],
+                            'nascionalidade' => $row['nascionalidade'],
+                            'municipio_nascimento' => $row['municipio_nascimento'],
+                            'uf_nascimento' => $row['uf_nascimento'],
+                            'escolaridade' => $row['escolaridade'],
+                            'senha' => $row['senha']
+                        );
+
+                        $result[] = new soapval('curso', 'tns:candidatoDateType', $booking);
+                    }
+
+                    return $result;
                 }
                 else{
                     return false;
