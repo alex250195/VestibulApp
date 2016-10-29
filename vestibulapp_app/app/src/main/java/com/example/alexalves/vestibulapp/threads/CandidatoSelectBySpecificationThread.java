@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.example.alexalves.vestibulapp.Portal_LoginActivity;
 import com.example.alexalves.vestibulapp.Util.Constants;
 import com.example.alexalves.vestibulapp.Util.Service;
 
@@ -25,19 +26,21 @@ public class CandidatoSelectBySpecificationThread extends AsyncTask<Object, Obje
     private static final String NAMESPACE = "urn:server.selectBySpecificationCandidato";
     private String URL = Constants.HOST + "Candidato/SelectBySpecification.php";
 
-    private Context context;
+    private Portal_LoginActivity context;
     private SoapPrimitive resp;
 
     private SoapObject soap;
     private SoapSerializationEnvelope envelope;
     private HttpTransportSE transportSE;
 
-    private String cpf;
+    private String cpf, senha;
+    private Boolean resultado = false;
 
-    public CandidatoSelectBySpecificationThread(Context _context, String _cpf){
+    public CandidatoSelectBySpecificationThread(Portal_LoginActivity _context, String _cpf, String _senha){
 
         context = _context;
         cpf = _cpf;
+        senha = _senha;
 
     }
 
@@ -50,11 +53,18 @@ public class CandidatoSelectBySpecificationThread extends AsyncTask<Object, Obje
 
                 soap = new SoapObject(NAMESPACE, METHOD_NAME);
 
-                PropertyInfo p1 = new PropertyInfo();
-                p1.setName("cpf");
-                p1.setValue(cpf);
-                p1.setType(String.class);
-                soap.addProperty(p1);
+                PropertyInfo parametros = new PropertyInfo();
+                parametros.setName("cpf");
+                parametros.setValue(cpf/*.replace(".","").replace("-","")*/);
+                parametros.setType(String.class);
+                soap.addProperty(parametros);
+
+                parametros = new PropertyInfo();
+                parametros.setName("senha");
+                parametros.setValue(senha);
+                parametros.setType(String.class);
+                soap.addProperty(parametros);
+                //
 
                 envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
                 //envelope.dotNet = true;
@@ -72,6 +82,7 @@ public class CandidatoSelectBySpecificationThread extends AsyncTask<Object, Obje
                     Object response = envelope.getResponse();
                     if(response != null) {
                         resp = (SoapPrimitive) envelope.getResponse();
+                        resultado = true;
                     }
                     //SoapObject resp = (SoapObject) envelope.bodyIn;
 
@@ -96,6 +107,7 @@ public class CandidatoSelectBySpecificationThread extends AsyncTask<Object, Obje
 
         if(context != null){
 
+            context.resultLogin(resultado);
 
         }
 

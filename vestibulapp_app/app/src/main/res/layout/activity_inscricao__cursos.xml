@@ -64,94 +64,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true">
+                android:layout_alignParentStart="true"
+                android:id="@+id/radioGroupCursos">
 
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Engenharia Civil"
-                    android:id="@+id/rbEngCivil"
-                    android:checked="true" />
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Direito Noturno"
-                    android:id="@+id/rbDireitoNoturno" />
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Direito Diurno"
-                    android:id="@+id/rbDireitoDiurno" />
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Ciências Contábeis"
-                    android:id="@+id/rbContabeis" />
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Engenharia Eletrônica"
-                    android:id="@+id/rbEngEletronica" />
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Engenharia Mecânica"
-                    android:id="@+id/rbEngMecanica" />
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Engenharia de Produção"
-                    android:id="@+id/rbEngProducao" />
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Ciencia da Computação"
-                    android:id="@+id/rbComputacao" />
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Odontologia"
-                    android:id="@+id/rbOdontologia" />
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Nutrição"
-                    android:id="@+id/rbNutricao" />
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Administração"
-                    android:id="@+id/rbAdministracao" />
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Arquitetura e Urbanismo"
-                    android:id="@+id/rbUrbanismo" />
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Medicina"
-                    android:id="@+id/rbMedicina" />
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Farmácia"
-                    android:id="@+id/rbFarmacia" />
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Enfermagem"
-                    android:id="@+id/rbEnfermagem" />
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Educaçao Física"
-                    android:id="@+id/rbEducacaoFisica" />
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Fisioterapia"
-                    android:id="@+id/rbFisioterapia" />
+
             </RadioGroup>
         </RelativeLayout>
     </ScrollView>

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.example.alexalves.vestibulapp.Entidades.Curso;
 import com.example.alexalves.vestibulapp.Inscricao_CursosActivity;
 import com.example.alexalves.vestibulapp.Util.Constants;
 import com.example.alexalves.vestibulapp.Util.Service;
@@ -14,6 +15,10 @@ import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapPrimitive;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Vector;
 
 /**
  * Created by Desenvolvedor on 17/10/2016.
@@ -26,12 +31,20 @@ public class CursoSelectAllThread extends AsyncTask<Object, Object, String> {
     private static final String NAMESPACE = "urn:server.selectAllCurso";
     private String URL = Constants.HOST + "Curso/SelectAll.php";
 
+    private Inscricao_CursosActivity contextInscricao;
     private Context context;
     private SoapPrimitive resp;
 
     private SoapObject soap;
     private SoapSerializationEnvelope envelope;
     private HttpTransportSE transportSE;
+
+    public CursoSelectAllThread(Inscricao_CursosActivity _context){
+
+        contextInscricao = _context;
+        context = _context;
+
+    }
 
     public CursoSelectAllThread(Context _context){
 
@@ -48,12 +61,6 @@ public class CursoSelectAllThread extends AsyncTask<Object, Object, String> {
 
                 soap = new SoapObject(NAMESPACE, METHOD_NAME);
 
-                //PropertyInfo p1 = new PropertyInfo();
-                //p1.setName("sCountryISOCode");
-                //p1.setValue("AF");
-                //p1.setType(String.class);
-                //soap.addProperty(p1);
-
                 envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
                 //envelope.dotNet = true;
                 envelope.setOutputSoapObject(soap);
@@ -65,13 +72,26 @@ public class CursoSelectAllThread extends AsyncTask<Object, Object, String> {
 
                 try {
 
+                    transportSE.debug = true;
                     transportSE.call(SOAP_ACTION, envelope);
 
-                    Object response = envelope.getResponse();
-                    if(response != null) {
-                        resp = (SoapPrimitive) envelope.getResponse();
+                    Vector<SoapObject> response = (Vector<SoapObject>) envelope.getResponse();
+
+                    Curso.setCursos(new ArrayList<Curso>());
+
+                    for (int i = 0; i < response.size(); i++) {
+                        SoapObject tempObject = response.get(i);
+                        if (tempObject != null) {
+                            Curso temp = new Curso();
+
+                            if(tempObject.hasAttribute("id")){temp.setId(Integer.parseInt(tempObject.getProperty("id").toString()));}
+                            if(tempObject.hasAttribute("id_instituicao")){ temp.setIdInstituicao(Integer.parseInt(tempObject.getProperty("id_instituicao").toString()));}
+                            if(tempObject.hasAttribute("nome")){temp.setNome(tempObject.getProperty("nome").toString());}
+                            if(tempObject.hasAttribute("descricao")){temp.setDescricao((tempObject.getProperty("descricao").toString()));}
+
+                            Curso.getCursos().add(temp);
+                        }
                     }
-                    //SoapObject resp = (SoapObject) envelope.bodyIn;
 
 
                 } catch (Exception e) {
@@ -92,8 +112,9 @@ public class CursoSelectAllThread extends AsyncTask<Object, Object, String> {
     @Override
     protected void onPostExecute (String result){
 
-        if(context != null){
+        if(contextInscricao != null){
 
+            contextInscricao.listaCursos();
 
         }
 

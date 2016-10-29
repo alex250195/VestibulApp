@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.alexalves.vestibulapp.Util.Dialog;
+import com.example.alexalves.vestibulapp.threads.CandidatoSelectBySpecificationThread;
 import com.example.alexalves.vestibulapp.threads.LoginThread;
 
 import br.com.jansenfelipe.androidmask.MaskEditTextChangedListener;
@@ -52,7 +53,7 @@ public class Portal_LoginActivity extends AppCompatActivity {
         }
 
         if(erro == null) {
-            new LoginThread(this, cpf, senha ).execute();
+            new CandidatoSelectBySpecificationThread(this, cpf, senha ).execute();
         }else{
             Dialog.Show(this, erro, "Login");
         }

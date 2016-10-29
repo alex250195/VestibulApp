@@ -13,6 +13,7 @@ import com.example.alexalves.vestibulapp.Entidades.Candidato;
 import com.example.alexalves.vestibulapp.Entidades.Endereco;
 import com.example.alexalves.vestibulapp.Entidades.Escolaridade;
 import com.example.alexalves.vestibulapp.threads.CandidatoInsertThread;
+import com.example.alexalves.vestibulapp.threads.CursoSelectAllThread;
 import com.example.alexalves.vestibulapp.threads.InscricaoInsertThread;
 
 import java.util.ArrayList;
@@ -81,7 +82,7 @@ public class Inscricao_InicioActivity extends AppCompatActivity {
         Candidato.getCandidato().setCpf(cpf.getText().toString());
         Candidato.getCandidato().setNascimento(nascimento.getText().toString());
 
-        teste();
+        teste2();
         /*
         if(validacao.ChecarCpf(Candidato.getCandidato().getCpf()) && validacao.ChecarData(Candidato.getCandidato().getNascimento())) {
             try {
@@ -122,7 +123,13 @@ public class Inscricao_InicioActivity extends AppCompatActivity {
         Candidato.getCandidato().setEndereco(end);
         Candidato.getCandidato().setEscolaridade(esc);
 
-        new InscricaoInsertThread(this).execute();
+        new CandidatoInsertThread(this).execute();
+
+    }
+
+    private void teste2(){
+
+        new CursoSelectAllThread(this).execute();
 
     }
 }

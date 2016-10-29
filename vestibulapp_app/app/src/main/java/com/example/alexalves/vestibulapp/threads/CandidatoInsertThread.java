@@ -25,8 +25,10 @@ public class CandidatoInsertThread extends AsyncTask<Object, Object, String> {
     private static final String METHOD_NAME = "insertCandidato";
     private static final String NAMESPACE = "urn:server.insertCandidato";
     private String URL = Constants.HOST + "Candidato/Insert.php";
+    private String idCandidato;
 
-    private Inscricao_CursosActivity context;
+    private Inscricao_CursosActivity contextInscricao;
+    private Context context;
     private Boolean resultado = false;
 
     private SoapPrimitive resp;
@@ -37,10 +39,16 @@ public class CandidatoInsertThread extends AsyncTask<Object, Object, String> {
 
     public CandidatoInsertThread(Inscricao_CursosActivity _context){
 
-        context = _context;
+        contextInscricao = _context;
+        context = contextInscricao;
 
     }
 
+    public CandidatoInsertThread(Context _context){
+
+        context = _context;
+
+    }
 
     @Override
     protected String doInBackground(Object... params) {
@@ -68,12 +76,11 @@ public class CandidatoInsertThread extends AsyncTask<Object, Object, String> {
 
                     transportSE.call(SOAP_ACTION, envelope);
 
-                    Object response = envelope.getResponse();
-                    if(response != null) {
-                        resp = (SoapPrimitive) envelope.getResponse();
+                    String response = envelope.getResponse().toString();
+                    if(response != null && !response.equals("false")) {
+                        idCandidato = response.split(":")[1].trim();
+                        resultado = true;
                     }
-                    //SoapObject resp = (SoapObject) envelope.bodyIn;
-
 
                 } catch (Exception e) {
 
@@ -93,9 +100,9 @@ public class CandidatoInsertThread extends AsyncTask<Object, Object, String> {
     @Override
     protected void onPostExecute (String result){
 
-        if(context != null){
+        if(contextInscricao != null){
 
-            context.Resultado(resultado);
+            contextInscricao.Resultado(resultado);
 
         }
 

@@ -286,7 +286,7 @@ public class Candidato implements Serializable {
 
         parametros = new PropertyInfo();
         parametros.setName("municipioNascimento");
-        parametros.setValue(endereco.getMunicipio());
+        parametros.setValue("Cidade");
         parametros.setType(String.class);
         _soap.addProperty(parametros);
 
