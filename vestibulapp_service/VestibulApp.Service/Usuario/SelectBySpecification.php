@@ -43,8 +43,9 @@
 		$usuario->setSenha($senha);
 
 		$usuario->openConnect();
-		
-		return $usuario->SelectBySpecification();
+
+		return "nada";
+		//return $usuario->SelectBySpecification();
 	}
 
 	$HTTP_RAW_POST_DATA = isset($HTTP_RAW_POST_DATA) ? $HTTP_RAW_POST_DATA : '';

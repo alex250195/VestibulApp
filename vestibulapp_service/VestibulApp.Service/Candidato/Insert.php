@@ -68,19 +68,18 @@
         $candidato->setSenha($senha);
 
 		$candidato->openConnect();
-		$candidato->Insert();
-		$idCandidato = $candidato->SelectBySpecification(" AND cpf =  " .$cpf)['id_candidato'];
-
+		$resul = $candidato->Insert();
+		$rCandidato = $candidato->SelectBySpecification(" AND cpf =  " .$cpf);
 
 		$candidato->disconnect();
 
-		//instantiate the response class
-	  	$response = new getDateResponse();
+	  //return urn the server date
+		if(isset($resul) && $resul == 1) {
+			return "result: " .$rCandidato[0];
+		}else{
+			return "false";
+		}
 
-	  //return the server date
-	  	$response->return = $idCandidato;
-
-	  	return $response;
 	}
 
 	$HTTP_RAW_POST_DATA = isset($HTTP_RAW_POST_DATA) ? $HTTP_RAW_POST_DATA : '';
