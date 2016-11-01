@@ -80,34 +80,57 @@ public class CandidatoSelectBySpecificationThread extends AsyncTask<Object, Obje
 
                     Vector<SoapObject> response = (Vector<SoapObject>) envelope.getResponse();
 
-                    Curso.setCursos(new ArrayList<Curso>());
+                    if(response.size() == 1) {
 
-                    for (int i = 0; i < response.size(); i++) {
-                        SoapObject tempObject = response.get(i);
+                        SoapObject tempObject = response.get(0);
+
                         if (tempObject != null) {
-                            Candidato temp = new Candidato();
 
-                            if(tempObject.hasAttribute("id_candidato")){temp.setId(Integer.parseInt(tempObject.getProperty("id_candidato").toString()));}
-                            if(tempObject.hasAttribute("nome")){ temp.setNome(tempObject.getProperty("nome").toString());}
-                            if(tempObject.hasAttribute("cpf")){temp.setNome(tempObject.getProperty("cpf").toString());}
-                            if(tempObject.hasAttribute("sexo")){temp.setSexo((tempObject.getProperty("sexo").toString()));}
-                            if(tempObject.hasAttribute("identidade")){temp.setIdentidade((tempObject.getProperty("identidade").toString()));}
-                            if(tempObject.hasAttribute("nascimento")){temp.setNascimento((tempObject.getProperty("nascimento").toString()));}
-                            if(tempObject.hasAttribute("nascionalidade")){temp.setNascionalidade((tempObject.getProperty("nascionalidade").toString()));}
-                            //if(tempObject.hasAttribute("municipio_nascimento")){temp.setm((tempObject.getProperty("municipio_nascimento").toString()));}
-                            if(tempObject.hasAttribute("uf_nascimento")){temp.setUfIdentidade((tempObject.getProperty("uf_nascimento").toString()));}
-                            //if(tempObject.hasAttribute("escolaridade")){temp.setEscolaridade((tempObject.getProperty("escolaridade").toString()));}
-                            if(tempObject.hasAttribute("senha")){temp.setSenha((tempObject.getProperty("senha").toString()));}
+                            //Candidato.setCandidato(new ArrayList<Candidato>());
 
-                            Candidato.setCandidato(temp);
+                            if (tempObject != null) {
+                                Candidato temp = new Candidato();
+
+                                if (tempObject.hasProperty("id_candidato")) {
+                                    temp.setId(Integer.parseInt(tempObject.getProperty("id_candidato").toString()));
+                                }
+                                if (tempObject.hasProperty("nome")) {
+                                    temp.setNome(tempObject.getProperty("nome").toString());
+                                }
+                                if (tempObject.hasProperty("cpf")) {
+                                    temp.setCpf(tempObject.getProperty("cpf").toString());
+                                }
+                                if (tempObject.hasProperty("sexo")) {
+                                    temp.setSexo((tempObject.getProperty("sexo").toString()));
+                                }
+                                if (tempObject.hasProperty("identidade")) {
+                                    temp.setIdentidade((tempObject.getProperty("identidade").toString()));
+                                }
+                                if (tempObject.hasProperty("nascimento")) {
+                                    temp.setNascimento((tempObject.getProperty("nascimento").toString()));
+                                }
+                                if (tempObject.hasProperty("nascionalidade")) {
+                                    temp.setNascionalidade((tempObject.getProperty("nascionalidade").toString()));
+                                }
+                                //if(tempObject.hasProperty("municipio_nascimento")){temp.setm((tempObject.getProperty("municipio_nascimento").toString()));}
+                                if (tempObject.hasProperty("uf_nascimento")) {
+                                    temp.setUfIdentidade((tempObject.getProperty("uf_nascimento").toString()));
+                                }
+                                //if(tempObject.hasProperty("escolaridade")){temp.setEscolaridade((tempObject.getProperty("escolaridade").toString()));}
+                                if (tempObject.hasProperty("senha")) {
+                                    temp.setSenha((tempObject.getProperty("senha").toString()));
+                                }
+
+                                Candidato.setCandidato(temp);
+                            }
+
+
+                            //String response = envelope.getResponse().toString();
+                            if (response != null && Candidato.getCandidato().getId() != 0) {
+                                resultado = true;
+                            }
                         }
                     }
-
-                    //String response = envelope.getResponse().toString();
-                    if(response != null && Candidato.getCandidato().getId() != 0) {
-                        resultado = true;
-                    }
-
 
                 } catch (Exception e) {
 

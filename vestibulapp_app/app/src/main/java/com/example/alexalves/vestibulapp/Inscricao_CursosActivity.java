@@ -14,6 +14,8 @@ import android.widget.RadioGroup;
 
 import com.example.alexalves.vestibulapp.Entidades.Candidato;
 import com.example.alexalves.vestibulapp.Entidades.Curso;
+import com.example.alexalves.vestibulapp.Util.Constants;
+import com.example.alexalves.vestibulapp.Util.Preferencias;
 import com.example.alexalves.vestibulapp.threads.CandidatoInsertThread;
 import com.example.alexalves.vestibulapp.threads.CursoSelectAllThread;
 import com.example.alexalves.vestibulapp.threads.InscricaoInsertThread;
@@ -55,7 +57,17 @@ public class Inscricao_CursosActivity extends AppCompatActivity {
     public void Resultado(Boolean _value){
 
         if(_value){
+
             com.example.alexalves.vestibulapp.Util.Dialog.Show(this, "Inscrição efetuada com sucesso!", "VestibulApp");
+
+            //salva as informacoes no dispositivo
+            Preferencias preferencias = new Preferencias(this, Constants.appName);
+
+            preferencias.begin();
+            preferencias.putString(Constants.prefCpf, Candidato.getCandidato().getCpf() );
+            preferencias.putString(Constants.prefSenha, Candidato.getCandidato().getSenha());
+            preferencias.end();
+
         }else{
             com.example.alexalves.vestibulapp.Util.Dialog.Show(this, "Não foi possível efetuar sua inscrição.", "VestibulApp");
         }
@@ -72,6 +84,10 @@ public class Inscricao_CursosActivity extends AppCompatActivity {
 
                 cursos.addView(curso);
             }
+        }
+
+        if(progressDialog != null){
+            progressDialog.dismiss();
         }
     }
 

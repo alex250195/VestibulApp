@@ -12,6 +12,7 @@ import com.example.alexalves.vestibulapp.Entidades.Candidato;
 import com.example.alexalves.vestibulapp.Util.Constants;
 import com.example.alexalves.vestibulapp.Util.Dialog;
 import com.example.alexalves.vestibulapp.Util.Preferencias;
+import com.example.alexalves.vestibulapp.Util.Service;
 import com.example.alexalves.vestibulapp.threads.CandidatoSelectBySpecificationThread;
 import com.example.alexalves.vestibulapp.threads.LoginThread;
 
@@ -35,12 +36,13 @@ public class Portal_LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                showProgressDialog("Aguarde...");
+            showProgressDialog("Aguarde...");
 
-                String cpf = txtCpf.getText().toString();
-                String senha = txtSenha.getText().toString();
+            String cpf = txtCpf.getText().toString();
+            String senha = txtSenha.getText().toString();
 
-                Acessar(cpf, senha);
+            Acessar(cpf, senha);
+
 
             }
         });
@@ -58,17 +60,23 @@ public class Portal_LoginActivity extends AppCompatActivity {
 
         String erro = null;
 
-        //verifica os campos antes de chamar a thread de login
-        if(_cpf.equals("")){
-            erro = "Informe seu número de cpf para continuar.";
-        }else if(_senha.equals("")){
-            erro = "Informe sua senha.";
-        }
+        if(Service.isOnline(this)) {
 
-        if(erro == null) {
-            new LoginThread(this, _cpf, _senha ).execute();
+            //verifica os campos antes de chamar a thread de login
+            if (_cpf.equals("")) {
+                erro = "Informe seu número de cpf para continuar.";
+            } else if (_senha.equals("")) {
+                erro = "Informe sua senha.";
+            }
+
+            if (erro == null) {
+                new LoginThread(this, _cpf, _senha).execute();
+            } else {
+                Dialog.Show(this, erro, "Login");
+            }
+
         }else{
-            Dialog.Show(this, erro, "Login");
+            Dialog.Show(Portal_LoginActivity.this, "Sem conexão com a Internet", "Sem conexão");
         }
     }
 

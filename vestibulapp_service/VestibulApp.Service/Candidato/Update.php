@@ -8,7 +8,10 @@
 
 	$server->register(
 		'updateCandidato',
-		array('senha' => 'xsd:string'),
+		array(
+			'cpf' => 'xsd:string',
+			'senha' => 'xsd:string'
+		),
 		array('return' => 'xsd:string'),
 		'urn:server.updateCandidato',
 		'urn:server.updateCandidato#updateCandidato',

@@ -46,7 +46,8 @@ public class Inscricao_InicioActivity extends AppCompatActivity {
         proximo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Proximo();
+                //Proximo();
+                teste3();
             }
         });
     }
@@ -129,5 +130,10 @@ public class Inscricao_InicioActivity extends AppCompatActivity {
 
         new CursoSelectAllThread(this).execute();
 
+    }
+
+    private void teste3(){
+        Intent segundaEtapa = new Intent(this, Inscricao_CursosActivity.class);
+        startActivity(segundaEtapa);
     }
 }

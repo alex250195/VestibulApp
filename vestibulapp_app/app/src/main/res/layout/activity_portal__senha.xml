@@ -53,11 +53,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/cabecalho"
-        android:layout_marginTop="120dp"
-        android:layout_marginBottom="50dp">
+        android:layout_marginTop="10dp"
+        android:layout_above="@+id/rodape">
         <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="300dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -75,7 +75,7 @@
                 android:layout_below="@+id/textView2"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:inputType="textPersonName"/>
+                android:inputType="textPassword" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -91,11 +91,32 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/txtInstituicaoEnsino"
+                android:id="@+id/txtSenhaNova"
                 android:layout_below="@+id/textView3"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:inputType="textPersonName"/>
+                android:inputType="textPassword" />
+
+            <TextView
+                android:text="Confirmar Senha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="false"
+                android:id="@+id/txtConfirmarSenha"
+                android:layout_below="@+id/txtSenhaNova"
+                android:layout_marginTop="20dp"
+                android:textSize="22sp"
+                android:textColor="?android:attr/textColorPrimary" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:ems="10"
+                android:id="@+id/txtSenhaNovaConfirmar"
+                android:layout_below="@+id/txtConfirmarSenha"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="true" />
         </RelativeLayout>
     </ScrollView>
 

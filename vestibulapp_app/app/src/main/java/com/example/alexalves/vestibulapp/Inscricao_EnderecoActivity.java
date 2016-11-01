@@ -123,12 +123,19 @@ public class Inscricao_EnderecoActivity extends AppCompatActivity {
     }
 
     public boolean VerificarCampos(ArrayList<String> endereco){
+
         for (String var : endereco){
             if(!validacao.ChecarCampo(var)){
                 return false;
             }
         }
-        if(endereco.get(0).length() != 10) return false;
+
+        int t = endereco.get(0).length();
+
+        if(t != 10) {
+            return false;
+        }
+
         return true;
     }
 }

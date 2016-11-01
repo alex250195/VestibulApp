@@ -31,7 +31,7 @@ public class Inscricao_EscolaridadeActivity extends AppCompatActivity {
 
 
         grau = (Spinner) findViewById(R.id.txtGrau);
-        instituicao = (EditText) findViewById(R.id.txtInstituicaoEnsino);
+        instituicao = (EditText) findViewById(R.id.txtSenhaNova);
 
         proximo = (Button) findViewById(R.id.btnProsseguir);
 
