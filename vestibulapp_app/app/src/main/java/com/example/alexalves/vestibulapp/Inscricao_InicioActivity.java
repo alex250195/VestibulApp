@@ -82,8 +82,6 @@ public class Inscricao_InicioActivity extends AppCompatActivity {
         Candidato.getCandidato().setCpf(cpf.getText().toString());
         Candidato.getCandidato().setNascimento(nascimento.getText().toString());
 
-        teste2();
-        /*
         if(validacao.ChecarCpf(Candidato.getCandidato().getCpf()) && validacao.ChecarData(Candidato.getCandidato().getNascimento())) {
             try {
 
@@ -98,7 +96,7 @@ public class Inscricao_InicioActivity extends AppCompatActivity {
         else{
             Toast.makeText(this,"Alguns campos não estão preenchidos ou são inválidos!", Toast.LENGTH_LONG).show();
         }
-*/
+
     }
 
     private void teste(){

@@ -16,15 +16,15 @@ import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
 
 /**
- * Created by Desenvolvedor on 17/10/2016.
+ * Created by Desenvolvedor on 20/10/2016.
  */
 
 public class LoginThread extends AsyncTask<Object, Object, String> {
 
-    private static final String SOAP_ACTION = "urn:server.selectBySpecificationUsuario#selectBySpecificationUsuario";
-    private static final String METHOD_NAME = "selectBySpecificationUsuario";
-    private static final String NAMESPACE = "urn:server.selectBySpecificationUsuario";
-    private String URL = Constants.HOST + "Usuario/SelectBySpecification.php";
+    private static final String SOAP_ACTION = "urn:server.selectVerifyCandidato#selectVerifyCandidato";
+    private static final String METHOD_NAME = "selectVerifyCandidato";
+    private static final String NAMESPACE = "urn:server.selectVerifyCandidato";
+    private String URL = Constants.HOST + "Candidato/SelectVerify.php";
 
     private Portal_LoginActivity context;
     private SoapPrimitive resp;
@@ -53,9 +53,7 @@ public class LoginThread extends AsyncTask<Object, Object, String> {
 
                 soap = new SoapObject(NAMESPACE, METHOD_NAME);
 
-                //region parametros de entrada
                 PropertyInfo parametros = new PropertyInfo();
-
                 parametros.setName("cpf");
                 parametros.setValue(cpf.replace(".","").replace("-",""));
                 parametros.setType(String.class);
@@ -66,7 +64,7 @@ public class LoginThread extends AsyncTask<Object, Object, String> {
                 parametros.setValue(senha);
                 parametros.setType(String.class);
                 soap.addProperty(parametros);
-                //endregion
+                //
 
                 envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
                 //envelope.dotNet = true;
@@ -81,11 +79,10 @@ public class LoginThread extends AsyncTask<Object, Object, String> {
 
                     transportSE.call(SOAP_ACTION, envelope);
 
-                    Object response = envelope.getResponse();
-                    if(response != null) {
-                        resp = (SoapPrimitive) envelope.getResponse();
+                    String response = envelope.getResponse().toString();
+                    if(response != null && response.equals("1")) {
+                        resultado = true;
                     }
-                    //SoapObject resp = (SoapObject) envelope.bodyIn;
 
 
                 } catch (Exception e) {
@@ -113,5 +110,4 @@ public class LoginThread extends AsyncTask<Object, Object, String> {
         }
 
     }
-
 }

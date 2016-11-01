@@ -4,6 +4,9 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.example.alexalves.vestibulapp.Entidades.Candidato;
+import com.example.alexalves.vestibulapp.Entidades.Curso;
+import com.example.alexalves.vestibulapp.Portal_AreaParticipanteActivity;
 import com.example.alexalves.vestibulapp.Portal_LoginActivity;
 import com.example.alexalves.vestibulapp.Util.Constants;
 import com.example.alexalves.vestibulapp.Util.Service;
@@ -14,6 +17,9 @@ import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapPrimitive;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
+
+import java.util.ArrayList;
+import java.util.Vector;
 
 /**
  * Created by Desenvolvedor on 20/10/2016.
@@ -26,21 +32,20 @@ public class CandidatoSelectBySpecificationThread extends AsyncTask<Object, Obje
     private static final String NAMESPACE = "urn:server.selectBySpecificationCandidato";
     private String URL = Constants.HOST + "Candidato/SelectBySpecification.php";
 
-    private Portal_LoginActivity context;
+    private Portal_AreaParticipanteActivity context;
     private SoapPrimitive resp;
 
     private SoapObject soap;
     private SoapSerializationEnvelope envelope;
     private HttpTransportSE transportSE;
 
-    private String cpf, senha;
+    private String cpf;
     private Boolean resultado = false;
 
-    public CandidatoSelectBySpecificationThread(Portal_LoginActivity _context, String _cpf, String _senha){
+    public CandidatoSelectBySpecificationThread(Portal_AreaParticipanteActivity _context, String _cpf){
 
         context = _context;
         cpf = _cpf;
-        senha = _senha;
 
     }
 
@@ -55,13 +60,7 @@ public class CandidatoSelectBySpecificationThread extends AsyncTask<Object, Obje
 
                 PropertyInfo parametros = new PropertyInfo();
                 parametros.setName("cpf");
-                parametros.setValue(cpf/*.replace(".","").replace("-","")*/);
-                parametros.setType(String.class);
-                soap.addProperty(parametros);
-
-                parametros = new PropertyInfo();
-                parametros.setName("senha");
-                parametros.setValue(senha);
+                parametros.setValue(cpf.replace(".","").replace("-",""));
                 parametros.setType(String.class);
                 soap.addProperty(parametros);
                 //
@@ -79,12 +78,35 @@ public class CandidatoSelectBySpecificationThread extends AsyncTask<Object, Obje
 
                     transportSE.call(SOAP_ACTION, envelope);
 
-                    Object response = envelope.getResponse();
-                    if(response != null) {
-                        resp = (SoapPrimitive) envelope.getResponse();
+                    Vector<SoapObject> response = (Vector<SoapObject>) envelope.getResponse();
+
+                    Curso.setCursos(new ArrayList<Curso>());
+
+                    for (int i = 0; i < response.size(); i++) {
+                        SoapObject tempObject = response.get(i);
+                        if (tempObject != null) {
+                            Candidato temp = new Candidato();
+
+                            if(tempObject.hasAttribute("id_candidato")){temp.setId(Integer.parseInt(tempObject.getProperty("id_candidato").toString()));}
+                            if(tempObject.hasAttribute("nome")){ temp.setNome(tempObject.getProperty("nome").toString());}
+                            if(tempObject.hasAttribute("cpf")){temp.setNome(tempObject.getProperty("cpf").toString());}
+                            if(tempObject.hasAttribute("sexo")){temp.setSexo((tempObject.getProperty("sexo").toString()));}
+                            if(tempObject.hasAttribute("identidade")){temp.setIdentidade((tempObject.getProperty("identidade").toString()));}
+                            if(tempObject.hasAttribute("nascimento")){temp.setNascimento((tempObject.getProperty("nascimento").toString()));}
+                            if(tempObject.hasAttribute("nascionalidade")){temp.setNascionalidade((tempObject.getProperty("nascionalidade").toString()));}
+                            //if(tempObject.hasAttribute("municipio_nascimento")){temp.setm((tempObject.getProperty("municipio_nascimento").toString()));}
+                            if(tempObject.hasAttribute("uf_nascimento")){temp.setUfIdentidade((tempObject.getProperty("uf_nascimento").toString()));}
+                            //if(tempObject.hasAttribute("escolaridade")){temp.setEscolaridade((tempObject.getProperty("escolaridade").toString()));}
+                            if(tempObject.hasAttribute("senha")){temp.setSenha((tempObject.getProperty("senha").toString()));}
+
+                            Candidato.setCandidato(temp);
+                        }
+                    }
+
+                    //String response = envelope.getResponse().toString();
+                    if(response != null && Candidato.getCandidato().getId() != 0) {
                         resultado = true;
                     }
-                    //SoapObject resp = (SoapObject) envelope.bodyIn;
 
 
                 } catch (Exception e) {
@@ -107,7 +129,7 @@ public class CandidatoSelectBySpecificationThread extends AsyncTask<Object, Obje
 
         if(context != null){
 
-            context.resultLogin(resultado);
+            context.result();
 
         }
 

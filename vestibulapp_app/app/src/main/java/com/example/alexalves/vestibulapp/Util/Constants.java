@@ -27,5 +27,8 @@ public class Constants {
     public static String Vestibular = "/Vestibular";
     public static String VestibularCurso = "/VestibularCurso";
 
+    public static String appName = "VestibularApp";
+    public static String prefCpf = "CFP";
+    public static String prefSenha = "SENHA";
 
 }

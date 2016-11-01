@@ -40,8 +40,7 @@
 
 	$server->register(
 		'selectBySpecificationCandidato',
-		array('cpf' => 'xsd:string',
-			'senha' => 'xsd:string'),
+		array('cpf' => 'xsd:string'),
 		array('return' => 'tns:Array'),
 		'urn:server.selectBySpecificationCandidato',
 		'urn:server.selectBySpecificationCandidato#selectBySpecificationCandidato',
@@ -50,36 +49,16 @@
 		'Exibe os dados do usuario.'
 	);
 
-	function selectBySpecificationCandidato1($query){
+	function selectBySpecificationCandidato($cpf){
 		include_once '../../VestibulApp.Core/Candidato.php';
 
 		$candidato = new Candidato();
 		
+		$candidato->setCpf($cpf);
+
 		$candidato->openConnect();
 
-		return $candidato->SelectBySpecification($query);
-	}
-
-
-	function selectBySpecificationCandidato($cpf, $senha){
-		include_once '../../VestibulApp.Core/Candidato.php';
-
-		//$candidato = new Candidato();
-
-		//$candidato->setCpf($cpf);
-		//$candidato->setSenha($senha);
-
-		//$candidato->openConnect();
-		$result = array("testte","etets");// $candidato->SelectBySpecification(" AND cpf =  " .$cpf . " AND senha = " . $senha);
-
-		if(isset($result) && count($result)>0) {
-			return "nada";
-		}else{
-			return "false";
-		}
-
-		//return $usuario->SelectBySpecification();
-		//return $candidato->SelectBySpecification();
+		return $candidato->SelectBySpecification();
 	}
 
 	$HTTP_RAW_POST_DATA = isset($HTTP_RAW_POST_DATA) ? $HTTP_RAW_POST_DATA : '';

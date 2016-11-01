@@ -235,7 +235,7 @@
                             'senha' => $row['senha']
                         );
 
-                        $result[] = new soapval('curso', 'tns:candidatoDateType', $booking);
+                        $result[] = new soapval('can', 'tns:candidatoDateType', $booking);
                     }
 
                     return $result;

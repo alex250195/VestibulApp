@@ -2,16 +2,20 @@ package com.example.alexalves.vestibulapp.Entidades;
 
 import com.example.alexalves.vestibulapp.Util.DateCustom;
 
+import org.ksoap2.serialization.KvmSerializable;
 import org.ksoap2.serialization.PropertyInfo;
 import org.ksoap2.serialization.SoapObject;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Hashtable;
 
 /**
  * Created by Alex Alves on 14/09/2016.
  */
-public class Candidato implements Serializable {
+public class Candidato implements Serializable, KvmSerializable {
+
+    private int id;
     private String cpf;
     private String nascimento;
     private String nome;
@@ -52,6 +56,14 @@ public class Candidato implements Serializable {
 
     public static Candidato getCandidato(){
         return holder;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getCpf() {
@@ -309,4 +321,180 @@ public class Candidato implements Serializable {
         _soap.addProperty(parametros);
 
     }
+
+    @Override
+    public Object getProperty(int i) {
+
+        switch (i) {
+            case 0:
+                return this.id;
+
+            case 1:
+                return this.cpf;
+
+            case 2:
+                return this.nascimento;
+
+            case 3:
+                return this.nome;
+
+            case 4:
+                return this.mae;
+
+            case 5:
+                return this.raca;
+
+            case 6:
+                return this.identidade;
+
+            case 7:
+                return this.orgaoExpedidor;
+
+            case 8:
+                return this.ufIdentidade;
+
+            case 9:
+                return this.estadoCivil;
+
+            case 10:
+                return this.nascionalidade;
+
+            case 11:
+                return this.sexo;
+
+            case 12:
+                return this.senha;
+
+            case 13:
+                return this.curso;
+
+            default:
+                break;
+
+        }
+
+        return null;
+    }
+
+    @Override
+    public int getPropertyCount() {
+        return 14;
+    }
+
+    @Override
+    public void setProperty(int i, Object value) {
+
+        switch (i) {
+            case 0:
+                this.id = Integer.parseInt(value.toString());
+                break;
+            case 1:
+                this.cpf = value.toString();
+                break;
+            case 2:
+                this.nascimento = value.toString();
+                break;
+            case 3:
+                this.nome = value.toString();
+                break;
+            case 4:
+                this.mae = value.toString();
+                break;
+            case 5:
+                this.raca = value.toString();
+                break;
+            case 6:
+                this.identidade = value.toString();
+                break;
+            case 7:
+                this.orgaoExpedidor = value.toString();
+                break;
+            case 8:
+                this.ufIdentidade = value.toString();
+                break;
+            case 9:
+                this.estadoCivil = estadoCivil.toString();
+                break;
+            case 10:
+                this.nascionalidade = nascionalidade.toString();
+                break;
+            case 11:
+                this.sexo = sexo.toString();
+                break;
+            case 12:
+                this.senha = senha.toString();
+                break;
+            case 13:
+                this.curso = curso.toLowerCase();
+                break;
+
+        }
+    }
+
+    @Override
+    public void getPropertyInfo(int i, Hashtable hashtable, PropertyInfo info) {
+
+        switch (i) {
+
+            case 0:
+                info.type = PropertyInfo.INTEGER_CLASS;
+                info.name = "id";
+                break;
+            case 1:
+                info.type = PropertyInfo.STRING_CLASS;
+                info.name = "cpf";
+                break;
+            case 2:
+                info.type = PropertyInfo.STRING_CLASS;
+                info.name = "nascimento";
+                break;
+            case 3:
+                info.type = PropertyInfo.STRING_CLASS;
+                info.name = "nome";
+                break;
+            case 4:
+                info.type = PropertyInfo.STRING_CLASS;
+                info.name = "mae";
+                break;
+            case 5:
+                info.type = PropertyInfo.STRING_CLASS;
+                info.name = "raca";
+
+                break;
+            case 6:
+                info.type = PropertyInfo.STRING_CLASS;
+                info.name = "identidade";
+                break;
+            case 7:
+                info.type = PropertyInfo.STRING_CLASS;
+                info.name = "orgaoExpedidor";
+                break;
+            case 8:
+                info.type = PropertyInfo.STRING_CLASS;
+                info.name = "ufIdentidade";
+                break;
+            case 9:
+                info.type = PropertyInfo.STRING_CLASS;
+                info.name = "estadoCivil";
+                break;
+            case 10:
+                info.type = PropertyInfo.STRING_CLASS;
+                info.name = "nascionalidade";
+                break;
+            case 11:
+                info.type = PropertyInfo.STRING_CLASS;
+                info.name = "sexo";
+                break;
+            case 12:
+                info.type = PropertyInfo.STRING_CLASS;
+                info.name = "senha";
+                break;
+            case 13:
+                info.type = PropertyInfo.STRING_CLASS;
+                info.name = "curso";
+                break;
+        }
+    }
+
+
 }

@@ -1,5 +1,6 @@
 package com.example.alexalves.vestibulapp;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -14,8 +15,16 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.alexalves.vestibulapp.Entidades.Candidato;
+import com.example.alexalves.vestibulapp.Util.Constants;
+import com.example.alexalves.vestibulapp.Util.Preferencias;
+import com.example.alexalves.vestibulapp.threads.CandidatoSelectBySpecificationThread;
+
 public class Portal_AreaParticipanteActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private ProgressDialog progressDialog;
+    private Preferencias preferencias;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +41,10 @@ public class Portal_AreaParticipanteActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        //carrega as informaçoes do candidato
+        showProgressDialog("Aguarde...");
+        new CandidatoSelectBySpecificationThread(this, Candidato.getCandidato().getCpf()).execute();
     }
 
     @Override
@@ -73,6 +86,16 @@ public class Portal_AreaParticipanteActivity extends AppCompatActivity
 
         if (id == R.id.nav_sair) {
             try{
+
+                if(preferencias == null){
+                    preferencias = new Preferencias(this, Constants.appName);
+                }
+
+                preferencias.begin();
+                preferencias.remove(Constants.prefCpf);
+                preferencias.remove(Constants.prefSenha);
+                preferencias.end();
+
                 Thread.sleep(1000);
                 finish();
             }catch (Exception ex){}
@@ -96,4 +119,26 @@ public class Portal_AreaParticipanteActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    private void showProgressDialog(String _mensagem){
+
+        if(progressDialog == null || !progressDialog.isShowing()) {
+            progressDialog = new ProgressDialog(this);
+            progressDialog.setMessage(_mensagem);
+            progressDialog.setCanceledOnTouchOutside(false);
+            progressDialog.setCancelable(false);
+
+            progressDialog.show();
+        }
+    }
+
+    public void result(){
+
+        if(progressDialog != null){
+            progressDialog.dismiss();
+        }
+
+
+    }
+
 }
