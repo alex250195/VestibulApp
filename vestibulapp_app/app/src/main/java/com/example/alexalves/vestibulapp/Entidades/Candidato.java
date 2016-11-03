@@ -28,6 +28,7 @@ public class Candidato implements Serializable, KvmSerializable {
     private String nascionalidade;
     private String sexo;
     private String senha;
+
     private String curso;
 
     private Endereco endereco;
@@ -161,6 +162,7 @@ public class Candidato implements Serializable, KvmSerializable {
     public String getCurso(){ return  this.curso; }
 
     public void setCurso(String _value){ this.curso= _value; }
+
 
     public Endereco getEndereco() {
         return endereco;

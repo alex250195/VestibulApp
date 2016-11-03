@@ -100,10 +100,16 @@ public class CandidatoInsertThread extends AsyncTask<Object, Object, String> {
     @Override
     protected void onPostExecute (String result){
 
-        if(contextInscricao != null){
+        if(contextInscricao != null && resultado){
 
+            if(idCandidato != null && !idCandidato.equals("")){
+                Candidato.getCandidato().setId(Integer.parseInt(idCandidato));
+                //salva o endereço do candidato
+                new CandidatoEnderecoInsertThread(contextInscricao).execute();
+            }
+
+        }else{
             contextInscricao.Resultado(resultado);
-
         }
 
     }

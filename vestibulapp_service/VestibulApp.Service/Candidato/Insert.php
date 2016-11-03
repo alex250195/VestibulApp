@@ -75,7 +75,7 @@
 
 	  //return urn the server date
 		if(isset($resul) && $resul == 1) {
-			return "result: " .$rCandidato[0];
+			return $rCandidato[0];
 		}else{
 			return "false";
 		}

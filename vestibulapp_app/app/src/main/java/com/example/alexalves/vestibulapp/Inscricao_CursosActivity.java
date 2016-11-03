@@ -50,6 +50,9 @@ public class Inscricao_CursosActivity extends AppCompatActivity {
 
     public void Proximo(){
 
+        String curdoId = cursos.getCheckedRadioButtonId() + "";
+        Candidato.getCandidato().getProva().setCurso(curdoId);
+
         new CandidatoInsertThread(this).execute();
 
     }
@@ -81,9 +84,12 @@ public class Inscricao_CursosActivity extends AppCompatActivity {
 
                 RadioButton curso = new RadioButton(this);
                 curso.setText(c.getNome());
+                curso.setPadding(0,10,0,5);
 
                 cursos.addView(curso);
             }
+        }else{
+            com.example.alexalves.vestibulapp.Util.Dialog.Show(this, "Nenhum curso encontrado.", "Erro");
         }
 
         if(progressDialog != null){

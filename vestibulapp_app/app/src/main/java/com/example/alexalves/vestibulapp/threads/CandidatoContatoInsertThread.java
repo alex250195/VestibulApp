@@ -5,29 +5,29 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import com.example.alexalves.vestibulapp.Entidades.Candidato;
+import com.example.alexalves.vestibulapp.Entidades.Contato;
 import com.example.alexalves.vestibulapp.Inscricao_CursosActivity;
 import com.example.alexalves.vestibulapp.Util.Constants;
 import com.example.alexalves.vestibulapp.Util.Service;
 
 import org.ksoap2.SoapEnvelope;
-import org.ksoap2.serialization.PropertyInfo;
 import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapPrimitive;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
 
 /**
- * Created by Desenvolvedor on 17/10/2016.
+ * Created by Desenvolvedor on 02/11/2016.
  */
 
-public class InscricaoInsertThread extends AsyncTask<Object, Object, String> {
+public class CandidatoContatoInsertThread extends AsyncTask<Object, Object, String> {
 
-    private static final String SOAP_ACTION = "urn:server.insertInscricao#insertInscricao";
-    private static final String METHOD_NAME = "insertInscricao";
-    private static final String NAMESPACE = "urn:server.insertInscricao";
-    private String URL = Constants.HOST + "Inscricao/Insert.php";
+    private static final String SOAP_ACTION = "urn:server.insertContato#insertContato";
+    private static final String METHOD_NAME = "insertContato";
+    private static final String NAMESPACE = "urn:server.insertContato";
+    private String URL = Constants.HOST + "Contato/Insert.php";
 
-    private Inscricao_CursosActivity incricaoContext;
+    private Inscricao_CursosActivity contextInscricao;
     private Context context;
     private Boolean resultado = false;
 
@@ -37,14 +37,14 @@ public class InscricaoInsertThread extends AsyncTask<Object, Object, String> {
     private SoapSerializationEnvelope envelope;
     private HttpTransportSE transportSE;
 
-    public InscricaoInsertThread(Inscricao_CursosActivity _context){
+    public CandidatoContatoInsertThread(Inscricao_CursosActivity _context){
 
-        incricaoContext = _context;
-        context = _context;
+        contextInscricao = _context;
+        context = contextInscricao;
 
     }
 
-    public InscricaoInsertThread(Context _context){
+    public CandidatoContatoInsertThread(Context _context){
 
         context = _context;
 
@@ -59,29 +59,13 @@ public class InscricaoInsertThread extends AsyncTask<Object, Object, String> {
 
                 soap = new SoapObject(NAMESPACE, METHOD_NAME);
 
-                PropertyInfo parametros = new PropertyInfo();
-                parametros.setName("curso");
-                parametros.setValue(Candidato.getCandidato().getProva().getCurso());
-                parametros.setType(String.class);
-                soap.addProperty(parametros);
+                //soap.addProperty("nome", "NomeTeste");
 
-                parametros = new PropertyInfo();
-                parametros.setName("vestibular");
-                parametros.setValue("");
-                parametros.setType(String.class);
-                soap.addProperty(parametros);
-
-                parametros = new PropertyInfo();
-                parametros.setName("candidato");
-                parametros.setValue(Candidato.getCandidato().getId());
-                parametros.setType(String.class);
-                soap.addProperty(parametros);
-
-                parametros = new PropertyInfo();
-                parametros.setName("lingua");
-                parametros.setValue(Candidato.getCandidato().getProva().getLinguaEstrangeira());
-                parametros.setType(String.class);
-                soap.addProperty(parametros);
+                Contato contatoSalvar = Candidato.getCandidato().getContato();
+                if(contatoSalvar.getIdCandidato() == 0) {
+                    contatoSalvar.setIdCandidato(Candidato.getCandidato().getId());
+                }
+                contatoSalvar.getParametros(soap);
 
                 envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
                 //envelope.dotNet = true;
@@ -119,9 +103,14 @@ public class InscricaoInsertThread extends AsyncTask<Object, Object, String> {
     @Override
     protected void onPostExecute (String result){
 
-        if(incricaoContext != null){
+        if(resultado ) {
 
-            incricaoContext.Resultado(resultado);
+            //chama a ultima thread que salva a inscricao
+            new InscricaoInsertThread(contextInscricao).execute();
+
+        }else{
+
+            contextInscricao.Resultado(resultado);
 
         }
 

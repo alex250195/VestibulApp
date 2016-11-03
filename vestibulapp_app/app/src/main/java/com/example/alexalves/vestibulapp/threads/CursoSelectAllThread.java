@@ -84,10 +84,10 @@ public class CursoSelectAllThread extends AsyncTask<Object, Object, String> {
                         if (tempObject != null) {
                             Curso temp = new Curso();
 
-                            if(tempObject.hasAttribute("id")){temp.setId(Integer.parseInt(tempObject.getProperty("id").toString()));}
-                            if(tempObject.hasAttribute("id_instituicao")){ temp.setIdInstituicao(Integer.parseInt(tempObject.getProperty("id_instituicao").toString()));}
-                            if(tempObject.hasAttribute("nome")){temp.setNome(tempObject.getProperty("nome").toString());}
-                            if(tempObject.hasAttribute("descricao")){temp.setDescricao((tempObject.getProperty("descricao").toString()));}
+                            if(tempObject.hasProperty("id") && tempObject.getProperty("id") != null){temp.setId(Integer.parseInt(tempObject.getProperty("id").toString()));}
+                            if(tempObject.hasProperty("id_instituicao") && tempObject.getProperty("id_instituicao") != null){ temp.setIdInstituicao(Integer.parseInt(tempObject.getProperty("id_instituicao").toString()));}
+                            if(tempObject.hasProperty("nome") && tempObject.getProperty("nome") != null){temp.setNome(tempObject.getProperty("nome").toString());}
+                            if(tempObject.hasProperty("descricao") && tempObject.getProperty("descricao") != null){temp.setDescricao((tempObject.getProperty("descricao").toString()));}
 
                             Curso.getCursos().add(temp);
                         }

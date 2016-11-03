@@ -10,8 +10,11 @@ import android.widget.Toast;
 
 import com.example.alexalves.vestibulapp.Controles.Validacao;
 import com.example.alexalves.vestibulapp.Entidades.Candidato;
+import com.example.alexalves.vestibulapp.Entidades.Contato;
 import com.example.alexalves.vestibulapp.Entidades.Endereco;
 import com.example.alexalves.vestibulapp.Entidades.Escolaridade;
+import com.example.alexalves.vestibulapp.threads.CandidatoContatoInsertThread;
+import com.example.alexalves.vestibulapp.threads.CandidatoEnderecoInsertThread;
 import com.example.alexalves.vestibulapp.threads.CandidatoInsertThread;
 import com.example.alexalves.vestibulapp.threads.CursoSelectAllThread;
 import com.example.alexalves.vestibulapp.threads.InscricaoInsertThread;
@@ -46,8 +49,8 @@ public class Inscricao_InicioActivity extends AppCompatActivity {
         proximo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Proximo();
-                teste3();
+                Proximo();
+                //teste6();
             }
         });
     }
@@ -100,40 +103,42 @@ public class Inscricao_InicioActivity extends AppCompatActivity {
 
     }
 
-    private void teste(){
+    private void teste5(){
 
-        Candidato.getCandidato().setRaca("vvemelho");
-        Candidato.getCandidato().setNascionalidade("brasileira");
-        Candidato.getCandidato().setMae("Maria");
-        Candidato.getCandidato().setNome("Gt");
-        Candidato.getCandidato().setCurso("Engenharia");
-        Candidato.getCandidato().setSenha("12345");
-        Candidato.getCandidato().setEstadoCivil("Solteiro");
-        Candidato.getCandidato().setIdentidade("34343434343");
-        Candidato.getCandidato().setUfIdentidade("MG");
-        Candidato.getCandidato().setSexo("Masculino");
-        Candidato.getCandidato().setOrgaoExpedidor("ssp");
-        Candidato.getCandidato().setNascionalidade("Brasil");
         Endereco end = new Endereco();
+
+        end.setEndereco("rua do outro");
+        end.setNumero("33");
+        end.setComplemento("Casa");
+        end.setBairro("Centro");
+        end.setMunicipio("Itauna");
         end.setUf("MG");
-        Escolaridade esc = new Escolaridade();
-        esc.setGrau("2 grau");
+        end.setIdCandidato(23);
 
-        Candidato.getCandidato().setEndereco(end);
-        Candidato.getCandidato().setEscolaridade(esc);
+        Candidato c = new Candidato();
+        c.setEndereco(end);
 
-        new CandidatoInsertThread(this).execute();
+        Candidato.setCandidato(c);
 
-    }
-
-    private void teste2(){
-
-        new CursoSelectAllThread(this).execute();
+        new CandidatoEnderecoInsertThread(this).execute();
 
     }
 
-    private void teste3(){
-        Intent segundaEtapa = new Intent(this, Inscricao_CursosActivity.class);
-        startActivity(segundaEtapa);
+    private void teste6(){
+
+        Contato contato = new Contato();
+
+        contato.setEmail("teste@teste.com");
+        contato.setCelular("37888292929");
+        contato.setTelefone("3788892829");
+        contato.setIdCandidato(23);
+
+        Candidato c = new Candidato();
+        c.setContato(contato);
+
+        Candidato.setCandidato(c);
+
+        new CandidatoContatoInsertThread(this).execute();
+
     }
 }
