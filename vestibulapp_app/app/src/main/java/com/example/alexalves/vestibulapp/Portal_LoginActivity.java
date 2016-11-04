@@ -145,6 +145,9 @@ public class Portal_LoginActivity extends AppCompatActivity {
         txtSenha.setText(senha);
 
         if(cpf != null && senha != null && !cpf.equals("") && !senha.equals("")){
+
+            showProgressDialog("Aguarde...");
+
             Acessar(cpf, senha);
         }
     }

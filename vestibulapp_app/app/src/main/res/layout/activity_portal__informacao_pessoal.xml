@@ -92,7 +92,7 @@
                 android:text="_________________________________________"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="18dp"
-                android:id="@+id/textView4"
+                android:id="@+id/txtInfoCpf"
                 android:layout_below="@+id/textView3" />
 
             <TextView
@@ -104,7 +104,7 @@
                 android:layout_marginTop="30dp"
                 android:textSize="18dp"
                 android:textStyle="bold"
-                android:layout_below="@+id/textView4"
+                android:layout_below="@+id/txtInfoCpf"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
 
@@ -115,7 +115,7 @@
                 android:text="_________________________________________"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="18dp"
-                android:id="@+id/textView6"
+                android:id="@+id/txtinfoNome"
                 android:layout_below="@+id/textView5" />
 
             <TextView
@@ -127,7 +127,7 @@
                 android:layout_marginTop="30dp"
                 android:textSize="18dp"
                 android:textStyle="bold"
-                android:layout_below="@+id/textView6"
+                android:layout_below="@+id/txtinfoNome"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
 
@@ -138,7 +138,7 @@
                 android:text="_________________________________________"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="18dp"
-                android:id="@+id/textView8"
+                android:id="@+id/txtinfoDataNascimento"
                 android:layout_below="@+id/textView7"/>
 
             <TextView
@@ -150,7 +150,7 @@
                 android:layout_marginTop="30dp"
                 android:textSize="18dp"
                 android:textStyle="bold"
-                android:layout_below="@+id/textView8"
+                android:layout_below="@+id/txtinfoDataNascimento"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
 
@@ -161,7 +161,7 @@
                 android:text="_________________________________________"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="18dp"
-                android:id="@+id/textView10"
+                android:id="@+id/txtinfoNomeMae"
                 android:layout_below="@+id/textView9" />
 
             <TextView
@@ -173,7 +173,7 @@
                 android:layout_marginTop="30dp"
                 android:textSize="18dp"
                 android:textStyle="bold"
-                android:layout_below="@+id/textView10"
+                android:layout_below="@+id/txtinfoNomeMae"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
 
@@ -184,7 +184,7 @@
                 android:text="_________________________________________"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="18dp"
-                android:id="@+id/textView12"
+                android:id="@+id/txtInfoSexo"
                 android:layout_below="@+id/textView11" />
 
             <TextView
@@ -196,7 +196,7 @@
                 android:layout_marginTop="30dp"
                 android:textSize="18dp"
                 android:textStyle="bold"
-                android:layout_below="@+id/textView12"
+                android:layout_below="@+id/txtInfoSexo"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
 
@@ -207,7 +207,7 @@
                 android:text="_________________________________________"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="18dp"
-                android:id="@+id/textView14"
+                android:id="@+id/txtInfoRaca"
                 android:layout_below="@+id/textView13" />
 
             <TextView
@@ -219,7 +219,7 @@
                 android:layout_marginTop="30dp"
                 android:textSize="18dp"
                 android:textStyle="bold"
-                android:layout_below="@+id/textView14"
+                android:layout_below="@+id/txtInfoRaca"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
 
@@ -230,7 +230,7 @@
                 android:text="_________________________________________"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="18dp"
-                android:id="@+id/textView16"
+                android:id="@+id/txtInfoIdentidade"
                 android:layout_below="@+id/textView15" />
 
             <TextView
@@ -242,7 +242,7 @@
                 android:layout_marginTop="30dp"
                 android:textSize="18dp"
                 android:textStyle="bold"
-                android:layout_below="@+id/textView16"
+                android:layout_below="@+id/txtInfoIdentidade"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
 
@@ -253,7 +253,7 @@
                 android:text="_________________________________________"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="18dp"
-                android:id="@+id/textView18"
+                android:id="@+id/txtInfoOrgao"
                 android:layout_below="@+id/textView17" />
 
             <TextView
@@ -265,7 +265,7 @@
                 android:layout_marginTop="30dp"
                 android:textSize="18dp"
                 android:textStyle="bold"
-                android:layout_below="@+id/textView18"
+                android:layout_below="@+id/txtInfoOrgao"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
 
@@ -276,7 +276,7 @@
                 android:text="_________________________________________"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="18dp"
-                android:id="@+id/textView20"
+                android:id="@+id/txtInfoUfIdentidade"
                 android:layout_below="@+id/textView19" />
 
             <TextView
@@ -288,7 +288,7 @@
                 android:layout_marginTop="30dp"
                 android:textSize="18dp"
                 android:textStyle="bold"
-                android:layout_below="@+id/textView20"
+                android:layout_below="@+id/txtInfoUfIdentidade"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
 
@@ -299,7 +299,7 @@
                 android:text="_________________________________________"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="18dp"
-                android:id="@+id/textView22"
+                android:id="@+id/txtInfoEstadoCivil"
                 android:layout_below="@+id/textView21" />
 
             <TextView
@@ -311,7 +311,7 @@
                 android:layout_marginTop="30dp"
                 android:textSize="18dp"
                 android:textStyle="bold"
-                android:layout_below="@+id/textView22"
+                android:layout_below="@+id/txtInfoEstadoCivil"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
 
@@ -322,7 +322,7 @@
                 android:text="_________________________________________"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="18dp"
-                android:id="@+id/textView24"
+                android:id="@+id/txtInfoNacionalidade"
                 android:layout_below="@+id/textView23" />
 
             <TextView
@@ -334,7 +334,7 @@
                 android:layout_marginTop="30dp"
                 android:textSize="18dp"
                 android:textStyle="bold"
-                android:layout_below="@+id/textView24"
+                android:layout_below="@+id/txtInfoNacionalidade"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
 
@@ -345,7 +345,7 @@
                 android:text="_________________________________________"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="18dp"
-                android:id="@+id/textView26"
+                android:id="@+id/txtInfoUf"
                 android:layout_below="@+id/textView25" />
 
             <TextView
@@ -357,7 +357,7 @@
                 android:layout_marginTop="30dp"
                 android:textSize="18dp"
                 android:textStyle="bold"
-                android:layout_below="@+id/textView26"
+                android:layout_below="@+id/txtInfoUf"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
 
@@ -368,7 +368,7 @@
                 android:text="_________________________________________"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="18dp"
-                android:id="@+id/textView28"
+                android:id="@+id/txtInfoMunicipio"
                 android:layout_below="@+id/textView27" />
 
             <TextView
@@ -381,7 +381,7 @@
                 android:layout_marginLeft="20dp"
                 android:textAlignment="center"
                 android:background="#1aff00"
-                android:layout_below="@+id/textView28"
+                android:layout_below="@+id/txtInfoMunicipio"
                 android:layout_marginTop="20dp"/>
 
             <TextView
@@ -389,7 +389,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="@string/cep"
-                android:id="@+id/textView30"
+                android:id="@+id/txtInfoEndereco"
                 android:layout_marginTop="30dp"
                 android:textSize="18dp"
                 android:textStyle="bold"
@@ -404,8 +404,8 @@
                 android:text="_________________________________________"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="18dp"
-                android:id="@+id/textView31"
-                android:layout_below="@+id/textView30" />
+                android:id="@+id/txtInfoCep"
+                android:layout_below="@+id/txtInfoEndereco" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -416,7 +416,7 @@
                 android:layout_marginTop="30dp"
                 android:textSize="18dp"
                 android:textStyle="bold"
-                android:layout_below="@+id/textView31"
+                android:layout_below="@+id/txtInfoCep"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
 
@@ -427,7 +427,7 @@
                 android:text="_________________________________________"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="18dp"
-                android:id="@+id/textView33"
+                android:id="@+id/txtInfoEnderecoRua"
                 android:layout_below="@+id/textView32" />
 
             <TextView
@@ -439,7 +439,7 @@
                 android:layout_marginTop="30dp"
                 android:textSize="18dp"
                 android:textStyle="bold"
-                android:layout_below="@+id/textView33"
+                android:layout_below="@+id/txtInfoEnderecoRua"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
 
@@ -450,7 +450,7 @@
                 android:text="_________________________________________"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="18dp"
-                android:id="@+id/textView35"
+                android:id="@+id/txtInfoEnderecoNumero"
                 android:layout_below="@+id/textView34" />
 
             <TextView
@@ -462,7 +462,7 @@
                 android:layout_marginTop="30dp"
                 android:textSize="18dp"
                 android:textStyle="bold"
-                android:layout_below="@+id/textView35"
+                android:layout_below="@+id/txtInfoEnderecoNumero"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
 
@@ -473,7 +473,7 @@
                 android:text="_________________________________________"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="18dp"
-                android:id="@+id/textView37"
+                android:id="@+id/txtInfoEnderecoComplemento"
                 android:layout_below="@+id/textView36" />
 
             <TextView
@@ -485,7 +485,7 @@
                 android:layout_marginTop="30dp"
                 android:textSize="18dp"
                 android:textStyle="bold"
-                android:layout_below="@+id/textView37"
+                android:layout_below="@+id/txtInfoEnderecoComplemento"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
 
@@ -496,7 +496,7 @@
                 android:text="_________________________________________"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="18dp"
-                android:id="@+id/textView39"
+                android:id="@+id/txtInfoEnderecoBairro"
                 android:layout_below="@+id/textView38" />
 
             <TextView
@@ -508,7 +508,7 @@
                 android:layout_marginTop="30dp"
                 android:textSize="18dp"
                 android:textStyle="bold"
-                android:layout_below="@+id/textView39"
+                android:layout_below="@+id/txtInfoEnderecoBairro"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
 
@@ -519,7 +519,7 @@
                 android:text="_________________________________________"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="18dp"
-                android:id="@+id/textView41"
+                android:id="@+id/txtInfoEnderecoUf"
                 android:layout_below="@+id/textView40" />
 
             <TextView
@@ -531,7 +531,7 @@
                 android:layout_marginTop="30dp"
                 android:textSize="18dp"
                 android:textStyle="bold"
-                android:layout_below="@+id/textView41"
+                android:layout_below="@+id/txtInfoEnderecoUf"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
 
@@ -542,7 +542,7 @@
                 android:text="_________________________________________"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="18dp"
-                android:id="@+id/textView43"
+                android:id="@+id/txtInfoEnderecoMunicipio"
                 android:layout_below="@+id/textView42" />
 
             <TextView
@@ -555,7 +555,7 @@
                 android:layout_marginLeft="20dp"
                 android:textAlignment="center"
                 android:background="#1aff00"
-                android:layout_below="@+id/textView43"
+                android:layout_below="@+id/txtInfoEnderecoMunicipio"
                 android:layout_marginTop="20dp"/>
 
             <TextView
@@ -578,7 +578,7 @@
                 android:text="_________________________________________"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="18dp"
-                android:id="@+id/textView46"
+                android:id="@+id/txtInfoContatoFixo"
                 android:layout_below="@+id/textView45" />
 
             <TextView
@@ -590,7 +590,7 @@
                 android:layout_marginTop="30dp"
                 android:textSize="18dp"
                 android:textStyle="bold"
-                android:layout_below="@+id/textView46"
+                android:layout_below="@+id/txtInfoContatoFixo"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
 
@@ -601,7 +601,7 @@
                 android:text="_________________________________________"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="18dp"
-                android:id="@+id/textView48"
+                android:id="@+id/txtInfoContatoCelular"
                 android:layout_below="@+id/textView47" />
 
             <TextView
@@ -613,7 +613,7 @@
                 android:layout_marginTop="30dp"
                 android:textSize="18dp"
                 android:textStyle="bold"
-                android:layout_below="@+id/textView48"
+                android:layout_below="@+id/txtInfoContatoCelular"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
 
@@ -624,7 +624,7 @@
                 android:text="_________________________________________"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="18dp"
-                android:id="@+id/textView50"
+                android:id="@+id/txtInfoContatoEmail"
                 android:layout_below="@+id/textView49" />
         </RelativeLayout>
     </ScrollView>
