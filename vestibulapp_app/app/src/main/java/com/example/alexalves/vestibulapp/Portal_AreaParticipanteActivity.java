@@ -109,7 +109,8 @@ public class Portal_AreaParticipanteActivity extends AppCompatActivity
             Intent atendimento = new Intent(this, Portal_AtendimentoActivity.class);
             startActivity(atendimento);
         } else if (id == R.id.nav_local) {
-
+            Intent mapa = new Intent(this, Mapa_Activity.class);
+            startActivity(mapa);
         } else if (id == R.id.nav_senha) {
             Intent senha = new Intent(this, Portal_SenhaActivity.class);
             startActivity(senha);

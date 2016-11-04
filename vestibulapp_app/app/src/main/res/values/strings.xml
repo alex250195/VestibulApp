@@ -32,8 +32,8 @@
     <string name="estadoCivil">Estado Civil</string>
     <string name="nascionalidade">Nascionalidade</string>
 
-    <string name="btnTipoCaminhoPe">Caminhando</string>
-    <string name="btnTipoCaminhoCarro">Dirigindo</string>
+    <string name="btnTipoCaminhoPe">A pé</string>
+    <string name="btnTipoCaminhoCarro">De carro</string>
     <string name="tipoCaminho">Como você quer chegar?</string>
     <string name="gpsDesabilitado">O Gps está desativado.</string>
     <string name="btnHabilitarGPS">Ativar</string>

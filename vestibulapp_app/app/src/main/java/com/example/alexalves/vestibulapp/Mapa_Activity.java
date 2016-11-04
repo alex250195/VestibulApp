@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.alexalves.vestibulapp.Util.Constants;
@@ -48,6 +49,8 @@ public class Mapa_Activity extends AppCompatActivity implements LocationListener
     ProgressDialog progressDialog;
     LatLng posicaoLatLng;
 
+    ImageButton btnRota;
+
     RotasThread threadRota;
 
     @Override
@@ -67,6 +70,13 @@ public class Mapa_Activity extends AppCompatActivity implements LocationListener
 
         }
 
+        btnRota = (ImageButton) findViewById(R.id.btnDirections);
+        btnRota.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new DialogTipoCaminhoMapa(Mapa_Activity.this, true, Constants.getPosicaoUniversidade() ).show();
+            }
+        });
     }
 
     @Override
@@ -165,8 +175,9 @@ public class Mapa_Activity extends AppCompatActivity implements LocationListener
                         //verifica se ja foi definido uma opçao padrao para o tipo de transporte
 
                         markerUniversidade = marker;
+
                         //chama a cx de dialogo para o usuario definir como ele vai chegar a igreja
-                        DialogTipoCaminhoMapa dialogOpcoes = new DialogTipoCaminhoMapa(Mapa_Activity.this, true);
+                        DialogTipoCaminhoMapa dialogOpcoes = new DialogTipoCaminhoMapa(Mapa_Activity.this, true, Constants.getPosicaoUniversidade());
                         dialogOpcoes.show();
 
 
@@ -185,6 +196,14 @@ public class Mapa_Activity extends AppCompatActivity implements LocationListener
 
     @Override
     public void onLocationChanged(Location location) {
+
+        if(location != null) {
+            double latitude = location.getLatitude();
+            double longitude = location.getLongitude();
+
+            posicaoLatLng = new LatLng(latitude, longitude);
+
+        }
 
     }
 
@@ -281,6 +300,10 @@ public class Mapa_Activity extends AppCompatActivity implements LocationListener
             }
 
             if (posicaoLatLng != null) {
+
+                if(progressDialog != null){
+                    progressDialog.dismiss();
+                }
 
                 progressDialog = ProgressDialog.show(this, "Aguarde", "Carregando caminho...");
                 threadRota = new RotasThread(this, posicaoLatLng, _posicaoDestino, progressDialog, _tipoCaminho);

@@ -26,30 +26,35 @@ public class Rota {
     private List<LatLng> pontos;
 
     public Document getDocument(LatLng start, LatLng end, String _tipoPesquisa) {
-        String url = "http://maps.googleapis.com/maps/api/directions/xml?"
-                + "origin=" + start.latitude + "," + start.longitude
-                + "&destination=" + end.latitude + "," + end.longitude
-                + "&sensor=false&units=metric&mode="+_tipoPesquisa;
-        Log.d("url", url);
-        try {
 
-            URL url2 = new URL(url);
-            HttpURLConnection urlConnection = (HttpURLConnection) url2.openConnection();
-            //urlConnection.setRequestProperty (Constants.Tkn, Constants.PublicTkn);
-            urlConnection.setRequestMethod("POST");
+        if(start != null && end != null) {
 
-            //HttpClient httpClient = new DefaultHttpClient();
-            //HttpContext localContext = new BasicHttpContext();
-            //HttpPost httpPost = new HttpPost(url);
-            //HttpResponse response = httpClient.execute(httpPost, localContext);
-            InputStream in = urlConnection.getInputStream();
-            DocumentBuilder builder = DocumentBuilderFactory.newInstance()
-                    .newDocumentBuilder();
-            Document doc = builder.parse(in);
-            return doc;
-        } catch (Exception e) {
-            e.printStackTrace();
+            String url = "http://maps.googleapis.com/maps/api/directions/xml?"
+                    + "origin=" + start.latitude + "," + start.longitude
+                    + "&destination=" + end.latitude + "," + end.longitude
+                    + "&sensor=false&units=metric&mode=" + _tipoPesquisa;
+            Log.d("url", url);
+            try {
+
+                URL url2 = new URL(url);
+                HttpURLConnection urlConnection = (HttpURLConnection) url2.openConnection();
+                //urlConnection.setRequestProperty (Constants.Tkn, Constants.PublicTkn);
+                urlConnection.setRequestMethod("POST");
+
+                //HttpClient httpClient = new DefaultHttpClient();
+                //HttpContext localContext = new BasicHttpContext();
+                //HttpPost httpPost = new HttpPost(url);
+                //HttpResponse response = httpClient.execute(httpPost, localContext);
+                InputStream in = urlConnection.getInputStream();
+                DocumentBuilder builder = DocumentBuilderFactory.newInstance()
+                        .newDocumentBuilder();
+                Document doc = builder.parse(in);
+                return doc;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
+
         return null;
     }
 
@@ -228,7 +233,11 @@ public class Rota {
 
         Document doc = getDocument(_origem, _destino, _tipoPesquisa);
 
-        return getDirection(doc);
+        if(doc != null) {
+            return getDirection(doc);
+        }
+
+        return null;
 
     }
 
