@@ -57,11 +57,9 @@ public class CandidatoInsertThread extends AsyncTask<Object, Object, String> {
 
             try{
 
-                soap = new SoapObject(NAMESPACE, METHOD_NAME);
+                soap = Candidato.getCandidato().getParametros(NAMESPACE, METHOD_NAME);
 
                 //soap.addProperty("nome", "NomeTeste");
-
-                Candidato.getCandidato().getParametros(soap);
 
                 envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
                 //envelope.dotNet = true;
@@ -109,7 +107,9 @@ public class CandidatoInsertThread extends AsyncTask<Object, Object, String> {
             }
 
         }else{
-            contextInscricao.Resultado(resultado);
+            if(contextInscricao != null) {
+                contextInscricao.Resultado(resultado);
+            }
         }
 
     }

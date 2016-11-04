@@ -27,6 +27,8 @@ public class Inscricao_CursosActivity extends AppCompatActivity {
     private ProgressDialog progressDialog;
     private RadioGroup cursos;
 
+    private Curso cursoSelecionado;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +36,12 @@ public class Inscricao_CursosActivity extends AppCompatActivity {
 
         proximo = (Button) findViewById(R.id.btnProsseguir);
         cursos = (RadioGroup) findViewById(R.id.radioGroupCursos);
+        cursos.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                cursoSelecionado =  Curso.getCursoByIndex(checkedId - 1);
+            }
+        });
 
         proximo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,8 +58,8 @@ public class Inscricao_CursosActivity extends AppCompatActivity {
 
     public void Proximo(){
 
-        String curdoId = cursos.getCheckedRadioButtonId() + "";
-        Candidato.getCandidato().getProva().setCurso(curdoId);
+        Candidato.getCandidato().setCurso(cursoSelecionado.getNome());
+        Candidato.getCandidato().getProva().setCurso(cursoSelecionado.getNome());
 
         new CandidatoInsertThread(this).execute();
 

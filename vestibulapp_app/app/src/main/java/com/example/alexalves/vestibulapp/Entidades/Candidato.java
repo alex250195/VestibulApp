@@ -216,111 +216,114 @@ public class Candidato implements Serializable, KvmSerializable {
         this.escolaridade = _value;
     }
 
-    public void getParametros(SoapObject _soap){
+    public SoapObject getParametros(String namspace, String metodo){
 
+        SoapObject soap = new SoapObject(namspace, metodo);
         PropertyInfo parametros;
 
         parametros = new PropertyInfo();
         parametros.setName("etnia");
-        parametros.setValue(raca);
+        parametros.setValue(raca != null ? raca.replace(" ", "").toString(): "null");
         parametros.setType(String.class);
-        _soap.addProperty(parametros);
+        soap.addProperty(parametros);
 
         parametros = new PropertyInfo();
         parametros.setName("estadoCivil");
-        parametros.setValue(estadoCivil);
+        parametros.setValue(estadoCivil != null ? estadoCivil.replace(" ", "").toString() : "null");
         parametros.setType(String.class);
-        _soap.addProperty(parametros);
+        soap.addProperty(parametros);
 
         parametros = new PropertyInfo();
         parametros.setName("sexo");
-        parametros.setValue(sexo);
+        parametros.setValue(sexo != null ? sexo.replace(" ", "").toString() : "null");
         parametros.setType(String.class);
-        _soap.addProperty(parametros);
+        soap.addProperty(parametros);
 
         parametros = new PropertyInfo();
         parametros.setName("cpf");
-        parametros.setValue(cpf.replace("-","").replace(".",""));
+        parametros.setValue(cpf != null ? cpf.replace("-","").replace(".","").replace(" ", "").toString() : "null");
         parametros.setType(String.class);
-        _soap.addProperty(parametros);
+        soap.addProperty(parametros);
 
         parametros = new PropertyInfo();
         parametros.setName("identidade");
-        parametros.setValue(identidade);
+        parametros.setValue(identidade != null ? identidade.replace(" ", "").toString() : "null");
         parametros.setType(String.class);
-        _soap.addProperty(parametros);
+        soap.addProperty(parametros);
 
         parametros = new PropertyInfo();
         parametros.setName("orgaoExpedidor");
-        parametros.setValue(orgaoExpedidor);
+        parametros.setValue(orgaoExpedidor != null ? orgaoExpedidor.replace(" ", "").toString() : "null");
         parametros.setType(String.class);
-        _soap.addProperty(parametros);
+        soap.addProperty(parametros);
 
         parametros = new PropertyInfo();
         parametros.setName("ufIdentidade");
-        parametros.setValue(ufIdentidade);
+        parametros.setValue(ufIdentidade != null ? ufIdentidade.replace(" ", "").toString() : "null");
         parametros.setType(String.class);
-        _soap.addProperty(parametros);
+        soap.addProperty(parametros);
 
         parametros = new PropertyInfo();
         parametros.setName("nome");
-        parametros.setValue(nome);
+        parametros.setValue(nome != null ? nome.replace(" ", "").toString() : "null");
         parametros.setType(String.class);
-        _soap.addProperty(parametros);
+        soap.addProperty(parametros);
 
         parametros = new PropertyInfo();
         parametros.setName("nomeMae");
-        parametros.setValue(mae);
+        parametros.setValue(mae != null ? mae.replace(" ", "").toString() : "null");
         parametros.setType(String.class);
-        _soap.addProperty(parametros);
+        soap.addProperty(parametros);
 
 
         //recupera a string de data
-        Date datacerta = DateCustom.ConvertDate(nascimento);
+        Date datacerta = DateCustom.ConvertDate(nascimento !=null ? nascimento.replace(" ", "").toString() : "null");
         if(datacerta != null){
 
             parametros = new PropertyInfo();
             parametros.setName("nascimento");
-            parametros.setValue(DateCustom.ToString(datacerta, "yyyy-MM-dd")); //data e altera o formato para yyyy-mm-dd
+            parametros.setValue(DateCustom.ToString(datacerta, "yyyy-MM-dd").toString()); //data e altera o formato para yyyy-mm-dd
             parametros.setType(String.class);
-            _soap.addProperty(parametros);
+            soap.addProperty(parametros);
         }
 
         parametros = new PropertyInfo();
         parametros.setName("nascionalidade");
-        parametros.setValue(nascionalidade);
+        parametros.setValue(nascionalidade != null ? nascionalidade.replace(" ", "").toString(): "null");
         parametros.setType(String.class);
-        _soap.addProperty(parametros);
+        soap.addProperty(parametros);
 
         parametros = new PropertyInfo();
         parametros.setName("ufNasicmento");
-        parametros.setValue(endereco.getUf());
+        parametros.setValue(endereco != null && endereco.getUf() != null ? endereco.getUf().replace(" ", "").toString() : "null");
         parametros.setType(String.class);
-        _soap.addProperty(parametros);
+        soap.addProperty(parametros);
 
         parametros = new PropertyInfo();
         parametros.setName("municipioNascimento");
-        parametros.setValue("Cidade");
+        parametros.setValue(endereco != null && endereco.getMunicipio() != null ? endereco.getMunicipio().replace(" ", "").toString(): "null");
         parametros.setType(String.class);
-        _soap.addProperty(parametros);
+        soap.addProperty(parametros);
 
         parametros = new PropertyInfo();
         parametros.setName("escolaridade");
-        parametros.setValue(escolaridade.getGrau());
+        parametros.setValue(escolaridade != null && escolaridade.getGrau() != null ? escolaridade.getGrau().replace(" ", "").toString(): "null");
         parametros.setType(String.class);
-        _soap.addProperty(parametros);
+        soap.addProperty(parametros);
 
         parametros = new PropertyInfo();
         parametros.setName("senha");
-        parametros.setValue(senha);
+        parametros.setValue(senha != null ? senha.replace(" ", "").toString(): "null");
         parametros.setType(String.class);
-        _soap.addProperty(parametros);
+        soap.addProperty(parametros);
 
         parametros = new PropertyInfo();
         parametros.setName("curso");
-        parametros.setValue(curso);
+        parametros.setValue(curso != null ? curso.replace(" ", "").toString(): "null");
         parametros.setType(String.class);
-        _soap.addProperty(parametros);
+        soap.addProperty(parametros);
+
+        return soap;
 
     }
 

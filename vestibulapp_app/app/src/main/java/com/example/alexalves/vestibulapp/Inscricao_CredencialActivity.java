@@ -79,6 +79,8 @@ public class Inscricao_CredencialActivity extends AppCompatActivity {
                 Candidato.getCandidato().getSeguranca().setPergunta(dados.get(2));
                 Candidato.getCandidato().getSeguranca().setResposta(dados.get(3));
 
+                Candidato.getCandidato().setSenha(dados.get(0));
+
                 Intent quartaEtapa = new Intent(this, Inscricao_AtendEspecializadoActivity.class);
                 startActivity(quartaEtapa);
 

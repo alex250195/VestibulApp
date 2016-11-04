@@ -13,6 +13,8 @@ import com.example.alexalves.vestibulapp.Entidades.Candidato;
 import com.example.alexalves.vestibulapp.Entidades.Contato;
 import com.example.alexalves.vestibulapp.Entidades.Endereco;
 import com.example.alexalves.vestibulapp.Entidades.Escolaridade;
+import com.example.alexalves.vestibulapp.Util.Dialog;
+import com.example.alexalves.vestibulapp.Util.Service;
 import com.example.alexalves.vestibulapp.threads.CandidatoContatoInsertThread;
 import com.example.alexalves.vestibulapp.threads.CandidatoEnderecoInsertThread;
 import com.example.alexalves.vestibulapp.threads.CandidatoInsertThread;
@@ -49,8 +51,13 @@ public class Inscricao_InicioActivity extends AppCompatActivity {
         proximo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Proximo();
-                //teste6();
+
+                if(Service.isOnline(Inscricao_InicioActivity.this)) {
+                    Proximo();
+                    //teste7();
+                }else{
+                    Dialog.Show(Inscricao_InicioActivity.this, "Você não está conectado com a internet", "Sem conexão");
+                }
             }
         });
     }
@@ -140,5 +147,41 @@ public class Inscricao_InicioActivity extends AppCompatActivity {
 
         new CandidatoContatoInsertThread(this).execute();
 
+    }
+
+    private void teste7(){
+
+        Candidato.setCandidato(new Candidato());
+
+        Candidato.getCandidato().setRaca("Branco");
+        Candidato.getCandidato().setEstadoCivil("Solteiro(a)");
+        Candidato.getCandidato().setSexo("Masculino");
+        Candidato.getCandidato().setCpf("35155480256");
+        Candidato.getCandidato().setIdentidade("352688797");
+        Candidato.getCandidato().setOrgaoExpedidor("ssp");
+        Candidato.getCandidato().setUfIdentidade("AC");
+        Candidato.getCandidato().setNome("Simonal");
+        Candidato.getCandidato().setMae("gt");
+        Candidato.getCandidato().setNascimento("1998-02-11");
+        Candidato.getCandidato().setNascionalidade("Brás");
+        Candidato.getCandidato().setUfIdentidade("AC");
+
+        Endereco end = new Endereco();
+        end.setEndereco("rua");
+        end.setUf("MG");
+        end.setMunicipio("Itauna");
+
+        Candidato.getCandidato().setEndereco(end);
+
+        Escolaridade escolaridade = new Escolaridade();
+        escolaridade.setInstituicao("Fundamental - Incompleto");
+        escolaridade.setGrau("conpleto");
+
+        //Candidato.getCandidato()("Cidade");
+        Candidato.getCandidato().setEscolaridade(escolaridade);
+        Candidato.getCandidato().setSenha("12345");
+        Candidato.getCandidato().setCurso("Medicina");
+
+        new CandidatoInsertThread(this).execute();
     }
 }

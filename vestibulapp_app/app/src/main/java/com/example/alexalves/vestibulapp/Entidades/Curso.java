@@ -72,6 +72,16 @@ public class Curso implements KvmSerializable {
         this.descricao = descricao;
     }
 
+    public static Curso getCursoByIndex(int _idx){
+
+        if(getCursos()!= null && getCursos().size() > 0){
+
+            return getCursos().get(_idx);
+        }
+
+        return null;
+    }
+
     @Override
     public Object getProperty(int i) {
 

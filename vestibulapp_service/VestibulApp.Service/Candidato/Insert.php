@@ -69,6 +69,7 @@
 
 		$candidato->openConnect();
 		$resul = $candidato->Insert();
+
 		$rCandidato = $candidato->SelectBySpecification(" AND cpf =  " .$cpf);
 
 		$candidato->disconnect();
