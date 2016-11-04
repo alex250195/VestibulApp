@@ -6,6 +6,7 @@ import android.util.Log;
 
 import com.example.alexalves.vestibulapp.Entidades.Candidato;
 import com.example.alexalves.vestibulapp.Entidades.Curso;
+import com.example.alexalves.vestibulapp.Entidades.Vestibular;
 import com.example.alexalves.vestibulapp.Portal_AreaParticipanteActivity;
 import com.example.alexalves.vestibulapp.Portal_LoginActivity;
 import com.example.alexalves.vestibulapp.Util.Constants;
@@ -151,8 +152,13 @@ public class CandidatoSelectBySpecificationThread extends AsyncTask<Object, Obje
     protected void onPostExecute (String result){
 
         if(context != null){
-
             context.result();
+
+
+            if(Vestibular.getVestibular() != null && Candidato.getCandidato() != null) {
+                //chama a thread que recupera as informaçoes da inscricao
+                new InscricaoSelectThread(context, Vestibular.getVestibular().getIdVestibular(), Candidato.getCandidato().getId()).execute();
+            }
 
         }
 

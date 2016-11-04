@@ -38,6 +38,7 @@ public class Candidato implements Serializable, KvmSerializable {
     private Seguranca seguranca;
     private Escolaridade escolaridade;
     private Prova prova;
+    private Inscricao inscricao;
 
     private static Candidato holder;
 
@@ -214,6 +215,14 @@ public class Candidato implements Serializable, KvmSerializable {
 
     public void setEscolaridade(Escolaridade _value){
         this.escolaridade = _value;
+    }
+
+    public Inscricao getInscricao() {
+        return inscricao;
+    }
+
+    public void setInscricao(Inscricao inscricao) {
+        this.inscricao = inscricao;
     }
 
     public SoapObject getParametros(String namspace, String metodo){
